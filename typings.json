@@ -1,0 +1,31 @@
+{
+  "globalDependencies": {
+    "axios": "registry:dt/axios#0.9.1+20161016142654",
+    "bootstrap": "registry:dt/bootstrap#3.3.5+20160619023404",
+    "classnames": "registry:dt/classnames#0.0.0+20160316155526",
+    "dateformat": "registry:dt/dateformat#1.0.12+20161005184000",
+    "html-pdf": "registry:dt/html-pdf#2.1.0+20161121205806",
+    "html2canvas": "registry:dt/html2canvas#0.5.0+20161229235626",
+    "jspdf": "registry:dt/jspdf#1.1.135+20160921164505",
+    "jwt-decode": "registry:dt/jwt-decode#1.4.0+20160317120654",
+    "lodash": "registry:dt/lodash#4.14.0+20161110215204",
+    "normalizr": "registry:dt/normalizr#2.0.1+20160501130729",
+    "query-string": "registry:dt/query-string#3.0.0+20161129181732",
+    "react": "registry:dt/react#0.14.0+20161024223416",
+    "react-bootstrap": "registry:dt/react-bootstrap#0.0.0+20161107151335",
+    "react-dom": "registry:dt/react-dom#0.14.0+20160412154040",
+    "react-redux": "registry:dt/react-redux#4.4.0+20160908183346",
+    "react-router": "registry:dt/react-router#2.0.0+20160928130202",
+    "react-router-bootstrap": "registry:dt/react-router-bootstrap#0.0.0+20160316155526",
+    "react-textarea-autosize": "registry:dt/react-textarea-autosize#4.0.3+20161121205806",
+    "redux": "registry:dt/redux#3.5.2+20160703092728",
+    "redux-logger": "registry:dt/redux-logger#2.6.0+20160619033847",
+    "redux-thunk": "registry:dt/redux-thunk#2.1.0+20160703120921",
+    "shortid": "registry:dt/shortid#0.0.0+20160316155526",
+    "validator": "registry:dt/validator#5.7.0+20161105193831"
+  },
+  "globalDevDependencies": {
+    "redux-immutable-state-invariant": "registry:dt/redux-immutable-state-invariant#1.2.0+20160316155526",
+    "redux-mock-store": "registry:dt/redux-mock-store#0.0.6+20161121205806"
+  }
+}

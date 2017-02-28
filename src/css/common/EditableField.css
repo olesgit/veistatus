@@ -1,0 +1,53 @@
+/* Editable Field Css*/
+
+.editable-field-form {
+    margin-bottom: 0;
+    width: 100%;
+    height: 40px;
+}
+
+.editable-field-textarea {
+    resize: none;
+    font-size: 16px;
+    line-height: 30px;
+    color: inherit;
+    overflow-y: hidden!important;
+}
+
+.editable-field-button-save {
+    color: #7ed321;
+}
+
+.editable-field-button-cancel {
+    color: #d0021b;
+}
+
+.editable-field-form {
+    position: relative;
+}
+
+/*in place editing*/
+
+.editable-field .form-control {
+    border-color: transparent;
+    background-color: transparent;
+    box-shadow: none;
+    transition: none;
+}
+
+.editable-field .editable-field-span {
+    opacity: 0;
+    border-style: none;
+}
+
+.editable-field:hover .editable-field-span {
+    opacity: 1;
+    border-style: solid;
+    cursor: pointer;
+}
+
+.editable-field:hover .form-control {
+    border-color: #ccc;
+    background-color: #fff;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+}

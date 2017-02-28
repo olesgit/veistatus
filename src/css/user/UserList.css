@@ -1,0 +1,13 @@
+/* UserList */
+
+.userList table > tbody > tr > td:nth-child(1) {
+    width: 560px;
+}
+
+.userList table > tbody > tr > td:nth-child(2) {
+    vertical-align: middle;
+}
+
+.userList table {
+    margin-top: 50px;
+}

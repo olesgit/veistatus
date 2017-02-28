@@ -1,0 +1,383 @@
+/*BYMelding bootstrap override*/
+
+body {
+    font-size: 16px;
+}
+
+/* Buttons */
+.btn-default,
+.btn-primary,
+.btn-success,
+.btn-info,
+.btn-warning,
+.btn-danger {
+    font-size: 16px;
+    font-weight: bold;
+    color: #4d4d4d;
+}
+
+.btn-default:active,
+.btn-primary:active,
+.btn-success:active,
+.btn-info:active,
+.btn-warning:active,
+.btn-danger:active,
+.btn-default.active,
+.btn-primary.active,
+.btn-success.active,
+.btn-info.active,
+.btn-warning.active,
+.btn-danger.active {
+    box-shadow: none;
+}
+
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+}
+
+.btn-link, .btn-link:hover {
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.btn-default.disabled,
+.btn-primary.disabled,
+.btn-success.disabled,
+.btn-info.disabled,
+.btn-warning.disabled,
+.btn-danger.disabled,
+.btn-default[disabled],
+.btn-primary[disabled],
+.btn-success[disabled],
+.btn-info[disabled],
+.btn-warning[disabled],
+.btn-danger[disabled],
+fieldset[disabled] .btn-default,
+fieldset[disabled] .btn-primary,
+fieldset[disabled] .btn-success,
+fieldset[disabled] .btn-info,
+fieldset[disabled] .btn-warning,
+fieldset[disabled] .btn-danger {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.btn:active, .btn.active {
+    box-shadow: none;
+}
+
+.btn-default .badge,
+.btn-primary .badge,
+.btn-success .badge,
+.btn-info .badge,
+.btn-warning .badge,
+.btn-danger .badge {
+    text-shadow: none;
+}
+
+.btn-default {
+    color: #4d4d4d;
+    background-color: #f3f3f3;
+    border-color: #e9e9e9;
+}
+
+.btn-default:hover,
+.btn-default:focus {
+    color: #4d4d4d;
+    background-color: #e9e9e9;
+    border-color: #d8d8d8;
+}
+
+.btn-default:active,
+.btn-default.active {
+    color: #4d4d4d;
+    background-color: #d4d4d4;
+    border-color: #c4c4c4;
+}
+
+.btn-default.disabled,
+.btn-default[disabled],
+fieldset[disabled] .btn-default,
+.btn-default.disabled:hover,
+.btn-default[disabled]:hover,
+fieldset[disabled] .btn-default:hover,
+.btn-default.disabled:focus,
+.btn-default[disabled]:focus,
+fieldset[disabled] .btn-default:focus,
+.btn-default.disabled.focus,
+.btn-default[disabled].focus,
+fieldset[disabled] .btn-default.focus,
+.btn-default.disabled:active,
+.btn-default[disabled]:active,
+fieldset[disabled] .btn-default:active,
+.btn-default.disabled.active,
+.btn-default[disabled].active,
+fieldset[disabled] .btn-default.active {
+    background-color: #e0e0e0;
+}
+
+.btn-primary {
+    color: #4d4d4d;
+    background-color: #daf6ed;
+    border-color: #245580;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    color: #4d4d4d;
+    background-color: #c2efe1;
+    border-color: #c2efe1;
+}
+
+.btn-primary:active,
+.btn-primary.active {
+    color: #4d4d4d;
+    background-color: #90e2c9;
+    border-color: #71d9b8;
+}
+
+.btn-primary.disabled,
+.btn-primary[disabled],
+fieldset[disabled] .btn-primary,
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled.focus,
+.btn-primary[disabled].focus,
+fieldset[disabled] .btn-primary.focus,
+.btn-primary.disabled:active,
+.btn-primary[disabled]:active,
+fieldset[disabled] .btn-primary:active,
+.btn-primary.disabled.active,
+.btn-primary[disabled].active,
+fieldset[disabled] .btn-primary.active {
+    background-color: #daf6ed;
+}
+
+.btn-success {
+    color: #4d4d4d;
+    background-color: #daf6ed;
+    border-color: #b7ecdc;
+}
+
+.btn-success:hover,
+.btn-success:focus {
+    color: #4d4d4d;
+    background-color: #c2efe1;
+    border-color: #c2efe1;
+}
+
+.btn-success:active:focus,
+.btn-success.active:focus {
+    color: #4d4d4d;
+    background-color: #90e2c9;
+    border-color: #71d9b8;
+}
+
+.btn-success.disabled,
+.btn-success[disabled],
+fieldset[disabled] .btn-success,
+.btn-success.disabled:hover,
+.btn-success[disabled]:hover,
+fieldset[disabled] .btn-success:hover,
+.btn-success.disabled:focus,
+.btn-success[disabled]:focus,
+fieldset[disabled] .btn-success:focus,
+.btn-success.disabled.focus,
+.btn-success[disabled].focus,
+fieldset[disabled] .btn-success.focus,
+.btn-success.disabled:active,
+.btn-success[disabled]:active,
+fieldset[disabled] .btn-success:active,
+.btn-success.disabled.active,
+.btn-success[disabled].active,
+fieldset[disabled] .btn-success.active {
+    background-color: #daf6ed;
+}
+
+.btn-primary {
+    color: #4d4d4d;
+    background-color: #f2f8fc;
+    border-color: #cee4f2;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    color: #4d4d4d;
+    background-color: #e3eff8;
+    border-color: #cee4f2;
+}
+
+.btn-primary:active,
+.btn-primary.active {
+    color: #4d4d4d;
+    background-color: #cde3f2;
+    border-color: #cee4f2;
+}
+
+.btn-primary:active:hover,
+.btn-primary.active:hover,
+.open > .dropdown-toggle.btn-primary:hover,
+.btn-primary:active:focus,
+.btn-primary.active:focus,
+.open > .dropdown-toggle.btn-primary:focus,
+.btn-primary:active.focus,
+.btn-primary.active.focus,
+.open > .dropdown-toggle.btn-primary.focus {
+    color: #4d4d4d;
+    background-color: #cde3f2;
+    border-color: #cee4f2;
+}
+
+.btn-primary.disabled,
+.btn-primary[disabled],
+fieldset[disabled] .btn-primary,
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled.focus,
+.btn-primary[disabled].focus,
+fieldset[disabled] .btn-primary.focus,
+.btn-primary.disabled:active,
+.btn-primary[disabled]:active,
+fieldset[disabled] .btn-primary:active,
+.btn-primary.disabled.active,
+.btn-primary[disabled].active,
+fieldset[disabled] .btn-primary.active {
+    background-color: #f2f8fc;
+    border-color: #cee4f2;
+}
+
+.btn-danger {
+    color: #4d4d4d;
+    background-color: #fee0dc;
+    border-color: #fdc2bd;
+}
+
+.btn-danger:hover,
+.btn-danger:focus {
+    color: #4d4d4d;
+    background-color: #fdc0ba;
+    border-color: #fca79e;
+}
+
+.btn-danger:active,
+.btn-danger.active {
+    color: #4d4d4d;
+    background-color: #fdc0ba;
+    border-color: #fca79e;
+}
+
+.btn-danger:active:focus,
+.btn-danger.active:focus {
+    color: #4d4d4d;
+    background-color: #fca198;
+    border-color: #fc8479;
+}
+
+.btn-danger.disabled,
+.btn-danger[disabled],
+fieldset[disabled] .btn-danger,
+.btn-danger.disabled:hover,
+.btn-danger[disabled]:hover,
+fieldset[disabled] .btn-danger:hover,
+.btn-danger.disabled:focus,
+.btn-danger[disabled]:focus,
+fieldset[disabled] .btn-danger:focus,
+.btn-danger.disabled.focus,
+.btn-danger[disabled].focus,
+fieldset[disabled] .btn-danger.focus,
+.btn-danger.disabled:active,
+.btn-danger[disabled]:active,
+fieldset[disabled] .btn-danger:active,
+.btn-danger.disabled.active,
+.btn-danger[disabled].active,
+fieldset[disabled] .btn-danger.active {
+    background-color: #fee0dc;
+    border-color: #fdc2bd;
+}
+
+.btn-link {
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.btn-link:hover {
+    text-decoration: underline;
+}
+
+.btn-link.danger {
+    color: #d0021b;
+    font-weight: normal;
+}
+
+.btn-lg,
+.btn-group-lg > .btn {
+    min-width: 220px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.btn-sm,
+.btn-group-sm > .btn {
+    /*max-width: 60px;*/
+}
+
+/*Table*/
+.table thead {
+    background-color: #f3f3f3;
+    border: 1px solid #d8d8d8;
+}
+
+.table > tbody > tr:nth-child(2n) > td, .table > tbody > tr:nth-child(2n) > th {
+    background-color: #f3f3f3;
+}
+
+.table thead > tr {
+    height: 56px;
+}
+
+.table tbody > tr > td {
+    border: none;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+.table tbody > tr {
+    height: 56px;
+}
+
+.table thead > tr > th:first-child,
+.table tbody > tr > td:first-child
+{
+    padding-left: 21px;
+}
+
+.table tbody > tr > td {
+    vertical-align: middle;
+}
+
+.table thead > tr > th {
+    vertical-align: middle;
+}
+
+/*Modal overrides*/
+.modal-dialog button.close {
+    opacity: 1;
+    font-size: 35px;
+    color: #4d4c4d;
+}
+
+.modal-title {
+    font-size: 21px;
+    font-weight: bold;
+    color: #4d4d4d;
+}

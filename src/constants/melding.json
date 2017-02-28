@@ -1,0 +1,67 @@
+{
+    "result": {
+        "id": 56721,
+        "datoTidMottatt": "2012-12-18T13:01:57Z",
+        "prioritet": {
+            "kode": 0,
+            "beskrivelse": null
+        },
+        "typeMelding": {
+            "id": 3,
+            "beskrivelse": "Brøyting/strøing",
+            "aktiv": true,
+            "oppslagstabell": null,
+            "undertyper": [
+                {
+                    "id": 9,
+                    "beskrivelse": "Fortau",
+                    "meldingsID": 3,
+                    "aktiv": true,
+                    "fristAntallDager": 0,
+                    "oppslagstabell": "broyting_stroing"
+                },
+                {
+                    "id": 10,
+                    "beskrivelse": "Veibane",
+                    "meldingsID": 3,
+                    "aktiv": true,
+                    "fristAntallDager": 0,
+                    "oppslagstabell": "bymarealer_vegnettparker"
+                }
+                
+            ]
+        },
+        "underTypeMelding": "Veibane",
+        "statusMelding": {
+            "statusKode": 0,
+            "statusTekst": null,
+            "erAktiv": false
+        },
+        "innmelderNavn": "Ulf Stenberg",
+        "innmelderEpost": "sloreasen@gmail.com",
+        "innmelderTlf": "22613803 ",
+        "sone": "Øst",
+        "ansvarligEntreprenor": null,
+        "pointEast": 600616.7358870917,
+        "pointNorth": 6635301.822580645,
+        "tilleggsNotater": null,
+        "notater": null,
+        "antallHull": 0,
+        "mengde": 0,
+        "lappeDato": "0001-01-01T00:00:00Z",
+        "frist": "0001-01-01T00:00:00Z",
+        "responsTid": 0,
+        "meldingsID": "2012-56721",
+        "gatenavn": "Sloreåsen",
+        "beskrivelse": "Manglende brøyting\r\nVil melde fra om at det ikke er strødd i veien og på fortauet i Sloreåsen (altså veien som går inn fra Ljabrudiagonalen til rundkjøringen innerst i veien). Det er speilglatt der nå, og så godt som ufremkommelig for fotgjengere.\r\n \r\nDet er stort sett heller ikke strødd i hele gangveinettet på Holmlia. Jeg kom nettopp inn fra en tur fra Sloreåsen forbi Hallagerbakken og Holmlia skoler til Søndre Ås gård og tilbake forbi Rosenholm skole. Det var strødd bare noen ganske få steder, antageligvis av det tilliggende borettslag eller skole.\r\n \r\nVi ber altså om at det blir strødd i Sloreåsen nå.\r\nVi ber altså om at det blir strødd i Sloreåsen nå.\r\n \r\nVennlig hilsen\r\nUlf Stenberg\r\nstyreleder\r\nSloreåsen borettslag\r\ntlf. 22 61 38 03 - 93 42 06 21\r\n",
+        "bruker": "Andrea Gornall",
+        "overstyringsRolle": null,
+        "kabelID": null,
+        "relaterteGatelysList": [],
+        "materialbruk": null,
+        "personalbruk": null,
+        "bilder": []
+    },
+    "errorMessage": "",
+    "timeGenerated": "2017-01-26T15:10:36.9506276Z"
+}

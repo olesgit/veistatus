@@ -1,0 +1,33 @@
+/* Contract Css */
+
+#close-button {
+    line-height: 12px;
+    width: 18px;
+    font-size: 10pt;
+    font-family: tahoma;
+    margin-top: 2px;
+    margin-right: 2px;
+    position:absolute;
+    top:0;
+    right:0;
+
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+#close-button:hover {
+    color: red;
+}
+
+#add-process-btn {
+    width: 130px;
+}
+
+#gyldigfra, #gyldigtil{
+    padding-right: 0;
+}
+
+#formControlsPris {
+    width: 90px;
+}

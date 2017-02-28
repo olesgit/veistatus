@@ -1,0 +1,19 @@
+.bymBootstrap code {
+    margin-left: 5px;
+}
+
+.bymBootstrap h2 {
+    margin-top: 40px;
+}
+
+.bymBootstrap button {
+    margin-bottom: 13px;
+}
+
+.bymBootstrap table > td {
+    width: 50px;
+}
+
+.bymBootstrap {
+    margin-top: 30px;
+}

@@ -1,0 +1,26 @@
+/*Page Header Css*/
+
+.page-header {
+    background-color: rgba(155, 154, 155, 0.2);  /*rgba(155, 154, 155, 0.09); */
+    margin-top: -1px;
+    padding: 18px 51px 19px 51px;
+    height: 75px;
+    border-bottom: 1px solid #979797;
+}
+
+.page-header h1 {
+    padding: 0;
+    margin: 0;
+    color: #4d4c4d;
+    font-size: 32px;
+}
+
+.page-header .glyphicon {
+    padding-left: 22px;
+    padding-right: 22px;
+    margin: 0;
+}
+
+#user-profile {
+    padding-top: 10px;
+}
