@@ -6,9 +6,6 @@ import MeldingList from '../../components/Meldinger/MeldingList';
 
 const MapStateToProps = (state) => {
 
-console.log("MapStateToProps MapStateToProps MapStateToProps MapStateToProps :");
-console.log(state.messages);
-
   return {
       messages: (state.messages != null) ? state.messages.messages : [],
       loading: state.messages == null
