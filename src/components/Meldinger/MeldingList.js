@@ -35,7 +35,7 @@ class MeldingsList extends React.Component {
                     <tbody>
                         {messages.map(message => {
                             return(
-                            <tr>
+                            <tr key={message.id}>
                                 <td>{message.type}</td>
                                 <td>{message.adresse}</td>
                                 <td>{message.innmeldt}</td>
