@@ -6,6 +6,7 @@
 /// <reference path="globals/html2canvas/index.d.ts" />
 /// <reference path="globals/jspdf/index.d.ts" />
 /// <reference path="globals/jwt-decode/index.d.ts" />
+/// <reference path="globals/leaflet/index.d.ts" />
 /// <reference path="globals/lodash/index.d.ts" />
 /// <reference path="globals/normalizr/index.d.ts" />
 /// <reference path="globals/query-string/index.d.ts" />
