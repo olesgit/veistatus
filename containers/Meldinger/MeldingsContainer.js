@@ -1,11 +1,10 @@
-import {PropTypes} from 'react';
+//import {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {loadMessages} from '../../actions/messageActions';
 
 import MeldingList from '../../components/Meldinger/MeldingList';
 
 const MapStateToProps = (state) => {
-
   return {
       messages: (state.messages != null) ? state.messages.messages : [],
       loading: state.messages == null
@@ -22,7 +21,7 @@ const MeldingsContainer = connect(MapStateToProps, MapDispatchToProps)(MeldingLi
 
 MeldingsContainer.DefaultProps = {
 };
-MeldingsContainer.propTypes = {
-};
+// MeldingsContainer.propTypes = {
+// };
 
 export default MeldingsContainer;

@@ -8,6 +8,7 @@
     "html2canvas": "registry:dt/html2canvas#0.5.0+20161229235626",
     "jspdf": "registry:dt/jspdf#1.1.135+20160921164505",
     "jwt-decode": "registry:dt/jwt-decode#1.4.0+20160317120654",
+    "leaflet": "registry:dt/leaflet#1.0.0+20170220190241",
     "lodash": "registry:dt/lodash#4.14.0+20161110215204",
     "normalizr": "registry:dt/normalizr#2.0.1+20160501130729",
     "query-string": "registry:dt/query-string#3.0.0+20161129181732",
