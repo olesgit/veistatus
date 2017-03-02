@@ -4,9 +4,9 @@ import {Table} from 'react-bootstrap';
 
 
 class MeldingsList extends React.Component {
-    constructor(props, context) {
-        super(props, context);
-    }
+    // constructor(props, context) {
+    //     super(props, context);
+    // }
 
 
     componentWillMount() {

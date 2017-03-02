@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 import AppContainer from './containers/App'
-import Login from './components/Account/Login'
+//import Login from './components/Account/Login'
 import MeldingsContainer from './containers/Meldinger/MeldingsContainer';
 import KombinertMeldingsContainer from './containers/Meldinger/KombinertMeldingsContainer';
 //import BymBootstrap from './components/Layout/BymBootstrap';

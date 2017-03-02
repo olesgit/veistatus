@@ -1,4 +1,4 @@
-import {PropTypes} from 'react';
+//import {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {loadMessages} from '../../actions/messageActions';
 
@@ -21,7 +21,7 @@ const MeldingsContainer = connect(MapStateToProps, MapDispatchToProps)(MeldingLi
 
 MeldingsContainer.DefaultProps = {
 };
-MeldingsContainer.propTypes = {
-};
+// MeldingsContainer.propTypes = {
+// };
 
 export default MeldingsContainer;

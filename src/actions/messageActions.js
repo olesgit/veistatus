@@ -2,7 +2,7 @@ import * as types from './ActionTypes';
 import messageApi from '../Api_MockData/mockMessagesApi';
 // import axios from 'axios';
 //import * as api from '../constants/api';
-import { useMock } from "../constants/settings";
+//import { useMock } from "../constants/settings";
 
 export function loadMessagesStart() {
     return { type: types.LOAD_MESSAGES };
