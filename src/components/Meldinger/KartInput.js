@@ -1,18 +1,18 @@
 import React, {PropTypes} from 'react';
-import Spinner from 'react-spinkit';
-import {Table, Button, FormControl, FormGroup, ControlLabel, HelpBlock} from 'react-bootstrap';
+//import Spinner from 'react-spinkit';
+import { Button, FormControl, FormGroup, ControlLabel, HelpBlock} from 'react-bootstrap';
 
 
 export class KartInput extends React.Component {
     constructor(props, context) {
         super(props, context);
-
+        this.changeHandler = this.changeHandler.bind(this);
         this.state = {
             name: 'noused',
-            email: 'noused'
+            search: 'noused',
+            searchTouched: false
         }
     }
-
 
     componentWillMount() {
     }
@@ -21,15 +21,23 @@ export class KartInput extends React.Component {
         return true;
     }
 
+    changeHandler(event) {
+        switch (event.target.id) {
+            case "formControlsSearch":
+                this.setState({search: event.target.value,searchTouched: true});
+                break;
+            default:
+                return;
+        }
+    }
 
     render() {
-
         const roller = [ {rolleId: 1, navn: 'test'} , {rolleId: 2, navn: 'toasst'} , {rolleId: 3, navn: 'tst'}];
         const formInstance = (
             <form className="addUserForm">
                 <FormGroup controlId="formControlsName"
                     validationState={(this.nameIsValid()) ? null : "error"}>
-                    <ControlLabel>Adresse</ControlLabel>
+                    <ControlLabel>Valgt Adresse</ControlLabel>
                     <FormControl
                         type="text"
                         value={this.props.selectedAdress}
@@ -38,17 +46,17 @@ export class KartInput extends React.Component {
                     />
                     {(!this.nameIsValid()) && <HelpBlock>Navn kan ikke være tom</HelpBlock>}
                 </FormGroup>
-                <FormGroup controlId="formControlsEmail"
+                <FormGroup controlId="formControlsSearch"
                     validationState={(this.nameIsValid()) ? null : "error"}>
-                    <ControlLabel>Something input</ControlLabel>
+                    <ControlLabel>Søk Adresse</ControlLabel>
                     <FormControl
-                        type="email"
-                        value={this.state.email}
+                        type="text"
+                        value={this.state.search}
                         onChange={this.changeHandler}
                         onBlur={this.changeHandler}
                     />
                     {(!this.nameIsValid()) &&
-                        <HelpBlock>Må være en gyldig e-post</HelpBlock>}
+                        <HelpBlock>Noe galt</HelpBlock>}
                 </FormGroup>
                 <FormGroup controlId="formControlsSelect"
                     validationState={(this.nameIsValid()) ? null : "error"}>

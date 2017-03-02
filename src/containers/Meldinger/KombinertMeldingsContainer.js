@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 //import { Panel, Grid } from 'react-bootstrap';
 
 //import {SimpleExample} from '../../components/Meldinger/SimpleMapExample';
-import {MapBoxSample} from '../../components/Meldinger/MapBoxSample';
+import {MapView} from '../../components/Kart/MapView';
 import {KartInput} from '../../components/Meldinger/KartInput';
 
 class KombinertMeldingsContainer extends Component {
@@ -26,8 +26,6 @@ class KombinertMeldingsContainer extends Component {
     }
 
     SelectCoord(data) {
-        //console.log('in the container with data');
-        console.log(data);
         this.setState({valgtAdresse: data.display_name});
     }
 
@@ -36,7 +34,7 @@ class KombinertMeldingsContainer extends Component {
                 <div id="container">
 
                 <div className="container-fluid">
-                    <h1>Hello World!</h1>
+                    <h1>Place your position!</h1>
                     
                     <div className="row">
                         <div className="col-sm-3 col-md-6 col-lg-4" style={{'backgroundColor': 'yellow'}}>
@@ -45,7 +43,7 @@ class KombinertMeldingsContainer extends Component {
                         </div>
                         <div className="col-sm-9 col-md-6 col-lg-8" style={{'backgroundColor': 'pink'}}>
                             <p>and many other things...</p>
-                            <MapBoxSample onSelectCoord={(data) => this.SelectCoord(data)}/>
+                            <MapView onSelectCoord={(data) => this.SelectCoord(data)}/>
                         </div>
                     </div>
 
