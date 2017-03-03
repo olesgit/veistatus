@@ -7,7 +7,7 @@ import { divIcon } from 'leaflet';
 
 import '../../css/kart/kart.css';
 
-const position = [59.94, 10.77]
+const position = [59.94, 10.77];
 const markers = [
   {lat: 59.9412, lng: 10.77},
   {lat: 59.9445, lng: 10.77},
@@ -47,6 +47,8 @@ export class MapView extends React.Component {
             lat: e.latlng.lat,
             lon: e.latlng.lng
         };
+        
+        this.setState( {lat: e.latlng.lat, lon: e.latlng.lng});  //Merk: Disse koord må brukes, og ikke data fra nominatim reverseComplted (som gir en gangs warning: Warning: Failed prop type: Invalid prop `position` supplied to `Marker`.) ES5/ES6
         nominatim.reverse(query, this.reverseComplted);
     }
 
@@ -54,7 +56,6 @@ export class MapView extends React.Component {
         if (err) {
             throw err;
         }
-        this.setState( {lat: data.lat, lon: data.lon});
         this.props.onSelectCoord(data);
     }
 
