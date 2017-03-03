@@ -48,6 +48,8 @@ export class MapView extends React.Component {
             lon: e.latlng.lng
         };
         
+        console.log(e.latlng.lat, e.latlng.lng);
+
         this.setState( {lat: e.latlng.lat, lon: e.latlng.lng});  //Merk: Disse koord må brukes, og ikke data fra nominatim reverseComplted (som gir en gangs warning: Warning: Failed prop type: Invalid prop `position` supplied to `Marker`.) ES5/ES6
         nominatim.reverse(query, this.reverseComplted);
     }

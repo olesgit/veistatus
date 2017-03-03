@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 //import Spinner from 'react-spinkit';
 import { Button, FormControl, FormGroup, ControlLabel, HelpBlock} from 'react-bootstrap';
+import {nominatim} from '../Kart/Nominatim';
 
 
 export class KartInput extends React.Component {
@@ -9,7 +10,7 @@ export class KartInput extends React.Component {
         this.changeHandler = this.changeHandler.bind(this);
         this.state = {
             name: 'noused',
-            search: 'noused',
+            search: '',
             searchTouched: false
         }
     }
@@ -21,9 +22,46 @@ export class KartInput extends React.Component {
         return true;
     }
 
+
+Complted = (err, data) => {
+        if (err) {
+            throw err;
+        }
+        
+        //console.log(data[0].display_name);
+        console.clear();
+        var l = data.length;
+        for(var i = 0; i < l; i++)
+            console.log(data[i].display_name);
+    }
+    
+
+//Upper Left : 60.150391714056326 10.48851013183594
+
+//Lower Right : 59.797871028010384 10.965042114257814
+
+//boundingbox="52.548641204834,52.5488433837891,-1.81612110137939,-1.81592094898224" 
+
+//boundingbox="59.797871028010384,60.150391714056326,10.48851013183594,10.965042114257814" 
+
+
+
     changeHandler(event) {
         switch (event.target.id) {
             case "formControlsSearch":
+                var query = {
+                    q: event.target.value,
+                    addressdetails: '1',
+                    viewbox: '10.48851013183594, 60.150391714056326, 10.965042114257814, 59.797871028010384',
+                    bounded: 1
+                    //boundingbox: '59.797871028010384,60.150391714056326,10.48851013183594,10.965042114257814'
+                    //countrycodes: 'no'
+                    //viewbox: { left: KL, top: KT, right: KR, bottom: KB }
+                };
+
+                nominatim.search(query, this.Complted);
+
+
                 this.setState({search: event.target.value,searchTouched: true});
                 break;
             default:
@@ -52,6 +90,7 @@ export class KartInput extends React.Component {
                     <FormControl
                         type="text"
                         value={this.state.search}
+                        placeholder="Check this out"
                         onChange={this.changeHandler}
                         onBlur={this.changeHandler}
                     />
