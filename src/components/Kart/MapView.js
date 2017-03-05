@@ -5,6 +5,8 @@ import MarkerClusterGroup from 'react-leaflet-markercluster';
 import {nominatim} from './Nominatim';
 import { divIcon } from 'leaflet';
 
+import { Button } from 'react-bootstrap';
+
 import '../../css/kart/kart.css';
 
 const position = [59.94, 10.77];
@@ -50,7 +52,7 @@ export class MapView extends React.Component {
         
         console.log(e.latlng.lat, e.latlng.lng);
 
-        this.setState( {lat: e.latlng.lat, lon: e.latlng.lng});  //Merk: Disse koord må brukes, og ikke data fra nominatim reverseComplted (som gir en gangs warning: Warning: Failed prop type: Invalid prop `position` supplied to `Marker`.) ES5/ES6
+        this.setState( {lat: e.latlng.lat, lon: e.latlng.lng});  //Merk: Disse koord må brukes, og ikke data koord fra nominatim reverseComplted (som gir en gangs warning: Warning: Failed prop type: Invalid prop `position` supplied to `Marker`.) ES5/ES6
         nominatim.reverse(query, this.reverseComplted);
     }
 

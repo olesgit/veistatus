@@ -2,3 +2,25 @@
     height: 400px;
     width: 100%;
 }
+
+.collapsible-centerdiv {
+    align-content: right;
+    background-color: yellowgreen;
+    width: 100%;
+    text-align: center;
+	vertical-align: top;	
+    align-items: right;
+}
+
+.collapsible-button {
+    width: 200px;
+    align-self: right;
+    float: none;
+    left: 100px;
+    margin-right: 25px;
+display: inline-block;
+}
+
+#inner {
+  display: inline-block;
+}

@@ -3,7 +3,6 @@ import React, {PropTypes} from 'react';
 import { Button, FormControl, FormGroup, ControlLabel, HelpBlock} from 'react-bootstrap';
 import {nominatim} from '../Kart/Nominatim';
 
-
 export class KartInput extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -44,13 +43,36 @@ Complted = (err, data) => {
 
 //boundingbox="59.797871028010384,60.150391714056326,10.48851013183594,10.965042114257814" 
 
+//Nominatim documentation:
+//http://wiki.openstreetmap.org/wiki/Nominatim
+//Nominatum usage policy:
+//https://operations.osmfoundation.org/policies/nominatim/
+
+//Google maps:
+//Visit the Google Developer Console to generate your API key. 
+//The API's that you have to enable in your Google API Manager Dashboard are 
+//Google Maps Geocoding API, 
+//Google Places API Web Service and 
+//Google Maps Javascript API.
+//API key: AIzaSyDY1uwDe8-xR2h9xBxFgZG7Lr9eLMSKPR4
+
+//Example of google maps in react use:
+//https://www.fullstackreact.com/articles/how-to-write-a-google-maps-react-component/
+// google developer console, for selecting apis and getting a key
+//https://console.developers.google.com/apis/credentials?project=engaged-plasma-160513
+// react-geosuggest component documentation:
+//https://github.com/ubilabs/react-geosuggest
+
+//My Oslo ViewBox:
+//viewbox: '10.48851013183594, 60.150391714056326, 10.965042114257814, 59.797871028010384',
 
 
     changeHandler(event) {
         switch (event.target.id) {
             case "formControlsSearch":
                 var query = {
-                    q: event.target.value,
+                    //q: event.target.value,
+                    street: event.target.value,
                     addressdetails: '1',
                     viewbox: '10.48851013183594, 60.150391714056326, 10.965042114257814, 59.797871028010384',
                     bounded: 1
@@ -112,7 +134,6 @@ Complted = (err, data) => {
             </form>
         );
 
-
         return (
             <div>
                 <div className="KartInput">
@@ -124,7 +145,7 @@ Complted = (err, data) => {
                     }}>Avbryt
                     </Button>
                     <Button className="pull-left" bsStyle="primary" bsSize="large" type="submit" id="submitButton"
-                            onClick={this.saveAndClose}>{'Do continue please..'}
+                        onClick={this.saveAndClose}>{'Do continue please..'}
                     </Button>
                 </div>
             </div>
