@@ -24,4 +24,4 @@ MeldingsContainer.DefaultProps = {
 // MeldingsContainer.propTypes = {
 // };
 
-export default MeldingsContainer;
+export default MeldingsContainer; 

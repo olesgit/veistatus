@@ -5,9 +5,7 @@ import MarkerClusterGroup from 'react-leaflet-markercluster';
 import {nominatim} from './Nominatim';
 import { divIcon } from 'leaflet';
 
-import { Button } from 'react-bootstrap';
-
-import '../../css/kart/kart.css';
+import '../../css/kart/kart.css'; 
 
 const position = [59.94, 10.77];
 const markers = [
@@ -77,7 +75,7 @@ export class MapView extends React.Component {
                 <Map
                     style={{ height: "100vh" }}
                     center={position}
-                    zoom={10}
+                    zoom={15}
                     onClick={this.handleClick}
                     >
                     <TileLayer
