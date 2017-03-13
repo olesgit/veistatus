@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { Panel, Button } from 'react-bootstrap';
 
 
-import Adresse from '../../components/Adresse';
+import Kategori from '../../components/kategori';
 
-class AddressPanel extends Component {
+class CategoryPanel extends Component {
     constructor(props) {
         super(props);
 
@@ -39,15 +39,10 @@ class AddressPanel extends Component {
 
     render() {
         return (
-            <div id="panelcontainer">
-                <Panel className="text-center" collapsible expanded={this.state.open} style={{ 'backgroundColor': 'white', 'margin': '0px', 'borderRadius': '0px' }}>
-                    <Adresse geodata={this.props.geodata} onContinue={this.props.onContinue}/>
+            <div id="fullskjermpanelcontainer">
+                <Panel className="text-center" style={{ 'backgroundColor': 'white', 'margin': '0px', 'borderRadius': '0px' }}>
+                    <Kategori geodata={this.props.geodata} onContinue={this.props.onContinue}/>
                 </Panel>
-                <div className="text-center buttonoverlaycontainer" style={{ 'backgroundColor': 'red' }}>
-                    <Button className="collapsible-button btn-lg" onClick={() => this.TogglePanel()} style={{ 'backgroundColor': 'white', 'border': 'none', 'borderRadius': '0px'  }}>
-                        <img src={this.state.toggleImg} alt='pil opp' />
-                    </Button>
-                </div>
             </div>
 
         );
@@ -55,14 +50,14 @@ class AddressPanel extends Component {
 }
 
 
-AddressPanel.defaultProps = {
+CategoryPanel.defaultProps = {
 }
 
 
-AddressPanel.propTypes = {
+CategoryPanel.propTypes = {
     geodata: PropTypes.object.isRequired,
     onContinue: PropTypes.func.isRequired
 };
 
 
-export default AddressPanel;
+export default CategoryPanel;

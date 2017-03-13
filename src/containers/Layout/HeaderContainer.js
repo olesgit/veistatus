@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as cookieHandler from "../../utils/cookieHandler";
 import { signOutAndRemoveCookie } from "../../actions/LoginActions"
-import { Nav, NavItem, NavDropdown, MenuItem, Navbar, Image, Glyphicon } from 'react-bootstrap';
+import { Nav, /*NavItem,*/ NavDropdown, MenuItem, Navbar, Image, Glyphicon } from 'react-bootstrap';
 import { Link } from 'react-router';
-import { LinkContainer } from 'react-router-bootstrap';
-import * as routes from '../../constants/clientRoutes';
+//import { LinkContainer } from 'react-router-bootstrap';
+//import * as routes from '../../constants/clientRoutes';
 
 import '../../css/layout/Header.css';
 
@@ -41,7 +41,7 @@ class HeaderContainer extends Component {
     renderNavigationBarForBymAdmin() {
         return (cookieHandler.UserIsBymAdmin() &&
             <Nav pullRight>
-                <LinkContainer to={routes.serviceAvdelingen}>
+                {/*<LinkContainer to={routes.serviceAvdelingen}>
                     <NavItem className="divider-vertical" eventKey={1}>BYMILJØETATEN</NavItem>
                 </LinkContainer>
 
@@ -56,7 +56,7 @@ class HeaderContainer extends Component {
                 </NavDropdown>
                 <LinkContainer to={routes.login}>
                     <NavItem className="divider-vertical" eventKey={3} href="/">SAMARBEIDSPARTNERE</NavItem>
-                </LinkContainer>
+                </LinkContainer>*/}
                 <NavDropdown className="divider-vertical" eventKey={1} title={<span><Glyphicon glyph="user" />{this.renderUsername()}</span>} id="user-profile">
                     <MenuItem eventKey="1.1" onClick={this.logout}>Logg ut</MenuItem>
                 </NavDropdown>

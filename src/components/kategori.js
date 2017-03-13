@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Row, Col, Button, FormGroup, FormControl, InputGroup } from 'react-bootstrap';
 
-class Adresse extends Component {
+class Kategori extends Component {
     constructor(props, context) {
         super(props, context);
 
@@ -14,7 +14,8 @@ class Adresse extends Component {
         return {
             Notused: "",
             NotusedTouched: false,
-            adresseDisplayed: ""
+            adresseDisplayed: "",
+            categorySelected: ""
         };
     }
 
@@ -47,33 +48,48 @@ class Adresse extends Component {
         const formInstance = (
             <form className="adresseForm">
                 <div className="input-group input-group-lg" style={{
-                    'textAlign': 'center', 'maxWidth': '740px', 'minWidth': '260px', 'backgroundColor': 'transparent',
+                    'textAlign': 'center', 'maxWidth': '740px', 'minWidth': '260px', 'backgroundColor': 'green',
                     'marginLeft': 'auto', 'marginRight': 'auto'
                 }}>
 
+
+                    <FormGroup controlId="formControlsMeld" >
+                        <Button className="btn-lg" id="Valgt-adresse-Button" onClick={() => alert("TODO")} style={{}} disabled={this.state.categorySelected.length === 0}>
+                            <span id="Meld-Her-Text">Display current address , as flat text. Icon and pipe to left, line and icon under</span>
+                        </Button>
+                    </FormGroup>
+
+
                     <FormGroup>
                         <InputGroup>
-                            <FormControl type="text" id="Adresse-Input" placeholder="Velg adresse i kart" value={this.state.adresseDisplayed} /*readOnly={true}*/ onChange={(e) => this.onChangeAdress(e)} />
+                            <FormControl type="text" id="Adresse-Input" placeholder="Beskriv problemet (f.eks hull i veien)" value={this.state.adresseDisplayed} /*readOnly={true}*/ onChange={(e) => this.onChangeAdress(e)} />
                             <span className="input-group-btn editable-field-buttons">
-                                <Button onClick={this.onDeleteAdress} style={{ 'height': '50px' }}>
-                                    <img src={"slett.png"} alt='slett' />
-                                </Button>
                             </span>
                         </InputGroup>
                     </FormGroup>
 
+
+HER KOMMER KNAPPERAD MED MEST BRUKTE KATEGORIER
+
                     <FormGroup controlId="formControlsMeld" >
-                        <Button className="btn-lg" id="Meld-Her-Button" onClick={() => this.props.onContinue(this.state.adresseDisplayed)} style={{}} disabled={this.state.adresseDisplayed.length === 0}>
-                            <span id="Meld-Her-Text">Meld her</span>
+                        <Button className="btn-lg" id="Meld-Her-Button" onClick={() => this.props.onContinue(this.state.adresseDisplayed)} style={{}} disabled={this.state.categorySelected.length === 0}>
+                            <span id="Meld-Her-Text">Neste</span>
                         </Button>
                     </FormGroup>
+
+                    <FormGroup controlId="formControlsMeld" >
+                        <Button className="btn-lg" bsStyle="link"  id="Meld-Her-Button" onClick={() => alert("Avbryt")} style={{}} disabled={this.state.categorySelected.length === 0}>
+                            <span id="Meld-Her-Text">Avbryt</span>
+                        </Button>
+                    </FormGroup>
+
                 </div>
             </form>
         );
 
 
         return (
-            <div className="velkommen">
+            <div className="kategori">
                 <Row>
                     <Col md={3}>
                     </Col>
@@ -90,9 +106,9 @@ class Adresse extends Component {
     }
 }
 
-Adresse.propTypes = {
+Kategori.propTypes = {
     geodata: PropTypes.object.isRequired,
     onContinue: PropTypes.func.isRequired
 };
 
-export default Adresse;
+export default Kategori;

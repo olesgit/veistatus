@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Geosuggest from 'react-geosuggest';
 //Alternativ geocoding component: https://github.com/moroshko/react-autosuggest
 //og evt component for select i list: https://github.com/JedWatson/react-select
@@ -7,6 +7,9 @@ import Geosuggest from 'react-geosuggest';
 export class GeoExample extends React.Component {
     constructor(props, context) {
         super(props, context);
+
+        this.onSuggestSelect = this.onSuggestSelect.bind(this);
+
         this.state = {
             name: 'noused'
         }
@@ -15,41 +18,50 @@ export class GeoExample extends React.Component {
     componentWillMount() {
     }
 
+    componentDidMount() {
+        // console.log("GeoExample componentDidMount props:");
+        // console.log(this.props);
+    }
+
     nameIsValid() {
         return true;
     }
 
     onSuggestSelect(suggest) {
-        console.log(suggest);
+        //console.log(suggest);
+        var data = { display_name: suggest.label, lat: suggest.location.lat, lon: suggest.location.lng, zoomin: true };
+        this.props.onSelectAddress(data);
     }
 
-    //Brukes hvis man ikke vil se den innbygde forslagslisten
+    //Brukes bare hvis man ikke vil se den innbygde forslagslisten
     getCustomSuggestLabel(suggest) {
-        console.log(suggest);
+        //console.log(suggest);
         return true;
     }
 
     getSuggestLabel(suggest) {
         //console.log(suggest);
-        //return(suggest.description);  //Bogstadveien, Oslo, Norway"
-        if(suggest.terms && suggest.terms.length > 0) {
-            var retval = "";
-            suggest.terms.map((term) => {
-                if(term.value !== 'Oslo' && term.value !== 'Norway') {
-                    if(retval !== '') retval = retval + ', ' + term.value;
-                    else retval = term.value;
-                }
-                return retval;
-            })
-            if(retval === "") retval = "Oslo, Norway";
-            return(retval);
-        }
-        else {
-        if(suggest.description)
-            return(suggest.description);
-        else if(suggest.label)
-            return(suggest.label);
-        }
+        return(suggest.description);  //Bogstadveien, Oslo, Norway"
+
+        // //To remove Oslo, Norway ie
+        // if(suggest.terms && suggest.terms.length > 0) {
+        //     var retval = "";
+        //     suggest.terms.map((term) => {
+        //         if(term.value !== 'Oslo' && term.value !== 'Norway') {
+        //             if(retval !== '') retval = retval + ', ' + term.value;
+        //             else retval = term.value;
+        //         }
+        //         return retval;
+        //     })
+        //     if(retval === "") retval = "Oslo, Norway";
+        //     return(retval);
+        // }
+        // else {
+        // if(suggest.description)
+        //     return(suggest.description);
+        // else if(suggest.label)
+        //     return(suggest.label);
+        // }
     }
 
     render() {
@@ -112,5 +124,6 @@ GeoExample.DefaultProps = {
 };
 
 GeoExample.propTypes = {
+    onSelectAddress: PropTypes.func.isRequired
 };
 

@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {Grid} from 'react-bootstrap';
 import HeaderContainer from './Layout/HeaderContainer';
 import PageHeader from '../components/Layout/PageHeader';
-import Footer from '../components/Layout/Footer';
+//import Footer from '../components/Layout/Footer';
 import FlashMessagesList from "../components/common/FlashMessagesList";
 import {getDisplayName} from '../constants/clientRoutes';
 

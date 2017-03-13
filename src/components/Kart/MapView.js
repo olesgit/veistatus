@@ -3,11 +3,11 @@ import React, {PropTypes} from 'react'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 import {nominatim} from './Nominatim';
-import { divIcon } from 'leaflet';
+import { /*divIcon,*/ icon } from 'leaflet';
 
 import '../../css/kart/kart.css'; 
 
-const position = [59.94, 10.77];
+//const position = [59.94, 10.77];
 const markers = [
   {lat: 59.9412, lng: 10.77},
   {lat: 59.9445, lng: 10.77},
@@ -15,9 +15,17 @@ const markers = [
 ];
 
     
-const icon = divIcon({className: 'leaflet-div-icon2'});
+// const icon1 = divIcon({className: 'leaflet-div-icon2'});  //built in red circle
 
-
+var icon2 = icon({
+    iconUrl: 'map-pin.png',
+    //shadowUrl: 'marker-white.png',
+    iconSize:     [24, 30], // size of the icon
+    //shadowSize:   [24, 30], // size of the shadow
+    iconAnchor:   [12, 30], // point of the icon which will correspond to marker's location
+    //shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
 
 //TileLayer settings:
 //orginal sample:
@@ -29,7 +37,6 @@ const icon = divIcon({className: 'leaflet-div-icon2'});
 //         maxZoom: 18,
 //         minZoom: 7,
 //         detectRetina: true
-
 
     
 
@@ -48,7 +55,7 @@ export class MapView extends React.Component {
             lon: e.latlng.lng
         };
         
-        console.log(e.latlng.lat, e.latlng.lng);
+        //console.log(e.latlng.lat, e.latlng.lng);
 
         this.setState( {lat: e.latlng.lat, lon: e.latlng.lng});  //Merk: Disse koord må brukes, og ikke data koord fra nominatim reverseComplted (som gir en gangs warning: Warning: Failed prop type: Invalid prop `position` supplied to `Marker`.) ES5/ES6
         nominatim.reverse(query, this.reverseComplted);
@@ -62,9 +69,22 @@ export class MapView extends React.Component {
     }
 
     render() {
+        var lat, lon, showmarker = false;
+        if(this.props.setMarker === true)
+        {
+            lat = this.props.pos[0]; lon = this.props.pos[1]; showmarker = true;
+        }
+        if(this.state.lat !== 0)
+        {
+            lat = this.state.lat; lon = this.state.lon; showmarker = true;
+        }
+
+       // <Marker position={[lat, lon]} icon={icon1}>  //small round red marker
+       // <Marker position={[lat, lon]}>  //Default blue marker
+
         const MarkerInstance = (
-            (this.state.lat !== 0) &&
-            <Marker position={[this.state.lat, this.state.lon]} icon={icon}>
+            (showmarker === true) &&
+            <Marker position={[lat, lon]} icon={icon2}>
                 <Popup>
                     <span>A pretty CSS3 popup. <br /> Easily customizable.</span>
                 </Popup>
@@ -74,8 +94,10 @@ export class MapView extends React.Component {
             <div>
                 <Map
                     style={{ height: "100vh" }}
-                    center={position}
-                    zoom={15}
+                    center={this.props.pos}
+                    zoom={this.props.zoom}
+                    maxZoom={18}
+                    minZoom={7}
                     onClick={this.handleClick}
                     >
                     <TileLayer
@@ -96,5 +118,8 @@ export class MapView extends React.Component {
 }
 
 MapView.propTypes = {
-    onSelectCoord: PropTypes.func.isRequired
+    onSelectCoord: PropTypes.func.isRequired,
+    pos: PropTypes.array.isRequired,
+    zoom: PropTypes.number.isRequired,
+    setMarker: PropTypes.bool.isRequired
 };

@@ -1,6 +1,6 @@
 export const home="/"
 export const login = "/login";
-export const meldinger = "/meldinger";
+export const meldinger = "/meldinger"; 
 
 
 export function getDisplayName(path) {

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Panel, Button, FormGroup } from 'react-bootstrap';
 
 
@@ -21,6 +21,8 @@ class WelcomePanel extends Component {
     }
 
     componentDidMount() {
+        // console.log("welcomePanel componentDidMount props:");
+        // console.log(this.props);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -79,7 +81,7 @@ class WelcomePanel extends Component {
                             'textAlign': 'center', 'width': '100%', 'maxWidth': '740px', 'minWidth': '260px', 'backgroundColor': 'transparent',
                             'marginLeft': 'auto', 'marginRight': 'auto'
                         }}>
-                            <GeoExample />
+                            <GeoExample onSelectAddress={this.props.onSelectAddress}/>
                             {/*<span className="input-group-addon" id="sizing-addon1" style={{ 'height': '60px', 'maxHeight': '60px'}}>@</span>*/}
                         </div>
 
@@ -97,8 +99,9 @@ WelcomePanel.defaultProps = {
 }
 
 
-// WelcomePanel.propTypes = {
-// };
+WelcomePanel.propTypes = {
+    onSelectAddress: PropTypes.func.isRequired
+};
 
 
 export default WelcomePanel;
