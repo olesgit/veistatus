@@ -43,10 +43,18 @@ var icon2 = icon({
 export class MapView extends React.Component {
     constructor(props) {
         super(props);
+
+        this.bindMap = this.bindMap.bind(this);
+
         this.state = {
             lat: 0,
             lon: 0
         };
+    }
+
+    bindMap(el) {
+        if(el)
+            this.map = el.leafletElement;
     }
 
     handleClick= (e) => {
@@ -54,9 +62,7 @@ export class MapView extends React.Component {
             lat: e.latlng.lat,
             lon: e.latlng.lng
         };
-        
-        //console.log(e.latlng.lat, e.latlng.lng);
-
+     
         this.setState( {lat: e.latlng.lat, lon: e.latlng.lng});  //Merk: Disse koord må brukes, og ikke data koord fra nominatim reverseComplted (som gir en gangs warning: Warning: Failed prop type: Invalid prop `position` supplied to `Marker`.) ES5/ES6
         nominatim.reverse(query, this.reverseComplted);
     }
@@ -65,6 +71,9 @@ export class MapView extends React.Component {
         if (err) {
             throw err;
         }
+
+        var z = this.map.getZoom();
+        data.valgtzoom = z;
         this.props.onSelectCoord(data);
     }
 
@@ -79,20 +88,18 @@ export class MapView extends React.Component {
             lat = this.state.lat; lon = this.state.lon; showmarker = true;
         }
 
-       // <Marker position={[lat, lon]} icon={icon1}>  //small round red marker
-       // <Marker position={[lat, lon]}>  //Default blue marker
-
         const MarkerInstance = (
             (showmarker === true) &&
             <Marker position={[lat, lon]} icon={icon2}>
                 <Popup>
-                    <span>A pretty CSS3 popup. <br /> Easily customizable.</span>
+                    <span>Din valgte posisjon. <br /> Ny funksjonalitet kommer.</span>
                 </Popup>
             </Marker>
         )
         return (
             <div>
                 <Map
+                    ref={this.bindMap}
                     style={{ height: "100vh" }}
                     center={this.props.pos}
                     zoom={this.props.zoom}

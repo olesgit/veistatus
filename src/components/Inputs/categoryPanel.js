@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Panel, Button } from 'react-bootstrap';
+import { Panel } from 'react-bootstrap';
 
 
 import Kategori from '../../components/kategori';
