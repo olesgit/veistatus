@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -8,6 +8,9 @@ import WelcomePanel from '../../components/Inputs/welcomePanel';
 import AddressPanel from '../../components/Inputs/addressPanel';
 import CategoryPanel from '../../components/Inputs/categoryPanel';
 
+//import { loadGeoCode } from '../../actions/geocodeActions';
+
+import { loadCompanySpecificContracts } from '../../actions/geocodeActions';
 
 
 
@@ -16,6 +19,8 @@ class StartSideContainer extends Component {
         super(props);
 
         this.SelectCoord = this.SelectCoord.bind(this);
+        this.selectSuggestion = this.selectSuggestion.bind(this);
+        this.callback = this.callback.bind(this);
 
         this.state = {
             open: true,
@@ -30,45 +35,51 @@ class StartSideContainer extends Component {
     }
 
 
-    selectSuggestion(data) {
-        //console.log(data);
+    callback(place, status, data) {
+        if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+            var lat = place.geometry.location.lat();
+            var lng = place.geometry.location.lng();
+            // console.log(lat);
+            // console.log(lng);
+            data.lat = lat; data.lon = lng;
 
+            //console.log(data);
+
+            //TODO fjern ubrukte states
+            this.setState({ valgtPos: [lat, lng] });
+            this.setState({ geodata: data });
+
+            this.SelectCoord(data);
+        }
+        else {
+            console.log("lookup on places returns: ");
+            console.log(status);
+        }
+    }
+
+    selectSuggestion(data) {
         var service = new window.google.maps.places.PlacesService(document.createElement('div'));
         service.getDetails({
             placeId: data.place_id
-        }, function (place, status) {
-            if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-                var lat = place.geometry.location.lat();
-                var lng = place.geometry.location.lng();
-                // console.log(lat);
-                // console.log(lng);
-                data.lat = lat; data.lon = lng;
-
-                console.log(data);
-
-                //this.SelectCoord(data);
-                this.Setstate( { valgtPos: [lat, lng]});
-            }
-            else {
-                console.log("lookup on places returns: ");
-                console.log(status);
-            }
-        });
+        }, (place, status) => this.callback(place, status, data)
+        );
     }
 
     componentWillMount() {
     }
 
     componentDidMount() {
-        
     }
 
     componentWillReceiveProps(nextProps) {
     }
 
     SelectCoord(data) {  
-
-        console.log(data);
+        if(!data.display_name) 
+        {
+            data.display_name = data.adresse;
+            data.valgtzoom = 15;
+        }
 
         //Note: strategi for å velge zoom: 
         //1. hvis valg fra adresse er gjort, settes valgtZoom i data til max zoom, og vi zoomer inn
@@ -88,7 +99,7 @@ class StartSideContainer extends Component {
     }
 
     Continue(data) {
-          console.log( 'Continue' );
+        //console.log( 'Continue' );
         if(this.state.selectedPanel === "AddressPanel") this.setState( { selectedPanel: "CategoryPanel"});
     }
 
@@ -113,8 +124,9 @@ StartSideContainer.defaultProps = {
 }
 
 
-// StartSideContainer.propTypes = {
-// };
+StartSideContainer.propTypes = {
+        loadCompanySpecificContracts: PropTypes.func.isRequired
+};
 
 
 function mapStateToProps(state, ownProps) {
@@ -125,7 +137,9 @@ function mapStateToProps(state, ownProps) {
 
 const mapDispatchToProps = (dispatch) =>
 {
-    return bindActionCreators({ }, dispatch);
+    return {
+        loadCompanySpecificContracts: bindActionCreators(loadCompanySpecificContracts, dispatch)
+    }
 }
 
 
