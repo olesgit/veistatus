@@ -47,6 +47,12 @@ export class GeoExample extends React.Component {
         // )
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.clear === true) {
+            this._geoSuggest.clear();
+        }
+    }
+
     nameIsValid() {
         return true;
     }
@@ -179,6 +185,7 @@ GeoExample.DefaultProps = {
 GeoExample.propTypes = {
     onSelectAddress: PropTypes.func.isRequired,
     onSuggest: PropTypes.func.isRequired,
-    onChange: PropTypes.func.isRequired
+    onChange: PropTypes.func.isRequired,
+    clear: PropTypes.bool.isRequired
 };
 
