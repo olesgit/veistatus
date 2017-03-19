@@ -51,7 +51,7 @@ export function utmToLatLng(zone,easting, northing, northernHemisphere = true)
 
     let longitude = ((zone > 0) && (6 * zone - 183.0) || 3.0) - _a3
 
-    console.log(longitude)
-    console.log(latitude)
+    // console.log(longitude)
+    // console.log(latitude)
     return latitude+","+longitude
 }

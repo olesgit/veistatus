@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { Panel } from 'react-bootstrap';
-import Kategori from '../../components/kategori';
+import Kategori from '../../components/Bilder';
 
-class CategoryPanel extends Component {
+class PicturePanel extends Component {
     constructor(props) {
         super(props);
 
@@ -34,12 +34,12 @@ class CategoryPanel extends Component {
     }
 }
 
-CategoryPanel.defaultProps = {
+PicturePanel.defaultProps = {
 }
 
-CategoryPanel.propTypes = {
+PicturePanel.propTypes = {
     geodata: PropTypes.object.isRequired,
     onContinue: PropTypes.func.isRequired
 };
 
-export default CategoryPanel;
+export default PicturePanel;

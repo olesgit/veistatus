@@ -24,8 +24,3 @@ export const SET_CURRENT_SERVICE_INFO ="SET_CURRENT_SERVICE_INFO"
 export const LOAD_MESSAGES='LOAD_MESSAGES'
 export const LOAD_MESSAGES_SUCCESS='LOAD_MESSAGES_SUCCESS'
 export const LOAD_MESSAGES_FAILURE='LOAD_MESSAGES_FAILURE'
-
-
-/********************************* geocoding **********************/
-
-export const LOAD_GEOCODE_SUCCESS='LOAD_GEOCODE_SUCCESS'

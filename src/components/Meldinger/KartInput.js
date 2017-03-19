@@ -3,6 +3,7 @@ import React, {PropTypes} from 'react';
 import { Button, FormControl, FormGroup, ControlLabel, HelpBlock} from 'react-bootstrap';
 import {nominatim} from '../Kart/Nominatim';
 
+//NOTE: denne er ikke i bruk. Beholdt som dokumentasjon på google maps key og nominatim
 export class KartInput extends React.Component {
     constructor(props, context) {
         super(props, context);

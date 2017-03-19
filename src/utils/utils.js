@@ -56,8 +56,8 @@ export function DateTimeIsAfter(date)
     let now = dateFormat(Date.now(), "dd.mm.yyyy")
     let parseDate = Date.parse(date)
     let parseNow = Date.parse(now)
-    console.log(parseDate)
-    console.log(parseNow)
+    // console.log(parseDate)
+    // console.log(parseNow)
     return parseDate > parseNow
 
 }

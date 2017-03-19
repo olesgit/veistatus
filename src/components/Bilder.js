@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { Row, Col, Button, FormGroup, FormControl, InputGroup } from 'react-bootstrap';
-import '../css/Sider/Adresse.css';
+import '../css/Sider/Adresse.css';  //TODO
 
-class Kategori extends Component {
+class Bilder extends Component {
     constructor(props, context) {
         super(props, context);
 
@@ -65,7 +65,7 @@ class Kategori extends Component {
                     </FormGroup>
 
 
-HER KOMMER KNAPPERAD MED MEST BRUKTE KATEGORIER
+LAST OPP BILDER. Adressefelt med søk knapp, Kategori, sub kategori med velg knapp, Bilde panel med last opp bilder (legg til med filvelger) og visning av bilder, Neste og Avbryt knapp.
 
                     <FormGroup controlId="formControlsMeld" >
                         <Button className="btn-lg" id="Meld-Her-Button" onClick={() => this.props.onContinue(this.state.adresseDisplayed)} style={{}} disabled={this.state.categorySelected.length === 0}>
@@ -102,9 +102,9 @@ HER KOMMER KNAPPERAD MED MEST BRUKTE KATEGORIER
     }
 }
 
-Kategori.propTypes = {
+Bilder.propTypes = {
     geodata: PropTypes.object.isRequired,
     onContinue: PropTypes.func.isRequired
 };
 
-export default Kategori;
+export default Bilder;

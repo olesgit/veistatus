@@ -1,13 +1,11 @@
 import React, {PropTypes} from 'react'
-// import ReactDOM from 'react-dom'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 import {nominatim} from './Nominatim';
 import { /*divIcon,*/ icon } from 'leaflet';
-
+import { startLat, startLon, startZoom } from "../../constants/settings";
 import '../../css/kart/kart.css'; 
 
-//const position = [59.94, 10.77];
 const markers = [
   {lat: 59.9412, lng: 10.77},
   {lat: 59.9445, lng: 10.77},
@@ -47,8 +45,9 @@ export class MapView extends React.Component {
         this.bindMap = this.bindMap.bind(this);
 
         this.state = {
-            lat: 0,
-            lon: 0
+            centerlat: startLat,
+            centerlon: startLon,
+            zoom: startZoom
         };
     }
 
@@ -62,8 +61,6 @@ export class MapView extends React.Component {
             lat: e.latlng.lat,
             lon: e.latlng.lng
         };
-     
-        this.setState( {lat: e.latlng.lat, lon: e.latlng.lng});  //Merk: Disse koord må brukes, og ikke data koord fra nominatim reverseComplted (som gir en gangs warning: Warning: Failed prop type: Invalid prop `position` supplied to `Marker`.) ES5/ES6
         nominatim.reverse(query, this.reverseComplted);
     }
 
@@ -71,38 +68,29 @@ export class MapView extends React.Component {
         if (err) {
             throw err;
         }
+        let geodata = { lat: Number(data.lat), lon: Number(data.lon), place_id: '', display_name: data.display_name, valgtZoom: this.map.getZoom(), 
+                        id: '', adressSelectedBy: 'click', centerlat: this.map.getCenter().lat, centerlon: this.map.getCenter().lng };
 
-        var z = this.map.getZoom();
-        data.valgtzoom = z;
-        this.props.onSelectCoord(data);
+        this.props.onSelectCoord(geodata);
     }
 
     render() {
-        var lat, lon, showmarker = false;
-        if(this.props.setMarker === true)
-        {
-            lat = this.props.pos[0]; lon = this.props.pos[1]; showmarker = true;
-        }
-        if(this.state.lat !== 0)
-        {
-            lat = this.state.lat; lon = this.state.lon; showmarker = true;
-        }
-
         const MarkerInstance = (
-            (showmarker === true) &&
-            <Marker position={[lat, lon]} icon={icon2}>
+            (this.props.geodata.adressSelectedBy !== 'none') &&
+            <Marker position={[this.props.geodata.lat, this.props.geodata.lon]} icon={icon2}>
                 <Popup>
-                    <span>Din valgte posisjon. <br /> Ny funksjonalitet kommer.</span>
+                    <span>Din valgte posisjon: <br /> {this.props.geodata.display_name}</span>
                 </Popup>
             </Marker>
-        )
+        );
+
         return (
             <div>
                 <Map
                     ref={this.bindMap}
                     style={{ height: "100vh" }}
-                    center={this.props.pos}
-                    zoom={this.props.zoom}
+                    center={[this.props.geodata.centerlat, this.props.geodata.centerlon]}
+                    zoom={this.props.geodata.valgtZoom}
                     maxZoom={18}
                     minZoom={7}
                     onClick={this.handleClick}
@@ -126,7 +114,5 @@ export class MapView extends React.Component {
 
 MapView.propTypes = {
     onSelectCoord: PropTypes.func.isRequired,
-    pos: PropTypes.array.isRequired,
-    zoom: PropTypes.number.isRequired,
-    setMarker: PropTypes.bool.isRequired
+    geodata: PropTypes.object.isRequired
 };

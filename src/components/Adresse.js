@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { Row, Col, Button, FormGroup, FormControl, InputGroup } from 'react-bootstrap';
+import { Button, FormGroup } from 'react-bootstrap';
+import GeoAutoComplete from './Inputs/geoAutoComplete';
+import '../css/Sider/Adresse.css';
 
 class Adresse extends Component {
     constructor(props, context) {
@@ -12,20 +14,15 @@ class Adresse extends Component {
 
     initialState() {
         return {
-            Notused: "",
-            NotusedTouched: false,
             adresseDisplayed: ""
         };
     }
 
     componentDidMount() {
-        // console.log("Adresse did mount");
         this.setState( { adresseDisplayed: this.props.geodata.display_name })
     }
 
     componentWillReceiveProps(nextProps) {
-        // console.log("Adresse will receive props");
-        // console.log(nextProps);
         this.setState( { adresseDisplayed: nextProps.geodata.display_name })
     }
 
@@ -44,26 +41,31 @@ class Adresse extends Component {
 
     render() {
 
+        const buttonWidth = 60;
+        const geomaxWidth = 740 - (2*buttonWidth);
+        const geominWidth = 260 - (2*buttonWidth);
+
         const formInstance = (
-            <form className="adresseForm">
-                <div className="input-group input-group-lg" style={{
-                    'textAlign': 'center', 'maxWidth': '740px', 'minWidth': '260px', 'backgroundColor': 'transparent',
-                    'marginLeft': 'auto', 'marginRight': 'auto'
+            <form >
+                <div 
+                className="input-group input-group-lg" style={{
+                    'width': '100%', 'backgroundColor': 'transparent', 'marginLeft': 'auto', 'marginRight': 'auto'
                 }}>
 
                     <FormGroup>
-                        <InputGroup>
-                            <FormControl type="text" id="Adresse-Input" placeholder="Velg adresse i kart" value={this.state.adresseDisplayed} /*readOnly={true}*/ onChange={(e) => this.onChangeAdress(e)} />
-                            <span className="input-group-btn editable-field-buttons">
-                                <Button onClick={this.onDeleteAdress} style={{ 'height': '50px' }}>
-                                    <img src={"slett.png"} alt='slett' />
-                                </Button>
-                            </span>
-                        </InputGroup>
+                        <GeoAutoComplete
+                            id="Adresse-Input" 
+                            marginTop={{'marginTop': '10px'}} 
+                            onSelectAddress={this.props.onSelectAddress} 
+                            selectSuggestion={this.props.selectSuggestion}
+                            geodata={this.props.geodata}
+                            Height={{'height': '50px'}}
+                        />  
                     </FormGroup>
 
                     <FormGroup controlId="formControlsMeld" >
-                        <Button className="btn-lg" id="Meld-Her-Button" onClick={() => this.props.onContinue(this.state.adresseDisplayed)} style={{}} disabled={this.state.adresseDisplayed.length === 0}>
+                        <Button className="btn-lg" id="Meld-Her-Button" onClick={() => this.props.onContinue(this.state.adresseDisplayed)} 
+                            style={{'marginTop': '80px', 'width': '100%', 'height': '40px', 'maxWidth': Number(geomaxWidth) + 'px', 'minWidth': Number(geominWidth) + 'px' }} disabled={this.state.adresseDisplayed.length === 0} >
                             <span id="Meld-Her-Text">Meld her</span>
                         </Button>
                     </FormGroup>
@@ -73,18 +75,8 @@ class Adresse extends Component {
 
 
         return (
-            <div className="velkommen">
-                <Row>
-                    <Col md={3}>
-                    </Col>
-                    <Col md={6}>
-
-                        {formInstance}
-
-                    </Col>
-                    <Col md={3}>
-                    </Col>
-                </Row>
+            <div>
+                {formInstance}
             </div>
         );
     }
@@ -92,7 +84,9 @@ class Adresse extends Component {
 
 Adresse.propTypes = {
     geodata: PropTypes.object.isRequired,
-    onContinue: PropTypes.func.isRequired
+    onContinue: PropTypes.func.isRequired,
+    onSelectAddress : PropTypes.func.isRequired,
+    selectSuggestion: PropTypes.func.isRequired
 };
 
 export default Adresse;

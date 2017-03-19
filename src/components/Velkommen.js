@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Row, Col } from 'react-bootstrap';
+import '../css/Sider/Velkommen.css';
 
 class Velkommen extends Component {
     constructor(props, context) {

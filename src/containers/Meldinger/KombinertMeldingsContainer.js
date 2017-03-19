@@ -7,6 +7,7 @@ import {MapView} from '../../components/Kart/MapView';
 import {KartInput} from '../../components/Meldinger/KartInput';
 import {GeoExample} from '../../components/Meldinger/GeoExample';
 
+//NOTE: denne er ikke i bruk
 class KombinertMeldingsContainer extends Component {
     constructor(props) {
         super(props);

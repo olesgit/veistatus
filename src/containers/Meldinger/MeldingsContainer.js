@@ -4,6 +4,7 @@ import {loadMessages} from '../../actions/messageActions';
 
 import MeldingList from '../../components/Meldinger/MeldingList';
 
+//NOTE: denne er ikke i bruk
 const MapStateToProps = (state) => {
   return {
       messages: (state.messages != null) ? state.messages.messages : [],

@@ -1,0 +1,29 @@
+#Adresse-Input {
+  width: 689px;
+  height: 50px;
+  background-color: #ffffff;
+  border: solid 1px #979797;
+  font-family: Lato;
+  font-size: 24px;
+  color: #000000;
+}
+
+#Meld-Her-Text {
+  width: 315.7px;
+  height: 19px;
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #4d4d4d;
+} 
+
+#Meld-Her-Button {
+  border-radius: 6px;
+  background-color: #daf6ed;
+  border: solid 1px #b7ecdc;
+}
