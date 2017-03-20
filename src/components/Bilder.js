@@ -95,19 +95,36 @@ class Bilder extends Component {
 
 
 
-<div style={{'color': 'black'}}>
-    <Dropzone onDrop={this.onDrop}>
-        <div>Try dropping some files here, or click to select files to upload.</div>
-    </Dropzone>
-</div>
 
+
+                    <FormGroup controlId="formControlsAddPictures" >
+
+                        <div style={{
+                            'color': 'black', 'opacity': 0.95, 'width': 740, 'height': 195, 'backgroundColor': '#e9e9e9', 'textAlign': 'left',
+                            'maxWidth': Number(maxWidth) + 'px', 'minWidth': Number(minWidth) + 'px', 'marginLeft': 'auto', 'marginRight': 'auto'
+                        }} >
+                            <div id="image" style={{ 'float': 'left' }}>
+                                <img src="Camera.png" alt='kategori' style={{ 'align': 'left', 'paddingLeft': '9px', 'paddingTop': '11px' }} />
+                            </div>
+                            <div id="texts" className="text-24px" style={{ 'color': 'black', 'float': 'none', 'paddingLeft': '53px', 'paddingTop': '12px' }}>
+                                Last opp bilder…
+                            </div>
+
+                            <div style={{ 'color': 'black', 'float': 'initial' }}>
+                                <Dropzone onDrop={this.onDrop}
+                                          style={{'height': '128px', 'width': '128px', backgroundColor: 'white', 'marginLeft': '10px', 'marginTop': '10px', 'align': 'left'}}  >
+                                    <div>Try dropping some files here, or click to select files to upload.</div>
+                                </Dropzone>
+                            </div>
+                        </div>
+                    </FormGroup>
 
 
 
 
                     <FormGroup controlId="formControlsMeld" >
                         <Button className="btn-lg" id="Meld-Her-Button" onClick={() => this.props.onContinue(this.state.adresseDisplayed)}
-                            style={{ 'marginTop': '80px', 'width': '100%', 'height': '40px', 'maxWidth': Number(geomaxWidth) + 'px', 'minWidth': Number(geominWidth) + 'px' }} disabled={this.state.adresseDisplayed.length === 0} >
+                            style={{ 'marginTop': '20px', 'width': '100%', 'height': '40px', 'maxWidth': Number(geomaxWidth) + 'px', 'minWidth': Number(geominWidth) + 'px' }} disabled={this.state.adresseDisplayed.length === 0} >
                             <span id="Neste-Text">Neste</span>
                         </Button>
                     </FormGroup>
