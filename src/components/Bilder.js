@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { Row, Col, Button, FormGroup, FormControl, InputGroup } from 'react-bootstrap';
+import { Button, FormGroup } from 'react-bootstrap';
+var Dropzone = require('react-dropzone');
 import '../css/Sider/Adresse.css';  //TODO
 
 class Bilder extends Component {
@@ -8,7 +9,7 @@ class Bilder extends Component {
 
         this.onDeleteAdress = this.onDeleteAdress.bind(this);
         
-        this.state = this.initialState();
+        this.state = this.initialState(); 
     }
 
     initialState() {
@@ -39,43 +40,81 @@ class Bilder extends Component {
        return true;
     }
 
+    onDrop (files) {
+      console.log('Received files: ', files);
+    }
+
     render() {
 
+        const buttonWidth = 60;
+        const maxWidth = 740 - (1*buttonWidth);
+        const minWidth = 260 - (1*buttonWidth);
+        const geomaxWidth = 740 - (1*buttonWidth);
+        const geominWidth = 260 - (1*buttonWidth);
+
         const formInstance = (
-            <form className="adresseForm">
-                <div className="input-group input-group-lg" style={{
-                    'textAlign': 'center', 'maxWidth': '740px', 'minWidth': '260px', 'backgroundColor': 'green',
-                    'marginLeft': 'auto', 'marginRight': 'auto'
-                }}>
+            <form className="bildeForm">
 
+                <div className="input-group input-group-lg"
+                    style={{
+                        'textAlign': 'center', 'minWidth': '260px', 'backgroundColor': 'transparent',
+                        'marginLeft': 'auto', 'marginRight': 'auto'
+                    }}
+                >
 
-                    <FormGroup controlId="formControlsMeld" >
-                        <Button className="btn-lg" id="Valgt-adresse-Button" onClick={() => alert("TODO")} style={{}} disabled={this.state.categorySelected.length === 0}>
-                            <span id="Meld-Her-Text">Display current address , as flat text. Icon and pipe to left, line and icon under</span>
-                        </Button>
-                    </FormGroup>
+                    <div style={{ 'color': 'black' }}>
+                        <h1>LAST OPP BILDER. </h1>
+                        <h3>Adressefelt med søk knapp, Kategori, sub kategori med velg knapp, Bilde panel med last opp bilder (legg til med filvelger) og visning av bilder, Neste og Avbryt.</h3>
+                    </div>
+                    <br/><br/>
 
-
-                    <FormGroup>
-                        <InputGroup>
-                            <FormControl type="text" id="Adresse-Input" placeholder="Beskriv problemet (f.eks hull i veien)" value={this.state.adresseDisplayed} /*readOnly={true}*/ onChange={(e) => this.onChangeAdress(e)} />
+                    <FormGroup controlId="formControlsAdresse" >
+                        <div className="input-group input-group-lg" style={{'textAlign': 'center', 'width': '100%', 'maxWidth': Number(maxWidth) + 'px', 'minWidth': Number(minWidth) + 'px', 'backgroundColor': 'transparent', 'marginLeft': 'auto', 'marginRight': 'auto'}}>
                             <span className="input-group-btn editable-field-buttons">
+                                <Button onClick={this.onSearch} style={{ 'Height': '60px', 'borderRadius': '6px', 'border': 'none', 'borderBottomRightRadius': '0px', 'borderTopRightRadius': '0px'}} >
+                                        <img src={"map-pin_grey.png"} alt='posisjon' />
+                                </Button>
                             </span>
-                        </InputGroup>
+                            <input type="text" className="form-control" value={this.state.adresseDisplayed} placeholder="Selected position is empty" onChange={() => {}} style={{ 'borderRadius': '6px', 'border': 'none', 'borderBottomLeftRadius': '0px', 'borderTopLeftRadius': '0px'}}></input>
+                        </div>
+                    </FormGroup>
+
+                    <FormGroup controlId="formControlsKategori" >
+                        <div className="input-group input-group-lg" style={{'textAlign': 'center', 'width': '100%', 'maxWidth': Number(maxWidth) + 'px', 'minWidth': Number(minWidth) + 'px', 'backgroundColor': 'transparent', 'marginLeft': 'auto', 'marginRight': 'auto'}}>
+                            <span className="input-group-btn editable-field-buttons">
+                                <Button onClick={this.onSearch} style={{ 'Height': '60px', 'borderRadius': '6px', 'border': 'none', 'borderBottomRightRadius': '0px', 'borderTopRightRadius': '0px'}} >
+                                        <img src={"kategori_grey.png"} alt='kategori' />
+                                </Button>
+                            </span>
+                            <input type="text" className="form-control" value={"Hull i veien > Veibane"} placeholder="Selected category is empty" onChange={() => {}} style={{ 'borderRadius': '6px', 'border': 'none', 'borderBottomLeftRadius': '0px', 'borderTopLeftRadius': '0px'}}></input>
+                        </div>
                     </FormGroup>
 
 
-LAST OPP BILDER. Adressefelt med søk knapp, Kategori, sub kategori med velg knapp, Bilde panel med last opp bilder (legg til med filvelger) og visning av bilder, Neste og Avbryt knapp.
+
+
+
+
+<div style={{'color': 'black'}}>
+    <Dropzone onDrop={this.onDrop}>
+        <div>Try dropping some files here, or click to select files to upload.</div>
+    </Dropzone>
+</div>
+
+
+
+
 
                     <FormGroup controlId="formControlsMeld" >
-                        <Button className="btn-lg" id="Meld-Her-Button" onClick={() => this.props.onContinue(this.state.adresseDisplayed)} style={{}} disabled={this.state.categorySelected.length === 0}>
-                            <span id="Meld-Her-Text">Neste</span>
+                        <Button className="btn-lg" id="Meld-Her-Button" onClick={() => this.props.onContinue(this.state.adresseDisplayed)}
+                            style={{ 'marginTop': '80px', 'width': '100%', 'height': '40px', 'maxWidth': Number(geomaxWidth) + 'px', 'minWidth': Number(geominWidth) + 'px' }} disabled={this.state.adresseDisplayed.length === 0} >
+                            <span id="Neste-Text">Neste</span>
                         </Button>
                     </FormGroup>
 
                     <FormGroup controlId="formControlsMeld" >
-                        <Button className="btn-lg" bsStyle="link"  id="Meld-Her-Button" onClick={() => alert("Avbryt")} style={{}} disabled={this.state.categorySelected.length === 0}>
-                            <span id="Meld-Her-Text">Avbryt</span>
+                        <Button className="btn-lg" bsStyle="link" id="Cancel-Meld-Her-Button" onClick={() => alert("Avbryt")} style={{}}>
+                            <span id="Cancel-Text">Avbryt</span>
                         </Button>
                     </FormGroup>
 
@@ -85,18 +124,8 @@ LAST OPP BILDER. Adressefelt med søk knapp, Kategori, sub kategori med velg kna
 
 
         return (
-            <div className="kategori">
-                <Row>
-                    <Col md={3}>
-                    </Col>
-                    <Col md={6}>
-
-                        {formInstance}
-
-                    </Col>
-                    <Col md={3}>
-                    </Col>
-                </Row>
+            <div className="bilder">
+                {formInstance}
             </div>
         );
     }

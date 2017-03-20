@@ -8,12 +8,15 @@
     /* Set z-index to 0 as it will be on a layer below the contact form */
 }
 
+
+
+
 .mainmapContainer{
     margin: 0px;
 }
 
 /*Alt er kult med denne bortsett fra at den scroller ned til bunn ved trykk på + eller - (zoom inn, ut). Og da ser man ikke pluss eller minus knappen før man scroller opp igjen*/
-/* Og det er heller ikke kult at den ikke skalerer, dvs top panel virker ikke ved liten skjerm*/
+/* Og det er heller ikke kult at den ikke skalerer, dvs top panel ned virker ikke ved liten skjerm. Dette er siste er pga navbar menu, det samme skjer med position fixed*/
 /*#mapcontainer {
    background: red; 
    position: absolute;
@@ -25,7 +28,7 @@
    z-index: -1;
 }*/
 
-/*displays top or bottom of map, depending if bottom: 0 is included */
+/*displays top or bottom of map, depending if bottom: 0 is included */ /*Man kan lage en mindre viewport, med en ramme eller bar i bunnen, ved å sette map height i mapview.js (eks: 93vh - viewport height %)*/
 #mapcontainer {
    background: white; 
    position: fixed;
@@ -33,8 +36,9 @@
    width: 100%;
    height: 100%; 
    color: white; 
-   top: 1; 
+   top: 1; /*1*/
    left: 0;
+   right: 0; /*not included*/
    z-index: -1;
    /*top: 0; right: 0; bottom: 0; left: 0;*/
 }
