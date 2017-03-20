@@ -35,7 +35,7 @@ class Adresse extends Component {
     }
 
     addressIsValid() {
-       if(this.state.adresseDisplayed.length === 0) return false;
+       if(this.state.adresseDisplayed.length === 0) return false; 
        return true;
     }
 

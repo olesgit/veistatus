@@ -94,6 +94,9 @@ export class MapView extends React.Component {
                     maxZoom={18}
                     minZoom={7}
                     onClick={this.handleClick}
+                    zoomControl={ true}
+                    dragging={true}
+                    boxZoom={true}
                     >
                     <TileLayer
                         url='https://api.mapbox.com/styles/v1/webforvaltningen/cirlr93tl0010gyly7o56ugi3/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoid2ViZm9ydmFsdG5pbmdlbiIsImEiOiJjaXJsczQ5dnAwMDMxaG5rd2xnNGt2MGZvIn0.BGtT-dezZ_5hseqXmkMAoQ'

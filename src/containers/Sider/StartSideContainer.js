@@ -5,7 +5,7 @@ import WelcomePanel from '../../components/Inputs/welcomePanel';
 import AddressPanel from '../../components/Inputs/addressPanel';
 import CategoryPanel from '../../components/Inputs/categoryPanel';
 import PicturePanel from '../../components/Inputs/picturePanel';
-import { startLat, startLon, startZoom } from "../../constants/settings";
+//import { startLat, startLon, startZoom } from "../../constants/settings";  //Needed for production, and for normal page flow
 import '../../css/kart/Maps.css';
 
 
@@ -21,9 +21,11 @@ class StartSideContainer extends Component {
         this.state = {
             open: true,
             toggleImg: "pil-opp.png",
-            selectedPanel: "WelcomePanel",
-            geodata: { adressSelectedBy: 'none', lat: startLat, lon: startLon, valgtZoom: startZoom, display_name: '', centerlat: startLat, centerlon: startLon }
-        };
+            // selectedPanel: "WelcomePanel",
+            // geodata: { adressSelectedBy: 'none', lat: startLat, lon: startLon, valgtZoom: startZoom, display_name: '', centerlat: startLat, centerlon: startLon }
+            selectedPanel: "PicturePanel",
+            geodata: { adressSelectedBy: 'click', lat: 59.9071523, lon: 10.6797021454289, valgtZoom: 10, display_name: 'Bygdøy, Strømsborgveien, Bygdøy, Frogner, Oslo, 0287, Norge', centerlat: 60.08, centerlon: 10.77 }  //Set this and selectedPanel for testing
+        }; 
     }
 
     selectSuggestion(data) {
@@ -55,8 +57,8 @@ class StartSideContainer extends Component {
     }
 
     Continue(data) {
-        //if(this.state.selectedPanel === "AddressPanel") this.setState( { selectedPanel: "CategoryPanel"});
-        if(this.state.selectedPanel === "AddressPanel") this.setState( { selectedPanel: "PicturePanel"});
+        if(this.state.selectedPanel === "AddressPanel") this.setState( { selectedPanel: "CategoryPanel"});
+        //if(this.state.selectedPanel === "AddressPanel") this.setState( { selectedPanel: "PicturePanel"});
     }
 
     render() {

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Panel } from 'react-bootstrap';
-import Kategori from '../../components/Bilder';
+import Bilder from '../../components/Bilder';
 
 class PicturePanel extends Component {
     constructor(props) {
@@ -26,7 +26,7 @@ class PicturePanel extends Component {
         return (
             <div id="fullskjermpanelcontainer">
                 <Panel className="text-center" style={{ 'backgroundColor': 'white', 'margin': '0px', 'border': 'none', 'borderRadius': '0px' }}>
-                    <Kategori geodata={this.props.geodata} onContinue={this.props.onContinue}/>
+                    <Bilder geodata={this.props.geodata} onContinue={this.props.onContinue}/>
                 </Panel>
             </div>
 
