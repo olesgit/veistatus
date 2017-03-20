@@ -27,7 +27,7 @@
 
 /*displays top or bottom of map, depending if bottom: 0 is included */
 #mapcontainer {
-   background: red; 
+   background: white; 
    position: fixed;
    /*bottom: 0;*/
    width: 100%;
@@ -36,4 +36,5 @@
    top: 1; 
    left: 0;
    z-index: -1;
+   /*top: 0; right: 0; bottom: 0; left: 0;*/
 }

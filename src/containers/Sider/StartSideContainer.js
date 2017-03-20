@@ -61,7 +61,6 @@ class StartSideContainer extends Component {
 
     render() {
         return (
-            <div>
             <div className="mainmapContainer">
                 <div id="mapcontainer">
                     {this.state.selectedPanel === "WelcomePanel" && <MapView id="themaps" geodata={this.state.geodata} onSelectCoord={(data) => this.SelectCoord(data)} />}
@@ -71,8 +70,6 @@ class StartSideContainer extends Component {
                 {this.state.selectedPanel === "AddressPanel" && <AddressPanel geodata={this.state.geodata} onContinue={(data) => this.Continue(data)} onSelectAddress={(data) => this.SelectCoord(data)} selectSuggestion={(data) => this.selectSuggestion(data)}/>}
                 {this.state.selectedPanel === "CategoryPanel" && <CategoryPanel geodata={this.state.geodata} onContinue={(data) => this.Continue(data)}/>}
                 {this.state.selectedPanel === "PicturePanel" && <PicturePanel geodata={this.state.geodata} onContinue={(data) => this.Continue(data)}/>}
-           
-            </div>
             </div>
         );  
     }
