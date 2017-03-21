@@ -1,6 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { Button, FormGroup } from 'react-bootstrap';
 var Dropzone = require('react-dropzone');
+
+//TODO redux should not be in a presentational component. Added here to use the addFlashMessage
+import { connect } from 'react-redux';
+import { addFlashMessage } from "../actions/FlashMessagesAction";
+import { bindActionCreators } from 'redux';
+////
+
 import './Bilder.css';
 
 
@@ -44,26 +51,40 @@ class Bilder extends Component {
        return true;
     }
 
-    onDrop (acceptedFiles) {
-        // this.setState({ ready: false });
-        console.log('Received files: ', acceptedFiles);
+    onDrop(acceptedFiles) {
+        var filesToAdd = this.state.files;
+        acceptedFiles.map(inputfile => {
+            if (this.state.files.find(statefile => statefile.name === inputfile.name)) {
+                this.props.addFlashMessage({ type: 'error', text: "En fil med dette navnet, " + inputfile.name + ", er allerede lagt til" });
+                return null;
+            }
+            if (this.state.files.length === 4) {
+                this.props.addFlashMessage({ type: 'error', text: "Maksimum antall filer er nådd" });
+                return null;
+            }
+            else {
+                console.log(inputfile);  //inputfile.name);
+                filesToAdd.push(inputfile);
+            }
+            return null;
+        })
 
-        if(this.state.files.length === 0) this.setState({ files: acceptedFiles });
-        else this.setState({ files: this.state.files.concat(acceptedFiles) });
-
-        // setTimeout(() => { this.setState({ ready: true }) }, 200);
-        // console.log(this.state.files);
+        this.setState( {files: filesToAdd });
     }
 
     render() {
-
-        // console.log('rendering ....'); console.log(this.state.files.length);
-
         const buttonWidth = 60;
         const maxWidth = 740 - (1*buttonWidth);
         const minWidth = 260 - (1*buttonWidth);
         const geomaxWidth = 740 - (1*buttonWidth);
         const geominWidth = 260 - (1*buttonWidth);
+
+        const allThumbnails = (
+            this.state.files.map((file) =>
+                <div key={file.name} style={{ 'width': '128px', 'height': '128px', 'backgroundColor': 'transparent', 'float': 'left', marginLeft: '10px' }}>
+                    <img className="thumbnails" src={file.preview} alt='bilde' />
+                </div>)
+        );
 
         const formInstance = (
             <form className="bildeForm">
@@ -115,52 +136,19 @@ class Bilder extends Component {
                                 Last opp bilder…
                             </div>
                             <div style={{ height: 128, width: '100%', backgroundColor: 'transparent', 'marginTop': '10px' }}>
-                                <Dropzone onDrop={this.onDrop}
+                                {allThumbnails}
+                                {this.state.files.length < 4 && <Dropzone onDrop={this.onDrop}
                                           preventDropOnDocument={true}
                                           //onClick={this.onDrop}
-                                          style={{ 'color': 'black', 'height': '128px', 'width': '128px', backgroundColor: 'white', 'marginLeft': '10px', 'borderStyle': 'dashed', 'borderWidth': '1px', 'borderColor': '#979797' }} 
+                                          style={{ 'color': 'black', 'width': '128px', 'height': '128px', backgroundColor: 'white', 'float': 'left', marginLeft: '10px', 'borderStyle': 'dashed', 'borderWidth': '1px', 'borderColor': '#979797' }} 
                                           activeStyle={{ backgroundColor: 'green' }} >
                                     <div className="centerPictureFrame">
                                         <span className="centerPictureHelper"></span><img className="centerPictureImg" src="pluss.png" alt='legg til' height="36" />
                                     </div>
-                                </Dropzone>
+                                </Dropzone>}
                             </div>                            
                         </div>
                     </FormGroup>
-
-
-
-                    <FormGroup controlId="formControlsThumbnails" >
-                        <div style={{
-                            'color': 'black', 'opacity': 0.95, 'width': 740, 'height': 195, 'backgroundColor': '#e9e9e9', 'textAlign': 'left',
-                            'maxWidth': Number(maxWidth) + 'px', 'minWidth': Number(minWidth) + 'px', 'marginLeft': 'auto', 'marginRight': 'auto'
-                        }} >
-                            <div style={{ 'width': '128px', 'height': '128px', 'backgroundColor': 'pink', 'float': 'left' }} >
-                                <img className="thumbnails" src="plugins.png" alt="bilde" />
-                            </div>
-                            <div style={{ 'width': '128px', 'height': '128px', 'backgroundColor': 'pink', 'float': 'left', marginLeft: '10px' }} >
-                                <img className="thumbnails" src="bilde.jpg" alt="bilde" />
-                            </div>                            
-                        </div>
-                    </FormGroup>
-
-
-                    {/*<FormGroup controlId="formControlsThumbnails" >
-                        <div style={{
-                            'color': 'black', 'opacity': 0.95, 'width': 740, 'height': 195, 'backgroundColor': '#e9e9e9', 'textAlign': 'left',
-                            'maxWidth': Number(maxWidth) + 'px', 'minWidth': Number(minWidth) + 'px', 'marginLeft': 'auto', 'marginRight': 'auto'
-                        }} >
-                            {this.state.files.length > 0 ? <div>
-                                <h2>Uploading {this.state.files.length} files...</h2>
-                                <div style={{ 'width': '128px', 'height': '128px', 'backgroundColor': 'pink' }}>{this.state.files.map((file) => <img className="thumbnails" src={file.preview} alt='bilde' key={file.name} />)}</div>
-                            </div> : null}
-                        </div>
-                    </FormGroup>*/}
-
-
-
-
-
 
                     <FormGroup controlId="formControlsMeld" >
                         <Button className="btn-lg" id="Meld-Her-Button" onClick={() => this.props.onContinue(this.state.adresseDisplayed)}
@@ -190,7 +178,22 @@ class Bilder extends Component {
 
 Bilder.propTypes = {
     geodata: PropTypes.object.isRequired,
-    onContinue: PropTypes.func.isRequired
+    onContinue: PropTypes.func.isRequired,
+    addFlashMessage: PropTypes.func.isRequired
 };
 
-export default Bilder;
+function mapDispatchToProps(dispatch)
+{
+    return bindActionCreators({ addFlashMessage }, dispatch);
+}
+
+const mapStateToProps = (state) => {
+  return {
+    state
+  }
+}
+
+
+//export default Bilder;
+export default connect(mapStateToProps, mapDispatchToProps)(Bilder);  
+//TODO. No connect or store access in components. This is just to have the addFlashMessage available here as props. Suppose it should be passed back to the container...
