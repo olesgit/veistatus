@@ -136,3 +136,10 @@ button.bym-add-btn {
 .filters button~button, .filters button~button:hover {
     border-left: 1px solid #979797;
 }
+
+/*Wizard sider/panel Meld inn relaterte kontroller*/
+#Meld-Her-Button {
+  border-radius: 6px;
+  background-color: #daf6ed;
+  border: solid 1px #b7ecdc;
+}
