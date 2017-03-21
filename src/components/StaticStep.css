@@ -1,0 +1,9 @@
+.step-static > img {
+    height: 30px;
+    width: 30px;
+    border-right: solid 1px #9b9b9b;
+}
+
+.step-static > span {
+    margin-right: 12px;
+}
