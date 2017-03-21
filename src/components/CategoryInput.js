@@ -2,6 +2,10 @@ import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
 import Autosuggest from 'react-autosuggest'
 
+import './CategoryInput.css'
+
+import clearIcon from '../images/clear.svg'
+
 function getSuggestionValue(suggestion) {
     return suggestion != null ? suggestion.meldingstype.beskrivelse : '';
 }
@@ -32,6 +36,13 @@ class CategoryInput extends Component {
         })
     }
 
+    onClick = (event) => {
+        event.target.blur();
+        this.setState({
+            value: ''
+        })
+    }
+
     onChange = (event, { newValue }) => {
         this.setState({
             value: newValue
@@ -39,11 +50,7 @@ class CategoryInput extends Component {
     }
 
     renderSuggestion(suggestion) {
-        return (
-            <div>
-                {suggestion.meldingstype.beskrivelse}
-            </div>
-        );
+        return (suggestion.meldingstype.beskrivelse);
     }
 
     getSuggestions = value => {
@@ -68,11 +75,23 @@ class CategoryInput extends Component {
         });
     };
 
+    renderInputComponent = inputProps => {
+        return (
+            <div className="input-group category-input-group">
+                <input {...inputProps} />
+                <span className="input-group-btn">
+                    <button className="btn category-input-clear" type="button" onClick={this.onClick}>
+                        <img src={clearIcon} alt="clear-text" />
+                    </button>
+                </span>
+            </div>
+        );
+    }
+
     render() {
         const { value, suggestions } = this.state;
 
         const inputProps = {
-            className: 'form-control',
             placeholder: 'Beskriv problemet (f.eks hull i veien)',
             value,
             onChange: this.onChange
@@ -80,7 +99,7 @@ class CategoryInput extends Component {
 
         return (
             <Autosuggest
-                id="kategoriInput"
+                id="kategori"
                 className="form-group"
                 suggestions={suggestions}
                 onSuggestionSelected={this.onSuggestionSelected}
@@ -89,6 +108,15 @@ class CategoryInput extends Component {
                 getSuggestionValue={getSuggestionValue}
                 renderSuggestion={this.renderSuggestion}
                 inputProps={inputProps}
+                renderInputComponent={this.renderInputComponent}
+                theme={{
+                    container: 'category-input-container',
+                    input: 'form-control category-input',
+                    suggestionsContainer: 'category-input-suggestions-container',
+                    suggestionsList: 'category-input-suggestions-list',
+                    suggestion: 'category-input-suggestion',
+                    suggestionHighlighted: 'category-input-suggestion--highlighted'
+                }}
             />
         );
     }
