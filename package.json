@@ -39,6 +39,7 @@
     "normalizr": "^2.2.1",
     "query-string": "^4.2.3",
     "react": "^15.4.2",
+    "react-autosuggest": "^9.0.0",
     "react-bootstrap": "^0.30.7",
     "react-bootstrap-date-picker": "^4.0.0",
     "react-cookie": "^1.0.3",
