@@ -24,7 +24,7 @@ class GeoAutoComplete extends Component {
     }
 
     Suggest(data) {
-        if(this.state.streetlist.find(street => street.id === data.id)) return;
+        if (this.state.streetlist.find(street => street.id === data.id)) return;
         let s = { id: data.id, adresse: data.description, place_id: data.place_id };
         this.setState({ streetlist: this.state.streetlist.concat(s) });
     }
@@ -37,12 +37,12 @@ class GeoAutoComplete extends Component {
     }
 
     onDeleteAdress() {
-        this.setState( { clear: true } );
+        this.setState({ clear: true });
         this.setState({ streetlist: [] });
         setTimeout(() => { this.setState({ clear: false }) }, 200);
     }
 
-    handleClickSuggestion(e,street) {
+    handleClickSuggestion(e, street) {
         this.props.selectSuggestion(street);
         this.setState({ streetlist: [] });
     }
@@ -50,8 +50,8 @@ class GeoAutoComplete extends Component {
     render() {
 
         const buttonWidth = 60;
-        const maxWidth = 740 - (2*buttonWidth);
-        const minWidth = 260 - (2*buttonWidth);
+        const maxWidth = 740 - (2 * buttonWidth);
+        const minWidth = 260 - (2 * buttonWidth);
 
         return (
             <div>
@@ -107,7 +107,7 @@ class GeoAutoComplete extends Component {
                     </div>
                 </div>
             </div>
-        ); 
+        );
     }
 }
 
