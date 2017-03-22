@@ -67,7 +67,7 @@ class HeaderContainer extends Component {
 
     renderNavigationBar() {
         return (
-            <Navbar fluid fixedTop >
+            <Navbar fluid fixedTop  >
                 <Navbar.Header>
                     <Navbar.Brand>
                         <Link to={{ pathname: '/' }}>
@@ -79,6 +79,7 @@ class HeaderContainer extends Component {
                 </Navbar.Header>
                 { this.renderNavigationBarForBymAdmin() }
                 { this.renderNavigationBarForWormMeldinger()}
+                <Image src={"logo_oslo.png"} style={{ position: 'absolute', right: '0px', top: '32px' }} />
             </Navbar>
         );
     }

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Button, FormGroup } from 'react-bootstrap';
+import { Button, FormGroup, Image } from 'react-bootstrap';
 var Dropzone = require('react-dropzone');
 const uuidV4 = require('uuid/v4');
 
@@ -15,10 +15,6 @@ import './Bilder.css';
 class Bilder extends Component {
     constructor(props, context) {
         super(props, context);
-
-
-console.log("constructor running...");
-
 
         this.onDeleteAdress = this.onDeleteAdress.bind(this);
         this.onDrop = this.onDrop.bind(this);
@@ -57,8 +53,14 @@ console.log("constructor running...");
        return true;
     }
 
-    onDrop(acceptedFiles) {
-        console.log("ON DROP...........................................");
+    onDrop(acceptedFiles, rejectedFiles) {
+
+        // console.log('Accepted files: ', acceptedFiles);
+        // console.log('Rejected files: ', rejectedFiles);
+
+        if(rejectedFiles.length > 0)
+            this.props.addFlashMessage({ type: 'error', text: "Maksimum bilde størrelse er 10 MByte" });
+
         var filesToAdd = this.state.files;
         acceptedFiles.map(inputfile => {
             if (this.state.files.find(statefile => statefile.name === inputfile.name)) {
@@ -96,13 +98,15 @@ console.log("constructor running...");
 
         const allThumbnails = (
             this.state.files.map((file) => {
-                console.log(file);
                 return (
                 <div key={file.name} style={{ 'width': '128px', 'height': '128px', 'backgroundColor': 'transparent', 'float': 'left', marginLeft: '10px' }}>
                     <div className="input-group">
                         <img className="thumbnails" src={file.preview} alt='bilde' style={{ position: 'relative', 'zIndex': 1 }} />
-                        <Button onClick={(e) => this.onDelete(e,file)} style={{ 'color': 'black', padding: '0px', /*'width': '16px', 'height': '16px',*/ 'verticalAlign': 'middle', backgroundColor: 'transparent', border: 'none', top: '0px', left: '110px', position: 'absolute', 'zIndex': 1000 }} >
-                            <img src={"slett_thumb.png"} alt='fjern bilde' />
+                        <Button onClick={(e) => this.onDelete(e,file)} style={{ 'color': 'black', padding: '0px', /*'width': '16px', 'height': '16px',*/ 
+                                                                                'verticalAlign': 'middle', backgroundColor: 'red', border: 'none', top: '5px', left: '123px', 
+                                                                                position: 'absolute', 'zIndex': 1000 }} >
+                            {/*<img src={"slett_thumb.png"} alt='fjern bilde' />*/}
+                            <Image src={"slett_thumb.png"} style={{ position: 'absolute', right: '0px', top: '0px', backgroundColor: 'transparent' }} />
                         </Button>
                     </div>
                 </div> );
@@ -164,6 +168,7 @@ console.log("constructor running...");
                                 {this.state.files.length < 4 && <Dropzone onDrop={this.onDrop}
                                           preventDropOnDocument={true}
                                           //onClick={this.onDrop}
+                                          maxSize={10485760}  //Max size in bytes - 10 MB
                                           style={{ 'color': 'black', 'width': '128px', 'height': '128px', backgroundColor: 'white', 'float': 'left', marginLeft: '10px', 'borderStyle': 'dashed', 'borderWidth': '1px', 'borderColor': '#979797' }} 
                                           activeStyle={{ backgroundColor: 'green' }} >
                                     <div className="centerPictureFrame">

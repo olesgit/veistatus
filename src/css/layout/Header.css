@@ -17,7 +17,7 @@
 }
 
 .header-text {
-	font-size: 24px;
+	font-size: 20px;
 	font-weight: bold;
 	vertical-align: middle;
 	margin-left: 11px;
@@ -52,7 +52,7 @@
 
 .navbar {
 	margin-bottom: 0;
-	border-bottom: 3px solid #F6A623;
+	border-bottom: 5px solid #F6A623;
 	height: 64px;
 }
 
