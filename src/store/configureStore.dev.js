@@ -29,7 +29,6 @@ const configureStore = preloadedState =>
         applyMiddleware(thunk, createLogger( {
   predicate: (getState, action) =>  action.type !== types.BEGIN_AJAX_CALL
                                     && action.type !== types.SET_CURRENT_SERVICE_INFO
-                                    && action.type !== types.LOAD_ENTREPRENEURS_SUCCESS 
                                     && action.type === "SHOW_NOTHING"
 }  ), reduxImmutableStateInvariant())
     ));

@@ -1,0 +1,30 @@
+.centerPictureFrame {
+    height: 128px;      /* equals image's max-height */
+    width: 128px;
+    /*border: 1px solid red;*/
+    white-space: nowrap;
+    
+    text-align: center; 
+    /*margin: 1em 0;*/
+}
+
+.centerPictureHelper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.centerPictureImg {
+    /*background: #3A6F9A;*/
+    vertical-align: middle;
+    max-height: 128px;
+    max-width: 128px;
+}
+
+.thumbnails {
+  display: block;
+  max-width:128px;
+  max-height:128px;
+  width: auto;
+  height: auto;
+}
