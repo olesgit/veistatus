@@ -5,6 +5,12 @@ import '../../css/Geocoding/Geocoding.css';
 
 
 class GeoAutoComplete extends Component {
+
+    static defaultProps = {
+        selectSuggestion: () => { },
+        onSelectAddress: () => { },
+    }
+
     constructor(props) {
         super(props);
 
@@ -13,7 +19,6 @@ class GeoAutoComplete extends Component {
         this.onDeleteAdress = this.onDeleteAdress.bind(this);
 
         this.state = {
-            // streetlist: [{ id: 1, adresse: 'Mingate 1', place_id: 'xyz'}, { id: 2, adresse: 'Mingate 2', place_id: 'u,v,w' }, { id: 3, adresse: 'Mingate 3', place_id: 'rst' }] //Viser formatet
             streetlist: [],
             clear: false
         };
@@ -111,16 +116,11 @@ class GeoAutoComplete extends Component {
     }
 }
 
-
-GeoAutoComplete.defaultProps = {
-}
-
-
 GeoAutoComplete.propTypes = {
     marginTop: PropTypes.object.isRequired,
-    geodata: PropTypes.object.isRequired,
-    onSelectAddress: PropTypes.func.isRequired,
-    selectSuggestion: PropTypes.func.isRequired,
+    geodata: PropTypes.object,
+    onSelectAddress: PropTypes.func,
+    selectSuggestion: PropTypes.func,
     Height: PropTypes.object.isRequired
 };
 

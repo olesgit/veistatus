@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import { Button, FormGroup, FormControl } from 'react-bootstrap'
 
-import './DescriptionPanel.css'
+import './Description.css'
 
-class DescriptionPanel extends Component {
+class Description extends Component {
 
     static propTypes = {
         editing: PropTypes.bool,
@@ -37,7 +37,16 @@ class DescriptionPanel extends Component {
     }
 
     render() {
-        const { description } = this.state;
+        const { editing, description } = this.state;
+
+        if (!editing && !description) {
+            return null;
+        }
+
+        if (!editing) {
+            return null;
+        }
+
         return (
             <div>
                 <FormGroup className="description-input-container" controlId="beskrivelse">
@@ -57,4 +66,4 @@ class DescriptionPanel extends Component {
     }
 }
 
-export default DescriptionPanel
+export default Description

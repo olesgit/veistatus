@@ -1,0 +1,6 @@
+.map-search {
+    position: absolute;
+    z-index: 1000;
+    top: 420px;
+    width: 100%;
+}

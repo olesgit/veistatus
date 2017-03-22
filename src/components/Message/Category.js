@@ -41,7 +41,7 @@ const categories = [
     }
 ];
 
-class CategoryPanel extends Component {
+class Category extends Component {
 
     static propTypes = {
         category: PropTypes.object.isRequired,
@@ -107,4 +107,4 @@ class CategoryPanel extends Component {
     }
 }
 
-export default CategoryPanel;
+export default Category

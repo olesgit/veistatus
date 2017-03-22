@@ -1,28 +1,28 @@
-import React, {PropTypes} from 'react'
+import React, { PropTypes } from 'react'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 import MarkerClusterGroup from 'react-leaflet-markercluster';
-import {nominatim} from './Nominatim';
+import { nominatim } from './Nominatim';
 import { /*divIcon,*/ icon } from 'leaflet';
 import { startLat, startLon, startZoom } from "../../constants/settings";
-import '../../css/kart/kart.css'; 
+import '../../css/kart/kart.css';
 
 const markers = [
-  {lat: 59.9412, lng: 10.77},
-  {lat: 59.9445, lng: 10.77},
-  {lat: 59.9467, lng: 10.77}
+    { lat: 59.9412, lng: 10.77 },
+    { lat: 59.9445, lng: 10.77 },
+    { lat: 59.9467, lng: 10.77 }
 ];
 
-    
+
 // const icon1 = divIcon({className: 'leaflet-div-icon2'});  //built in red circle
 
 var icon2 = icon({
     iconUrl: 'map-pin.png',
     //shadowUrl: 'marker-white.png',
-    iconSize:     [24, 30], // size of the icon
+    iconSize: [24, 30], // size of the icon
     //shadowSize:   [24, 30], // size of the shadow
-    iconAnchor:   [12, 30], // point of the icon which will correspond to marker's location
+    iconAnchor: [12, 30], // point of the icon which will correspond to marker's location
     //shadowAnchor: [4, 62],  // the same for the shadow
-    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
 //TileLayer settings:
@@ -36,27 +36,33 @@ var icon2 = icon({
 //         minZoom: 7,
 //         detectRetina: true
 
-    
 
-export class MapView extends React.Component {
-    constructor(props) {
-        super(props);
 
-        this.bindMap = this.bindMap.bind(this);
+class MapView extends React.Component {
 
-        this.state = {
-            centerlat: startLat,
-            centerlon: startLon,
-            zoom: startZoom
-        };
+    static propTypes = {
+        onSelectCoord: PropTypes.func,
+        geodata: PropTypes.object
     }
 
-    bindMap(el) {
-        if(el)
+    static defaultProps = {
+        geodata: {
+            adressSelectedBy: 'none',
+            lat: startLat,
+            lon: startLon,
+            valgtZoom: startZoom,
+            display_name: '',
+            centerlat: startLat,
+            centerlon: startLon
+        }
+    }
+
+    bindMap = (el) => {
+        if (el)
             this.map = el.leafletElement;
     }
 
-    handleClick= (e) => {
+    handleClick = (e) => {
         var query = {
             lat: e.latlng.lat,
             lon: e.latlng.lng
@@ -68,22 +74,29 @@ export class MapView extends React.Component {
         if (err) {
             throw err;
         }
-        let geodata = { lat: Number(data.lat), lon: Number(data.lon), place_id: '', display_name: data.display_name, valgtZoom: this.map.getZoom(), 
-                        id: '', adressSelectedBy: 'click', centerlat: this.map.getCenter().lat, centerlon: this.map.getCenter().lng };
+        let geodata = {
+            lat: Number(data.lat), lon: Number(data.lon), place_id: '', display_name: data.display_name, valgtZoom: this.map.getZoom(),
+            id: '', adressSelectedBy: 'click', centerlat: this.map.getCenter().lat, centerlon: this.map.getCenter().lng
+        };
 
-        this.props.onSelectCoord(geodata);
+        if (this.props.onSelectCoord) {
+            this.props.onSelectCoord(geodata);
+        }
+    }
+
+    renderMarker(geodata) {
+        if (geodata.adressSelectedBy !== 'none') {
+            return (
+                <Marker position={[geodata.lat, geodata.lon]} icon={icon2}>
+                    <Popup>
+                        <span>Din valgte posisjon: <br /> {geodata.display_name}</span>
+                    </Popup>
+                </Marker>
+            );
+        }
     }
 
     render() {
-        const MarkerInstance = (
-            (this.props.geodata.adressSelectedBy !== 'none') &&
-            <Marker position={[this.props.geodata.lat, this.props.geodata.lon]} icon={icon2}>
-                <Popup>
-                    <span>Din valgte posisjon: <br /> {this.props.geodata.display_name}</span>
-                </Popup>
-            </Marker>
-        );
-
         return (
             <div>
                 <Map
@@ -94,16 +107,16 @@ export class MapView extends React.Component {
                     maxZoom={18}
                     minZoom={7}
                     onClick={this.handleClick}
-                    zoomControl={ true}
+                    zoomControl={true}
                     dragging={true}
                     boxZoom={true}
-                    >
+                >
                     <TileLayer
                         url='https://api.mapbox.com/styles/v1/webforvaltningen/cirlr93tl0010gyly7o56ugi3/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoid2ViZm9ydmFsdG5pbmdlbiIsImEiOiJjaXJsczQ5dnAwMDMxaG5rd2xnNGt2MGZvIn0.BGtT-dezZ_5hseqXmkMAoQ'
                         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     />
-                    
-                    {MarkerInstance}
+
+                    {this.renderMarker(this.props.geodata)}
 
                     <MarkerClusterGroup
                         markers={markers}
@@ -115,7 +128,4 @@ export class MapView extends React.Component {
     }
 }
 
-MapView.propTypes = {
-    onSelectCoord: PropTypes.func.isRequired,
-    geodata: PropTypes.object.isRequired
-};
+export default MapView

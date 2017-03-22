@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
 import flashMessages from "./flashMessagesReducer";
 import login from './loginReducer';
-import messages from "./messagesReducer";
-
+import message from "./messageReducer";
+import map from './mapReducer';
 
 const rootReducer = combineReducers({
     login,
     flashMessages,
-    messages
+    message,
+    map
 });
+
 export default rootReducer;
