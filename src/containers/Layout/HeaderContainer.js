@@ -67,7 +67,7 @@ class HeaderContainer extends Component {
 
     renderNavigationBar() {
         return (
-            <Navbar fluid fixedTop>
+            <Navbar fluid fixedTop >
                 <Navbar.Header>
                     <Navbar.Brand>
                         <Link to={{ pathname: '/' }}>

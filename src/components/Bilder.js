@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Button, FormGroup } from 'react-bootstrap';
 var Dropzone = require('react-dropzone');
+const uuidV4 = require('uuid/v4');
 
 //TODO redux should not be in a presentational component. Added here to use the addFlashMessage
 import { connect } from 'react-redux';
@@ -15,6 +16,10 @@ class Bilder extends Component {
     constructor(props, context) {
         super(props, context);
 
+
+console.log("constructor running...");
+
+
         this.onDeleteAdress = this.onDeleteAdress.bind(this);
         this.onDrop = this.onDrop.bind(this);
         
@@ -26,6 +31,7 @@ class Bilder extends Component {
             adresseDisplayed: "",
             categorySelected: "",
             files: [],
+            //files: [{ name: "bilde.jpg", preview: "blob:http://localhost:3000/82a9daa4-0c34-4724-912d-e0cba7c261fc", size: 18984, lastModified: 1477314482255, type: "image/jpeg", uuid: "1ab26c61-88c4-4e10-9ff9-7d8299d0c3c2", webkitRelativePath: "", lastModifiedDate: "Mon Oct 24 2016 15:08:02 GMT+0200 (Central Europe Daylight Time)" }],
             ready: true
         };
     }
@@ -52,6 +58,7 @@ class Bilder extends Component {
     }
 
     onDrop(acceptedFiles) {
+        console.log("ON DROP...........................................");
         var filesToAdd = this.state.files;
         acceptedFiles.map(inputfile => {
             if (this.state.files.find(statefile => statefile.name === inputfile.name)) {
@@ -63,7 +70,8 @@ class Bilder extends Component {
                 return null;
             }
             else {
-                console.log(inputfile);  //inputfile.name);
+                inputfile.uuid = uuidV4();  // -> '110ec58a-a0f2-4ac4-8393-c866d813b8d1'
+                //console.log(inputfile);     //inputfile.name);
                 filesToAdd.push(inputfile);
             }
             return null;
@@ -72,7 +80,14 @@ class Bilder extends Component {
         this.setState( {files: filesToAdd });
     }
 
+    onDelete(e, file) {
+            let filesRemaining = this.state.files.filter( statefile => statefile.uuid !== file.uuid );
+            //console.log(fRes);
+            this.setState( {files: filesRemaining });
+    }
+
     render() {
+
         const buttonWidth = 60;
         const maxWidth = 740 - (1*buttonWidth);
         const minWidth = 260 - (1*buttonWidth);
@@ -80,27 +95,36 @@ class Bilder extends Component {
         const geominWidth = 260 - (1*buttonWidth);
 
         const allThumbnails = (
-            this.state.files.map((file) =>
+            this.state.files.map((file) => {
+                console.log(file);
+                return (
                 <div key={file.name} style={{ 'width': '128px', 'height': '128px', 'backgroundColor': 'transparent', 'float': 'left', marginLeft: '10px' }}>
-                    <img className="thumbnails" src={file.preview} alt='bilde' />
-                </div>)
+                    <div className="input-group">
+                        <img className="thumbnails" src={file.preview} alt='bilde' style={{ position: 'relative', 'zIndex': 1 }} />
+                        <Button onClick={(e) => this.onDelete(e,file)} style={{ 'color': 'black', padding: '0px', /*'width': '16px', 'height': '16px',*/ 'verticalAlign': 'middle', backgroundColor: 'transparent', border: 'none', top: '0px', left: '110px', position: 'absolute', 'zIndex': 1000 }} >
+                            <img src={"slett_thumb.png"} alt='fjern bilde' />
+                        </Button>
+                    </div>
+                </div> );
+            }
+            )
         );
 
         const formInstance = (
-            <form className="bildeForm">
+            <form className="bildeForm" style={{ 'backgroundColor': 'transparent' }}>
 
                 <div className="input-group input-group-lg"
                     style={{
                         'textAlign': 'center', 'minWidth': '260px', 'backgroundColor': 'transparent',
-                        'marginLeft': 'auto', 'marginRight': 'auto'
+                        'marginLeft': 'auto', 'marginRight': 'auto', 'marginTop': '47px'
                     }}
                 >
 
-                    <div style={{ 'color': 'black' }}>
+                    {/*<div style={{ 'color': 'black' }}>
                         <h1>LAST OPP BILDER. </h1>
                         <h3>Adressefelt med søk knapp, Kategori, sub kategori med velg knapp, Bilde panel med last opp bilder (legg til med filvelger) og visning av bilder, Neste og Avbryt.</h3>
                     </div>
-                    <br/><br/>
+                    <br/><br/>*/}
 
                     <FormGroup controlId="formControlsAdresse" >
                         <div className="input-group input-group-lg" style={{'textAlign': 'center', 'width': '100%', 'maxWidth': Number(maxWidth) + 'px', 'minWidth': Number(minWidth) + 'px', 'backgroundColor': 'transparent', 'marginLeft': 'auto', 'marginRight': 'auto'}}>
@@ -146,7 +170,7 @@ class Bilder extends Component {
                                         <span className="centerPictureHelper"></span><img className="centerPictureImg" src="pluss.png" alt='legg til' height="36" />
                                     </div>
                                 </Dropzone>}
-                            </div>                            
+                            </div>
                         </div>
                     </FormGroup>
 
