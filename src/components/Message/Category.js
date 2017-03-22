@@ -46,7 +46,7 @@ class Category extends Component {
     static propTypes = {
         category: PropTypes.object.isRequired,
         editing: PropTypes.bool.isRequired,
-        categorySelected: PropTypes.func.isRequired
+        categorySpecified: PropTypes.func.isRequired
     }
 
     static defaultProps = {
@@ -64,7 +64,7 @@ class Category extends Component {
     next = () => {
         // TODO ActionCreator => { type: "CATEGORY_SELECTED", payload: category }
         // TODO Do not "next" if category is not selected
-        this.props.categorySelected(this.state.category);
+        this.props.categorySpecified(this.state.category);
     }
 
     cancel = () => {

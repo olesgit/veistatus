@@ -47,7 +47,7 @@ class MessageWizard extends Component {
             return ([
                 <AddressContainer key="address-step" />,
                 <CategoryContainer key="category-step" />,
-                // <PictureContainer key="pictures-step" />,
+                <PictureContainer key="pictures-step" />,
                 <DescriptionContainer key="description-step" />,
                 <SubmitContainer key="submit-step" />
             ]);

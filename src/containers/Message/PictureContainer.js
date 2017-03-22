@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import Pictures from '../../components/Inputs/picturePanel'
+import Pictures from '../../components/Message/Pictures'
 import { picturesSpecified } from '../../actions/messageActions'
 
 const mapStateToProps = (state) => {
@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        categorySpecified: bindActionCreators(picturesSpecified, dispatch)
+        picturesSpecified: bindActionCreators(picturesSpecified, dispatch)
     }
 }
 
