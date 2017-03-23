@@ -4,3 +4,13 @@
     top: 420px;
     width: 100%;
 }
+
+.map-search-content {
+    width: 740px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.map-search-content > .address-input-group {
+    border: none;
+}

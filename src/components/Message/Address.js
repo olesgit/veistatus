@@ -3,6 +3,8 @@ import { FormGroup, Button } from 'react-bootstrap'
 import AddressInput from '../AddressInput'
 import StaticStep from '../StaticStep'
 
+import './Address.css'
+
 import addressIcon from '../../images/address.svg'
 
 class Address extends Component {
@@ -40,9 +42,9 @@ class Address extends Component {
         return (
             <div className="address-content">
                 <FormGroup controlId="adresse">
-                    <AddressInput geodata={this.props.geodata} onSelectAddress={this.selectCoord} selectSuggestion={this.selectSuggestion} />
+                    <AddressInput geodata={this.props.geodata} showClear={true} />
                 </FormGroup>
-                <Button bsStyle="primary" block onClick={this.next}>Meld her</Button>
+                <Button bsStyle="success" block onClick={this.next}>Meld her</Button>
             </div>
         );
     }

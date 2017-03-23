@@ -24,7 +24,9 @@ class MapSearch extends Component {
 
         return (
             <div className="map-search">
-                <AddressInput geodata={geodata} locationSeleted={this.props.locationSeleted} />
+                <div className="map-search-content">
+                    <AddressInput geodata={geodata} locationSeleted={this.props.locationSeleted} showSearch={true} />
+                </div>
             </div>
         );
     }
