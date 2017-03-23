@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { FormGroup, Button } from 'react-bootstrap'
 import AddressInput from '../AddressInput'
-import StaticStep from '../StaticStep'
+import Step from '../Step'
 
 import './Address.css'
 
@@ -22,8 +22,7 @@ class Address extends Component {
 
     next = () => {
         if (this.props.addressSpecified) {
-            // TODO get address from geodata object
-            this.props.addressSpecified(this.props.address);
+            this.props.addressSpecified(this.props.geodata);
         }
     }
 
@@ -36,7 +35,7 @@ class Address extends Component {
         }
 
         if (!editing) {
-            return <StaticStep icon={addressIcon} text={address} />;
+            return <Step icon={addressIcon} text={address.display_name} />;
         }
 
         return (

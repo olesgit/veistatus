@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import StaticStep from '../StaticStep'
+import Step from '../Step'
 import CategoryInput from '../CategoryInput'
 import CategoryRecommended from '../CategoryRecommended'
 import { Button } from 'react-bootstrap'
@@ -61,7 +61,7 @@ class Category extends Component {
         }
 
         if (!editing) {
-            return <StaticStep icon={categoryIcon} text={"Hull i veien > Veibane"} />
+            return <Step icon={categoryIcon} text={"Hull i veien > Veibane"} />
         }
 
         return (
