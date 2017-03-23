@@ -19,11 +19,13 @@ export default function messagesReducer(state = initialState, action = {}) {
         case LOCATION_SELECTED:
             return { ...state, step: 'address' }
 
-        // TODO
+        case types.GET_CATEGORIES_SUCCESS:
+            return { ...state, categories: action.payload }
+
+        case types.GET_CATEGORIES_REQUEST:
+        case types.GET_CATEGORIES_FAILURE:
         case types.MESSAGE_SUBMIT_REQUEST:
-            return state;
         case types.MESSAGE_SUBMIT_SUCCESS:
-            return state;
         case types.MESSAGE_SUBMIT_FAILURE:
             return state;
 

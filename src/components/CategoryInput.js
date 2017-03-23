@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
+import { InputGroup, Button, Image } from 'react-bootstrap'
 import Autosuggest from 'react-autosuggest'
 
 import './CategoryInput.css'
@@ -77,14 +78,14 @@ class CategoryInput extends Component {
 
     renderInputComponent = inputProps => {
         return (
-            <div className="input-group category-input-group">
+            <InputGroup className="category-input-group">
                 <input {...inputProps} />
-                <span className="input-group-btn">
-                    <button className="btn category-input-clear" type="button" onClick={this.onClick}>
-                        <img src={clearIcon} alt="clear-text" />
-                    </button>
-                </span>
-            </div>
+                <InputGroup.Button>
+                    <Button bsStyle="input-group" onClick={this.onClick}>
+                        <Image src={clearIcon} alt="clear-text" />
+                    </Button>
+                </InputGroup.Button>
+            </InputGroup>
         );
     }
 
@@ -109,6 +110,7 @@ class CategoryInput extends Component {
                 renderSuggestion={this.renderSuggestion}
                 inputProps={inputProps}
                 renderInputComponent={this.renderInputComponent}
+                highlightFirstSuggestion={true}
                 theme={{
                     container: 'category-input-container',
                     input: 'form-control category-input',

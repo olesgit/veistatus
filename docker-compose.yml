@@ -1,0 +1,42 @@
+version: '2'
+
+services:
+  bymeldingportal:
+    image: bymdocker/bymeldingportal
+    build:
+      context: .
+      dockerfile: Dockerfile.DockerHub_development
+    ports:
+      - "5006:5006"
+    environment:
+      - REACT_APP_REACT_ENV=localdocker
+  bymeldingservice:
+    image: bymdocker/bymeldingservice
+    ports:
+      - "5003:5003"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=localdocker
+    links:
+      - bymlocaldb
+  autentiseringservice:
+    image: bymdocker/autentiseringservice
+    ports:
+      - "5015:5015"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=localdocker
+    links:
+      - bymlocaldb
+  autentiseringclient:
+    image: bymdocker/autentiseringclient
+    ports:
+      - "5016:5016"
+    environment:
+      - REACT_APP_REACT_ENV=localdocker      
+  bymlocaldb:
+    image: bymdocker/postgresql-dev
+    expose:
+      - "5432"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=developer2016

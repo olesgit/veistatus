@@ -7,7 +7,7 @@ const mapStateToProps = (state) => {
     return {
         editing: state.message.step === 'category',
         category: state.message.category,
-        categories: [] // TODO
+        categories: state.message.categories
     }
 }
 

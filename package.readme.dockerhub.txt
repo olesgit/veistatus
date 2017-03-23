@@ -1,0 +1,2 @@
+Når man endrer på "package.json" Docker Hub manuelt trigges.
+Eller kjør scriptet "package-trigger-npm-install-build.bat"

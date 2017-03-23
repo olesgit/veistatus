@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import { FormGroup, Button } from 'react-bootstrap'
 import AddressInput from '../AddressInput'
-import StaticStep from '../StaticStep'
+import Step from '../Step'
+
+import './Address.css'
 
 import addressIcon from '../../images/address.svg'
 
@@ -20,8 +22,7 @@ class Address extends Component {
 
     next = () => {
         if (this.props.addressSpecified) {
-            // TODO get address from geodata object
-            this.props.addressSpecified(this.props.address);
+            this.props.addressSpecified(this.props.geodata);
         }
     }
 
@@ -34,15 +35,15 @@ class Address extends Component {
         }
 
         if (!editing) {
-            return <StaticStep icon={addressIcon} text={address} />;
+            return <Step icon={addressIcon} text={address.display_name} />;
         }
 
         return (
             <div className="address-content">
                 <FormGroup controlId="adresse">
-                    <AddressInput geodata={this.props.geodata} onSelectAddress={this.selectCoord} selectSuggestion={this.selectSuggestion} />
+                    <AddressInput geodata={this.props.geodata} showClear={true} />
                 </FormGroup>
-                <Button bsStyle="primary" block onClick={this.next}>Meld her</Button>
+                <Button bsStyle="success" block onClick={this.next}>Meld her</Button>
             </div>
         );
     }

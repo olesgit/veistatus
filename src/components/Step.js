@@ -1,6 +1,9 @@
 import React, { PureComponent, PropTypes } from 'react';
+import { Image } from 'react-bootstrap'
 
-class StaticStep extends PureComponent {
+import './Step.css'
+
+class Step extends PureComponent {
 
     static propTypes = {
         icon: PropTypes.string.isRequired,
@@ -10,12 +13,12 @@ class StaticStep extends PureComponent {
     render() {
         const { icon, text } = this.props;
         return (
-            <div className="step-static">
-                <img src={icon} alt="kategori" />
+            <div className="step-complete">
+                <Image src={icon} />
                 <span>{text}</span>
             </div>
         );
     }
 }
 
-export default StaticStep;
+export default Step;

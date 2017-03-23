@@ -66,7 +66,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "build-and-run": "react-scripts build && pushstate-server build 5105",
+    "build-and-run": "react-scripts build && pushstate-server build 5006",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }

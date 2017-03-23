@@ -1,0 +1,9 @@
+FROM bymdocker/bymeldingportal-npm-install:latest
+
+# Bundle app source
+COPY . /app
+
+EXPOSE 5006
+ENV TZ Europe/Oslo
+
+CMD ["npm", "run", "build-and-run"]

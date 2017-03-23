@@ -64,7 +64,7 @@ class MessageWizard extends Component {
         const { step } = this.props;
         const { open } = this.state;
 
-        const hideCollapse = step !== 'welcome' && step !== 'receipt';
+        const hideCollapse = !checkStep(step, 'welcome', 'receipt', 'address');
         const collapseIcon = open ? hideIcon : showIcon;
 
         const buttonClasses = classNames('message-collapse', { hidden: hideCollapse });
@@ -73,9 +73,11 @@ class MessageWizard extends Component {
             <div>
                 <Collapse in={open}>
                     <div className="message-container">
-                        {this.renderWelcome(step)}
-                        {this.renderSteps(step)}
-                        {this.renderReceipt(step)}
+                        <div className="message-content">
+                            {this.renderWelcome(step)}
+                            {this.renderSteps(step)}
+                            {this.renderReceipt(step)}
+                        </div>
                     </div>
                 </Collapse>
                 <div style={{ textAlign: 'center' }}>
