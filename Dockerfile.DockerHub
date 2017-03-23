@@ -9,6 +9,6 @@ RUN npm install
 ENV TZ Europe/Oslo
 RUN ln -fs /usr/share/zoneinfo/Europe/Oslo /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
 
-EXPOSE 5105
+EXPOSE 5006
 
 CMD ["npm", "run", "build-and-run"]
