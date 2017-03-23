@@ -1,7 +1,14 @@
+import axios from 'axios'
+import * as api from '../constants/api'
+
 export const MESSAGE_ADDRESS_SPECIFIED = 'MESSAGE_ADDRESS_SPECIFIED'
 export const MESSAGE_CATEGORY_SPECIFIED = 'MESSAGE_CATEGORY_SPECIFIED'
 export const MESSAGE_PICTURE_SPECIFIED = 'MESSAGE_PICTURE_SPECIFIED'
 export const MESSAGE_DESCRIPTION_SPECIFIED = 'MESSAGE_DESCRIPTION_SPECIFIED'
+
+export const GET_CATEGORIES_REQUEST = 'GET_CATEGORIES_REQUEST'
+export const GET_CATEGORIES_SUCCESS = 'GET_CATEGORIES_SUCCESS'
+export const GET_CATEGORIES_FAILURE = 'GET_CATEGORIES_FAILURE'
 
 export const MESSAGE_SUBMIT_REQUEST = 'MESSAGE_SUBMIT_REQUEST'
 export const MESSAGE_SUBMIT_SUCCESS = 'MESSAGE_SUBMIT_SUCCESS'
@@ -32,6 +39,19 @@ export function descriptionSpecified(description) {
     return {
         type: MESSAGE_CATEGORY_SPECIFIED,
         payload: description
+    };
+}
+
+const getCategoriesRequest = () => ({ type: GET_CATEGORIES_REQUEST })
+const getCategoriesSuccess = (result) => ({ type: GET_CATEGORIES_SUCCESS, payload: result })
+const getCategoriesFailure = () => ({ type: GET_CATEGORIES_FAILURE })
+
+export function getCategories() {
+    return function (dispatch) {
+        dispatch(getCategoriesRequest());
+        return axios.get(api.getMessageCategories)
+            .then(response => dispatch(getCategoriesSuccess(response.data.result)))
+            .catch(error => dispatch(getCategoriesFailure(error)));
     };
 }
 
