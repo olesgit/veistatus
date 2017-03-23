@@ -4,6 +4,8 @@ import CategoryInput from '../CategoryInput'
 import CategoryRecommended from '../CategoryRecommended'
 import { Button } from 'react-bootstrap'
 
+import './Category.css'
+
 import categoryIcon from '../../images/kategori.svg'
 
 const categories = [
@@ -96,11 +98,11 @@ class Category extends Component {
         }
 
         return (
-            <div>
+            <div className="category-content">
                 <CategoryInput category={category} categories={categories} onCategorySelected={this.categoryChanged} />
                 <h4>MEST BRUKTE</h4>
                 <CategoryRecommended categories={categories} onCategorySelected={this.categoryChanged} />
-                <Button bsStyle="primary" block onClick={this.next}>Neste</Button>
+                <Button bsStyle="success" block onClick={this.next}>Neste</Button>
                 <Button bsStyle="link" block onClick={this.cancel}>Avbryt</Button>
             </div>
         );

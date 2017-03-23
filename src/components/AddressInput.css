@@ -60,10 +60,6 @@
     color: #4a4a4a;
 }
 
-.address-input-group {
-    margin-left: -1px;
-}
-
 /* Geosuggest custom style */
 .address-input-hidden {
   max-height: 0;

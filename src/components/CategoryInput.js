@@ -110,6 +110,7 @@ class CategoryInput extends Component {
                 renderSuggestion={this.renderSuggestion}
                 inputProps={inputProps}
                 renderInputComponent={this.renderInputComponent}
+                highlightFirstSuggestion={true}
                 theme={{
                     container: 'category-input-container',
                     input: 'form-control category-input',
