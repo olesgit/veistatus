@@ -13,9 +13,11 @@ class Step extends PureComponent {
     render() {
         const { icon, text } = this.props;
         return (
-            <div className="step-complete">
+            <div className="step-complete clearfix">
                 <Image src={icon} />
-                <span>{text}</span>
+                <div>
+                    <span>{text}</span>
+                </div>
             </div>
         );
     }
