@@ -14,4 +14,4 @@ build
 /src/npm-debug.log
 /.idea/
 **/.idea/workspace.xml
-*debug.log*
+# .env

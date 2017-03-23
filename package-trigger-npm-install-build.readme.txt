@@ -1,0 +1,1 @@
+Bruk dette scriptet til å trigge bygging av "npm install" image. Dette vil da lage et forhåndsinstallrt image med alle avhengigheter som vil bli brukt når man skal kjøre denne React klienten på Docker for Windows. Slik slipper man å laste ned 40000+ filer hver gang man skal sette igang klienten lokalt.
