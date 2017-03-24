@@ -3,7 +3,7 @@ import { Image } from 'react-bootstrap'
 
 import './Step.css'
 
-class Step extends PureComponent {
+class Step extends PureComponent { 
 
     static propTypes = {
         icon: PropTypes.string.isRequired,
@@ -23,4 +23,4 @@ class Step extends PureComponent {
     }
 }
 
-export default Step;
+export default Step; 

@@ -1,7 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 import { Button, FormGroup } from 'react-bootstrap'
-import Bilder from '../Bilder'
+import BilderInput from '../BilderInput'
 const uuidV4 = require('uuid/v4');
+import StepBilder from '../StepBilder'
+
+import cameraIcon from '../../images/kamera.svg'
+
 
 class Pictures extends Component {
 
@@ -24,7 +28,7 @@ class Pictures extends Component {
     next = () => {
         // TODO Do not "next" if no pictures are added
         if (this.props.picturesSpecified) {
-            this.props.picturesSpecified(this.state.pictures);
+            this.props.picturesSpecified(this.state.pictures);  
         }
     }
 
@@ -56,7 +60,7 @@ class Pictures extends Component {
         this.setState({ pictures: filesToAdd });
     }
 
-    onDelete(file) {
+    onDelete = (file) => {
         let filesRemaining = this.state.pictures.filter(statefile => statefile.uuid !== file.uuid);
         this.setState({ pictures: filesRemaining });
     }
@@ -71,13 +75,17 @@ class Pictures extends Component {
         }
 
         if (!editing) {
+            return <StepBilder icon={cameraIcon} pictures={this.props.pictures} />;
+        }
+
+        if (!editing) {
             return null;
         }
 
         return (
             <div>
                 <FormGroup className="description-input-container" controlId="beskrivelse">
-                    <Bilder pictures={this.state.pictures} onDrop={this.onDrop} onDelete={this.onDelete} addFlashMessage={addFlashMessage} />
+                    <BilderInput pictures={this.state.pictures} onDrop={this.onDrop} onDelete={this.onDelete} addFlashMessage={addFlashMessage} />
                 </FormGroup>
                 <Button bsStyle="primary" block onClick={this.next}>Neste</Button>
                 <Button bsStyle="link" block onClick={this.cancel}>Avbryt</Button>

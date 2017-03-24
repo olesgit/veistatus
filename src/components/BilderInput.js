@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react'
 import { Button, Image } from 'react-bootstrap'
 import Dropzone from 'react-dropzone'
 
-import './Bilder.css'
+import './BilderInput.css'
 
-class Bilder extends Component {
+class BilderInput extends Component {
 
     static propTypes = {
         addFlashMessage: PropTypes.func.isRequired,
@@ -13,7 +13,10 @@ class Bilder extends Component {
         onDelete: PropTypes.func.isRequired
     }
 
-    renderThumbnail(file) {
+    renderThumbnail=(file) =>{
+
+                //console.log( this.propTypes.onDelete);
+
         return (
             <div key={file.name} style={{ 'width': '128px', 'height': '128px', 'backgroundColor': 'transparent', 'float': 'left', marginLeft: '10px' }}>
                 <div className="input-group">
@@ -32,6 +35,7 @@ class Bilder extends Component {
 
     render() {
         const { pictures, onDrop } = this.props;
+
 
         return (
             <div className="bilder">
@@ -59,4 +63,4 @@ class Bilder extends Component {
     }
 }
 
-export default Bilder;
+export default BilderInput;
