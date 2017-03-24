@@ -15,13 +15,9 @@ var to_encode_uri = function (params, done) {
 
     var params_query = [];
 
-    _.forIn(global, i => {
-        params_query.push(i + '=' + encodeURIComponent(global[i]));
-    });
+    _.forOwn(global, (value, key) => params_query.push(key + '=' + encodeURIComponent(value)));
 
-    _.forIn(params, i => {
-        params_query.push(i + '=' + encodeURIComponent(params[i]));
-    });
+    _.forOwn(params, (value, key) => params_query.push(key + '=' + encodeURIComponent(value)));
 
     return params_query.join('&');
 };
