@@ -32,6 +32,10 @@ console.log(action);
         case types.MESSAGE_SUBMIT_FAILURE:
             return state;
 
+        case types.MESSAGE_ABORT:
+        case types.MESSAGE_ACKNOWLEDGE:
+            return { step: 'welcome', hideWelcome: true }
+
         default:
             return state;
     }

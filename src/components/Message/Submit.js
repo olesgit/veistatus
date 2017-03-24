@@ -5,7 +5,8 @@ class Submit extends Component {
 
     static propTypes = {
         editing: PropTypes.bool,
-        sumbitMessage: PropTypes.func
+        sumbitMessage: PropTypes.func,
+        abort: PropTypes.func.isRequired
     }
 
     static defaultProps = {
@@ -18,12 +19,8 @@ class Submit extends Component {
         }
     }
 
-    cancel = () => {
-
-    }
-
     render() {
-        const { editing } = this.props;
+        const { editing, abort } = this.props;
 
         if (!editing) {
             return null;
@@ -32,7 +29,7 @@ class Submit extends Component {
         return (
             <div>
                 <Button bsStyle="success" block onClick={this.next}>Send inn</Button>
-                <Button bsStyle="link" block onClick={this.cancel}>Avbryt</Button>
+                <Button bsStyle="link" block onClick={abort}>Avbryt</Button>
             </div>
         );
     }

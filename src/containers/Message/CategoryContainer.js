@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Category from '../../components/Message/Category'
-import { categorySpecified } from '../../actions/messageActions'
+import { categorySpecified, abort } from '../../actions/messageActions'
 
 const mapStateToProps = (state) => {
     return {
@@ -13,7 +13,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        categorySpecified: bindActionCreators(categorySpecified, dispatch)
+        categorySpecified: bindActionCreators(categorySpecified, dispatch),
+        abort: bindActionCreators(abort, dispatch)
     }
 }
 

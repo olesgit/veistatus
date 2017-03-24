@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 import MarkerClusterGroup from 'react-leaflet-markercluster';
-import { nominatim } from './Nominatim';
+import nominatim from './Nominatim';
 import { /*divIcon,*/ icon } from 'leaflet';
 import { startLat, startLon, startZoom } from "../../constants/settings";
 import '../../css/kart/kart.css';
