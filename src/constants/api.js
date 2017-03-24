@@ -38,3 +38,4 @@ function RESOLVE_HOST() {
 export const bymeldingServiceBaseUrl = RESOLVE_HOST().bymelding_service_host;
 
 export const getMessageCategories = bymeldingServiceBaseUrl + "/api/meldingskategorigrupper";
+export const postMessage = bymeldingServiceBaseUrl + "/api/meldinger";

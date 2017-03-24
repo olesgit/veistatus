@@ -59,11 +59,21 @@ const submitMessageRequest = () => ({ type: MESSAGE_SUBMIT_REQUEST })
 const submitMessageSuccess = () => ({ type: MESSAGE_SUBMIT_SUCCESS })
 const submitMessageFailure = () => ({ type: MESSAGE_SUBMIT_FAILURE })
 
-export function submitMessage() {
+export function submitMessage(message) {
     return function (dispatch) {
-        // dispatch(submitMessageRequest());
-        // return messageApi.getAllMessages()
-        //     .then(response => dispatch(submitMessageSuccess(response)))
-        //     .catch(error => dispatch(submitMessageFailure(error)));
+        var form = new FormData();
+        form.append("innsenderNavn", message.innsenderNavn);
+        form.append("innsenderEpost", message.innsenderEpost);
+        form.append("meldingstypeId", message.meldingstypeId);
+        form.append("beskrivelse", message.beskrivelse);
+        form.append("adresse", message.adresse);
+        form.append("latitude", message.latitude);
+        form.append("longitude", message.longitude);
+        message.bilder.forEach(bilde => form.append("bilder", bilde));
+
+        dispatch(submitMessageRequest());
+        return axios.post(api.postMessage, form).getAllMessages()
+            .then(response => dispatch(submitMessageSuccess(response)))
+            .catch(error => dispatch(submitMessageFailure(error)));
     };
 }
