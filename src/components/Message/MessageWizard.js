@@ -7,6 +7,7 @@ import CategoryContainer from '../../containers/Message/CategoryContainer'
 import PictureContainer from '../../containers/Message/PictureContainer'
 import DescriptionContainer from '../../containers/Message/DescriptionContainer'
 import SubmitContainer from '../../containers/Message/SubmitContainer'
+import ReceiptContainer from '../../containers/Message/ReceiptContainer'
 
 import Welcome from './Welcome'
 
@@ -47,7 +48,7 @@ class MessageWizard extends Component {
             return ([
                 <AddressContainer key="address-step" />,
                 <CategoryContainer key="category-step" />,
-                <PictureContainer key="pictures-step" />, 
+                <PictureContainer key="pictures-step" />,
                 <DescriptionContainer key="description-step" />,
                 <SubmitContainer key="submit-step" />
             ]);
@@ -56,7 +57,7 @@ class MessageWizard extends Component {
 
     renderReceipt(step) {
         if (checkStep(step, 'receipt')) {
-            return null;
+            return <ReceiptContainer />;
         }
     }
 

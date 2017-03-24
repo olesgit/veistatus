@@ -15,12 +15,11 @@ class Description extends Component {
     }
 
     static defaultProps = {
-        description: '',
         editing: true
     }
 
     state = {
-        description: this.props.description || ''
+        description: this.props.description
     }
 
     handleChange = (event) => {
@@ -38,7 +37,7 @@ class Description extends Component {
         const { editing, abort } = this.props;
         const { description } = this.state;
 
-        if (!editing && !description) {
+        if (!editing && description == null) {
             return null;
         }
 
@@ -53,7 +52,7 @@ class Description extends Component {
                         className="description-input"
                         placeholder="Beskriv problemet"
                         componentClass="textarea"
-                        value={description}
+                        value={description || ''}
                         onChange={this.handleChange}
                         rows={7}
                     />

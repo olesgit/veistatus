@@ -30,6 +30,7 @@ export default function messagesReducer(state = initialState, action = {}) {
             return state;
 
         case types.MESSAGE_ABORT:
+        case types.MESSAGE_ACKNOWLEDGE:
             return { step: 'welcome', hideWelcome: true }
 
         default:
