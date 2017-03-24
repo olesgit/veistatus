@@ -3,7 +3,7 @@ import * as api from '../constants/api'
 
 export const MESSAGE_ADDRESS_SPECIFIED = 'MESSAGE_ADDRESS_SPECIFIED'
 export const MESSAGE_CATEGORY_SPECIFIED = 'MESSAGE_CATEGORY_SPECIFIED'
-export const MESSAGE_PICTURE_SPECIFIED = 'MESSAGE_PICTURE_SPECIFIED'
+export const MESSAGE_PICTURES_SPECIFIED = 'MESSAGE_PICTURES_SPECIFIED'
 export const MESSAGE_DESCRIPTION_SPECIFIED = 'MESSAGE_DESCRIPTION_SPECIFIED'
 
 export const GET_CATEGORIES_REQUEST = 'GET_CATEGORIES_REQUEST'
@@ -33,7 +33,7 @@ export function categorySpecified(category) {
 
 export function picturesSpecified(pictures) {
     return {
-        type: MESSAGE_PICTURE_SPECIFIED,
+        type: MESSAGE_PICTURES_SPECIFIED,
         payload: pictures
     };
 }
