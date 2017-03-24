@@ -15,6 +15,7 @@ export const MESSAGE_SUBMIT_SUCCESS = 'MESSAGE_SUBMIT_SUCCESS'
 export const MESSAGE_SUBMIT_FAILURE = 'MESSAGE_SUBMIT_FAILURE'
 
 export const MESSAGE_ABORT = 'MESSAGE_ABORT'
+export const MESSAGE_ACKNOWLEDGE = 'MESSAGE_ACKNOWLEDGE'
 
 export function addressSpecified(address) {
     return {
@@ -48,6 +49,12 @@ export function abort() {
     return {
         type: MESSAGE_ABORT
     };
+}
+
+export function acknowledge() {
+    return {
+        type: MESSAGE_ACKNOWLEDGE
+    }
 }
 
 const getCategoriesRequest = () => ({ type: GET_CATEGORIES_REQUEST })
