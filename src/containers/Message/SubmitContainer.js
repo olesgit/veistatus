@@ -31,6 +31,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mergeProps = (stateProps, dispatchProps) => {
     return {
+        editing: stateProps.editing,
         submitMessage: bindSubmitMessageToMessage(dispatchProps.submitMessageAction, stateProps.message)
     }
 }
