@@ -12,7 +12,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        categorySpecified: bindActionCreators(descriptionSpecified, dispatch)
+        descriptionSpecified: bindActionCreators(descriptionSpecified, dispatch)
     }
 }
 

@@ -1,14 +1,16 @@
 import React, { Component, PropTypes } from 'react'
 import { Button, FormGroup, FormControl } from 'react-bootstrap'
+import Step from '../Step'
 
 import './Description.css'
+import descriptionIcon from '../../images/Camera.png'
 
 class Description extends Component {
 
     static propTypes = {
         editing: PropTypes.bool,
         description: PropTypes.string,
-        descriptionAdded: PropTypes.func
+        descriptionSpecified: PropTypes.func
     }
 
     static defaultProps = {
@@ -25,10 +27,9 @@ class Description extends Component {
     }
 
     next = () => {
-        // TODO ActionCreator => { type: "DESCRIPTION_ADDED", payload: description }
         // TODO Do not "next" if description is empty
-        if (this.props.descriptionAdded) {
-            this.props.descriptionAdded(this.state.description);
+        if (this.props.descriptionSpecified) {
+            this.props.descriptionSpecified(this.state.description);
         }
     }
 
@@ -45,7 +46,7 @@ class Description extends Component {
         }
 
         if (!editing) {
-            return null;
+            return <Step icon={descriptionIcon} text={description} />;
         }
 
         return (
@@ -60,7 +61,7 @@ class Description extends Component {
                         rows={7}
                     />
                 </FormGroup>
-                <Button bsStyle="primary" block onClick={this.next}>Neste</Button>
+                <Button bsStyle="success" block onClick={this.next}>Neste</Button>
                 <Button bsStyle="link" block onClick={this.cancel}>Avbryt</Button>
             </div>
         );
