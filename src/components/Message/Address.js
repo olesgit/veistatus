@@ -11,7 +11,7 @@ class Address extends Component {
 
     static propTypes = {
         editing: PropTypes.bool,
-        address: PropTypes.string,
+        address: PropTypes.object,
         addressSpecified: PropTypes.func,
         geodata: PropTypes.object
     }

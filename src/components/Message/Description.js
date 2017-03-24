@@ -37,7 +37,8 @@ class Description extends Component {
     }
 
     render() {
-        const { editing, description } = this.state;
+        const { editing } = this.props;
+        const { description } = this.state;
 
         if (!editing && !description) {
             return null;
