@@ -10,7 +10,8 @@ class Description extends Component {
     static propTypes = {
         editing: PropTypes.bool,
         description: PropTypes.string,
-        descriptionSpecified: PropTypes.func
+        descriptionSpecified: PropTypes.func,
+        abort: PropTypes.func.isRequired
     }
 
     static defaultProps = {
@@ -33,12 +34,8 @@ class Description extends Component {
         }
     }
 
-    cancel = () => {
-
-    }
-
     render() {
-        const { editing } = this.props;
+        const { editing, abort } = this.props;
         const { description } = this.state;
 
         if (!editing && !description) {
@@ -62,7 +59,7 @@ class Description extends Component {
                     />
                 </FormGroup>
                 <Button bsStyle="success" block onClick={this.next}>Neste</Button>
-                <Button bsStyle="link" block onClick={this.cancel}>Avbryt</Button>
+                <Button bsStyle="link" block onClick={abort}>Avbryt</Button>
             </div>
         );
     }

@@ -29,6 +29,9 @@ export default function messagesReducer(state = initialState, action = {}) {
         case types.MESSAGE_SUBMIT_FAILURE:
             return state;
 
+        case types.MESSAGE_ABORT:
+            return { step: 'welcome', hideWelcome: true }
+
         default:
             return state;
     }

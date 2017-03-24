@@ -14,6 +14,8 @@ export const MESSAGE_SUBMIT_REQUEST = 'MESSAGE_SUBMIT_REQUEST'
 export const MESSAGE_SUBMIT_SUCCESS = 'MESSAGE_SUBMIT_SUCCESS'
 export const MESSAGE_SUBMIT_FAILURE = 'MESSAGE_SUBMIT_FAILURE'
 
+export const MESSAGE_ABORT = 'MESSAGE_ABORT'
+
 export function addressSpecified(address) {
     return {
         type: MESSAGE_ADDRESS_SPECIFIED,
@@ -39,6 +41,12 @@ export function descriptionSpecified(description) {
     return {
         type: MESSAGE_CATEGORY_SPECIFIED,
         payload: description
+    };
+}
+
+export function abort() {
+    return {
+        type: MESSAGE_ABORT
     };
 }
 

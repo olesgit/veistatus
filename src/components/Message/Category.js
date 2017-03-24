@@ -14,7 +14,8 @@ class Category extends Component {
         category: PropTypes.object,
         categories: PropTypes.array,
         editing: PropTypes.bool.isRequired,
-        categorySpecified: PropTypes.func.isRequired
+        categorySpecified: PropTypes.func.isRequired,
+        abort: PropTypes.func.isRequired
     }
 
     static defaultProps = {
@@ -36,10 +37,6 @@ class Category extends Component {
         this.props.categorySpecified(this.state.category);
     }
 
-    cancel = () => {
-
-    }
-
     renderStatic() {
         return (
             <div>
@@ -53,7 +50,7 @@ class Category extends Component {
 
     render() {
 
-        const { editing, categories } = this.props;
+        const { editing, categories, abort } = this.props;
         const { category } = this.state;
 
         if (!editing && !category) {
@@ -70,7 +67,7 @@ class Category extends Component {
                 <h4>MEST BRUKTE</h4>
                 <CategoryRecommended categories={categories} onCategorySelected={this.categoryChanged} />
                 <Button bsStyle="success" block onClick={this.next}>Neste</Button>
-                <Button bsStyle="link" block onClick={this.cancel}>Avbryt</Button>
+                <Button bsStyle="link" block onClick={abort}>Avbryt</Button>
             </div>
         );
     }
