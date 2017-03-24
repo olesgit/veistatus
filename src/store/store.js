@@ -1,6 +1,5 @@
 import configureStore from './configureStore';
-import InitialState from '../reducers/initialState';
 
-const store=configureStore(InitialState);
+const store = configureStore();
 
 export default store;
