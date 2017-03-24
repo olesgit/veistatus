@@ -12,22 +12,21 @@
     border-right: solid 1px #9b9b9b;
     padding-right: 11px;
     float: left;
-    width: 40px;
 }
 
 .step-complete > div {
     margin-left: 52px;
-
-    font-family: Lato;
-    font-size: 24px;
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #707070;
 }
 
-.step-complete > div > span {
-    vertical-align: middle;
+.step-picture-preview {
+    position: relative;
+    margin-left: 10px;
+    float: left;
+    width: 128px;
+    height: 128px;
+}
+
+.step-picture-preview > img {
+    max-width: 128px;
+    max-height: 128px;
 }

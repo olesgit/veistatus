@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react'
-import { Button, FormGroup } from 'react-bootstrap'
+import { Button, FormGroup, Image } from 'react-bootstrap'
 import BilderInput from '../BilderInput'
-const uuidV4 = require('uuid/v4');
 import StepBilder from '../StepBilder'
+import uuidV4 from 'uuid/v4'
+
+import './Pictures.css'
 
 import cameraIcon from '../../images/kamera.svg'
 
@@ -13,12 +15,12 @@ class Pictures extends Component {
         editing: PropTypes.bool,
         pictures: PropTypes.array,
         picturesSpecified: PropTypes.func,
-        addFlashMessage: PropTypes.func
+        addFlashMessage: PropTypes.func,
+        abort: PropTypes.func
     }
 
     static defaultProps = {
-        editing: true,
-        pictures: []
+        editing: true
     }
 
     state = {
@@ -28,17 +30,13 @@ class Pictures extends Component {
     next = () => {
         // TODO Do not "next" if no pictures are added
         if (this.props.picturesSpecified) {
-            this.props.picturesSpecified(this.state.pictures);  
+            this.props.picturesSpecified(this.state.pictures);
         }
     }
 
-    cancel = () => {
-
-    }
-
     onDrop = (acceptedFiles, rejectedFiles) => {
-
-        var filesToAdd = this.state.pictures;
+        const pictures = this.state.pictures ? this.state.pictures : [];
+        const filesToAdd = [...pictures];
 
         if (rejectedFiles.length > 0) {
             this.props.addFlashMessage({ type: 'error', text: "Maksimum bilde størrelse er 10 MByte" });
@@ -61,13 +59,13 @@ class Pictures extends Component {
     }
 
     onDelete = (file) => {
-        let filesRemaining = this.state.pictures.filter(statefile => statefile.uuid !== file.uuid);
+        const filesRemaining = this.state.pictures.filter(statefile => statefile.uuid !== file.uuid);
         this.setState({ pictures: filesRemaining });
     }
 
     render() {
 
-        const { editing, addFlashMessage } = this.props;
+        const { editing, addFlashMessage, abort } = this.props;
         const { pictures } = this.state;
 
         if (!editing && !pictures) {
@@ -78,17 +76,17 @@ class Pictures extends Component {
             return <StepBilder icon={cameraIcon} pictures={this.props.pictures} />;
         }
 
-        if (!editing) {
-            return null;
-        }
-
         return (
-            <div>
-                <FormGroup className="description-input-container" controlId="beskrivelse">
-                    <BilderInput pictures={this.state.pictures} onDrop={this.onDrop} onDelete={this.onDelete} addFlashMessage={addFlashMessage} />
+            <div className="pictures-content">
+                <FormGroup className="pictures-input-container" controlId="bilder">
+                    <div className="pictures-input-header">
+                        <Image src={cameraIcon} />
+                        <span>Last opp bilder…</span>
+                    </div>
+                    <BilderInput pictures={this.state.pictures || []} onDrop={this.onDrop} onDelete={this.onDelete} addFlashMessage={addFlashMessage} />
                 </FormGroup>
-                <Button bsStyle="primary" block onClick={this.next}>Neste</Button>
-                <Button bsStyle="link" block onClick={this.cancel}>Avbryt</Button>
+                <Button bsStyle="success" block onClick={this.next}>Neste</Button>
+                <Button bsStyle="link" block onClick={abort}>Avbryt</Button>
             </div>
         );
     }
