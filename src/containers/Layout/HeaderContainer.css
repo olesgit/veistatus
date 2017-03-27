@@ -1,0 +1,53 @@
+.byvaapen {
+  width: 79.6px;
+  height: 95px;
+  object-fit: contain;
+}
+
+body {
+  padding-top: 131px!important;
+}
+
+.navbar {
+  height: 131px;
+  /*border-bottom: solid 4px #ffa500;*/
+  z-index: 2000;
+}
+
+.navbar-default {
+  background: #fff;
+}
+
+.header-text {
+  display: inline-block;
+  margin-left: 13px;
+  margin-top: 23px;
+  border-left: solid 1px #4d4d4d;
+  padding-left: 14px;
+  height: 72px;
+
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.31;
+  letter-spacing: normal;
+  color: #4a4a4a;
+}
+
+.header-text-strong {
+  font-weight: 900;
+  line-height: 1.81;
+}
+
+.oslo-logo {
+  position: absolute;
+  right: 0px;
+  bottom: -22px;
+  background-repeat: repeat-x;
+}
+
+@media (max-width: 768px) {
+
+}
