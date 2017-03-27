@@ -134,20 +134,26 @@ class MessageWizard extends Component {
 
         return (
             <div>
-                <Collapse in={show}>
-                    <div className="message-container">
-                        <div className="message-content">
-                            {this.renderWelcome(step)}
-                            {this.renderSteps(step)}
-                            {this.renderReceipt(step)}
+                <div className="message-wizard">
+                    <Collapse in={show}>
+                        <div className="message-container">
+                            <div className="message-content">
+                                {this.renderWelcome(step)}
+                                {this.renderSteps(step)}
+                                {this.renderReceipt(step)}
+                            </div>
                         </div>
+                    </Collapse>
+                    <div style={{ textAlign: 'center' }}>
+                        <Button className={buttonClasses} onClick={this.toggleCollapse}>
+                            <Image src={collapseIcon} />
+                        </Button>
                     </div>
-                </Collapse>
-                <div style={{ textAlign: 'center' }}>
-                    <Button className={buttonClasses} onClick={this.toggleCollapse}>
-                        <Image src={collapseIcon} />
-                    </Button>
                 </div>
+                {
+                    checkStep(step, 'category', 'pictures', 'description', 'submit', 'receipt') &&
+                    <div className="modal-backdrop fade in"></div>
+                }
             </div>
         );
     }
