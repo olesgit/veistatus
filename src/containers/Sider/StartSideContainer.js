@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import MapViewContainer from '../../containers/Map/MapViewContainer';
 import MapSearchContainer from '../../containers/Map/MapSearchContainer';
-import { getCategories } from '../../actions/messageActions'
+import { changeStep, getCategories } from '../../actions/messageActions'
 
 import '../../css/kart/Maps.css';
 
@@ -12,19 +12,18 @@ import MessageWizard from '../../components/Message/MessageWizard'
 class StartSideContainer extends Component {
 
     static propTypes = {
-        getCategories: PropTypes.func.isRequired
+        step: PropTypes.string.isRequired,
+        getCategories: PropTypes.func.isRequired,
+        changeStep: PropTypes.func.isRequired
     }
 
     state = {
-        step: 'welcome'
-    }
-
-    changeStep = (nextStep) => {
-        this.setState({ step: nextStep });
+        geodata: null
     }
 
     changeLocation = (geodata) => {
-        this.setState({ geodata: geodata, step: 'address' });
+        this.setState({ geodata: geodata });
+        this.props.changeStep('address');
     }
 
     componentDidMount() {
@@ -32,14 +31,15 @@ class StartSideContainer extends Component {
     }
 
     render() {
-        const { step, geodata } = this.state;
+        const { step } = this.props;
+        const { geodata } = this.state;
         return (
             <div className="mainmapContainer">
                 <div id="mapcontainer">
                     <MapSearchContainer geodata={geodata} locationSeleted={this.changeLocation} showSearch={step === 'welcome'} />
                     <MapViewContainer geodata={geodata} onSelectCoord={this.changeLocation} />
                 </div>
-                <MessageWizard step={step} geodata={geodata} locationSeleted={this.changeLocation} changeStep={this.changeStep} />
+                <MessageWizard step={step} geodata={geodata} locationSeleted={this.changeLocation} changeStep={this.props.changeStep} />
             </div>
         );
     }
@@ -53,7 +53,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        getCategories: bindActionCreators(getCategories, dispatch)
+        getCategories: bindActionCreators(getCategories, dispatch),
+        changeStep: bindActionCreators(changeStep, dispatch)
     }
 }
 

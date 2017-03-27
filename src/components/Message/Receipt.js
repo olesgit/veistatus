@@ -6,16 +6,16 @@ import './Receipt.css'
 class Receipt extends Component {
 
     static propTypes = {
-        acknowledge: PropTypes.func.isRequired
+        acknowledged: PropTypes.func.isRequired
     }
 
     render() {
-        const { acknowledge } = this.props;
+        const { acknowledged } = this.props;
 
         return (
             <div>
                 <h1>Takk for at du gjør byen bedre.</h1>
-                <Button bsStyle="success" onClick={acknowledge}>OK</Button>
+                <Button bsStyle="success" onClick={acknowledged}>OK</Button>
             </div>
         );
     }

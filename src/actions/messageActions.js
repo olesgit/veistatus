@@ -9,19 +9,13 @@ export const MESSAGE_SUBMIT_REQUEST = 'MESSAGE_SUBMIT_REQUEST'
 export const MESSAGE_SUBMIT_SUCCESS = 'MESSAGE_SUBMIT_SUCCESS'
 export const MESSAGE_SUBMIT_FAILURE = 'MESSAGE_SUBMIT_FAILURE'
 
-export const MESSAGE_ABORT = 'MESSAGE_ABORT'
-export const MESSAGE_ACKNOWLEDGE = 'MESSAGE_ACKNOWLEDGE'
+export const MESSAGE_CHANGE_STEP = 'MESSAGE_CHANGE_STEP'
 
-export function abort() {
+export function changeStep(nextStep) {
     return {
-        type: MESSAGE_ABORT
+        type: MESSAGE_CHANGE_STEP,
+        payload: nextStep
     };
-}
-
-export function acknowledge() {
-    return {
-        type: MESSAGE_ACKNOWLEDGE
-    }
 }
 
 const getCategoriesRequest = () => ({ type: GET_CATEGORIES_REQUEST })

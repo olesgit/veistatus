@@ -97,6 +97,11 @@ class MessageWizard extends Component {
         this.props.changeStep('address');
     }
 
+    acknowledged = () => {
+        this.setState({ ...initialState });
+        this.props.locationSeleted(null);
+    }
+
     renderSteps(step) {
         if (checkStep(step, 'address', 'category', 'pictures', 'description', 'submit')) {
             return ([
@@ -104,14 +109,14 @@ class MessageWizard extends Component {
                 <CategoryContainer key="category-step" category={this.state.category} categorySpecified={this.changeCategory} editing={step === 'category'} abort={this.abort} />,
                 <PictureContainer key="pictures-step" pictures={this.state.pictures} picturesSpecified={this.changePictures} editing={step === 'pictures'} abort={this.abort} />,
                 <DescriptionContainer key="description-step" description={this.state.description} descriptionSpecified={this.changeDescription} editing={step === 'description'} abort={this.abort} />,
-                <SubmitContainer key="submit-step" submitMessage={this.submitMessage} editing={step === 'submit'} message={this.createMessage()} abort={this.abort} />
+                <SubmitContainer key="submit-step" editing={step === 'submit'} message={this.createMessage()} abort={this.abort} />
             ]);
         }
     }
 
     renderReceipt(step) {
         if (checkStep(step, 'receipt')) {
-            return <ReceiptContainer />;
+            return <ReceiptContainer acknowledged={this.acknowledged} />;
         }
     }
 
