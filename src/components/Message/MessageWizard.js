@@ -40,12 +40,8 @@ class MessageWizard extends Component {
     }
 
     state = {
-        open: true,
+        show: true,
         ...initialState
-    }
-
-    componentWillReceiveProps(nextProps) {
-        // What to do?
     }
 
     changeAddress = (address) => {
@@ -82,7 +78,7 @@ class MessageWizard extends Component {
     }
 
     toggleCollapse = () => {
-        this.setState({ open: !this.state.open });
+        this.setState({ show: !this.state.show });
     }
 
     renderWelcome(step) {
@@ -98,8 +94,9 @@ class MessageWizard extends Component {
     }
 
     acknowledged = () => {
-        this.setState({ ...initialState });
+        this.setState({ ...initialState, show: false });
         this.props.locationSeleted(null);
+        this.props.changeStep('welcome');
     }
 
     renderSteps(step) {
@@ -122,16 +119,16 @@ class MessageWizard extends Component {
 
     render() {
         const { step } = this.props;
-        const { open } = this.state;
+        const { show } = this.state;
 
-        const hideCollapse = !checkStep(step, 'welcome', 'receipt', 'address');
-        const collapseIcon = open ? hideIcon : showIcon;
+        const hideCollapse = !checkStep(step, 'welcome', 'address');
+        const collapseIcon = show ? hideIcon : showIcon;
 
         const buttonClasses = classNames('message-collapse', { hidden: hideCollapse });
 
         return (
             <div>
-                <Collapse in={open}>
+                <Collapse in={show}>
                     <div className="message-container">
                         <div className="message-content">
                             {this.renderWelcome(step)}
