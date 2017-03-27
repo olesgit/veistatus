@@ -3,7 +3,8 @@ import { Button, FormGroup, FormControl } from 'react-bootstrap'
 import Step from '../Step'
 
 import './Description.css'
-import descriptionIcon from '../../images/kamera.svg'
+
+import descriptionIcon from '../../images/beskrivelse.svg'
 
 class Description extends Component {
 
