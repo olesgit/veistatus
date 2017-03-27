@@ -44,6 +44,12 @@ class MessageWizard extends Component {
         ...initialState
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.geodata && this.props.geodata != nextProps.geodata) {
+            this.setState({ show: true });
+        }
+    }
+
     changeAddress = (address) => {
         this.setState({ address: address });
         this.props.changeStep('category');
