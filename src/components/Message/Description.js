@@ -3,7 +3,7 @@ import { Button, FormGroup, FormControl } from 'react-bootstrap'
 import Step from '../Step'
 
 import './Description.css'
-import descriptionIcon from '../../images/Camera.png'
+import descriptionIcon from '../../images/kamera.svg'
 
 class Description extends Component {
 
@@ -20,6 +20,12 @@ class Description extends Component {
 
     state = {
         description: this.props.description
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.state.description !== nextProps.description) {
+            this.setState({ description: nextProps.description });
+        }
     }
 
     handleChange = (event) => {

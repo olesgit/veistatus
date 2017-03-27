@@ -27,7 +27,9 @@ class Pictures extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({ pictures: nextProps.pictures });
+        if (this.state.pictures !== nextProps.pictures) {
+            this.setState({ pictures: nextProps.pictures });
+        }
     }
 
     next = () => {

@@ -92,6 +92,7 @@ class MessageWizard extends Component {
 
     abort = () => {
         this.setState({ ...initialState });
+        this.props.changeStep('address');
     }
 
     renderSteps(step) {

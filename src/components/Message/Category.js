@@ -27,6 +27,12 @@ class Category extends Component {
         category: this.props.category
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (this.state.category !== nextProps.category) {
+            this.setState({ category: nextProps.category });
+        }
+    }
+
     categoryChanged = category => {
         this.setState({ category });
     }
