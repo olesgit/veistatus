@@ -88,9 +88,9 @@ class MessageWizard extends Component {
     }
 
     abort = () => {
-        this.setState({ ...initialState });
+        this.setState({ ...initialState, show: false });
         this.props.locationSeleted(null);
-        this.props.changeStep('address');
+        this.props.changeStep('welcome');
     }
 
     acknowledged = () => {
