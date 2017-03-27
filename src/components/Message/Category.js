@@ -38,8 +38,6 @@ class Category extends Component {
     }
 
     next = () => {
-        // TODO ActionCreator => { type: "CATEGORY_SELECTED", payload: category }
-        // TODO Do not "next" if category is not selected
         this.props.categorySpecified(this.state.category);
     }
 
@@ -72,7 +70,7 @@ class Category extends Component {
                 <CategoryInput category={category} categories={categories} onCategorySelected={this.categoryChanged} />
                 <h4>MEST BRUKTE</h4>
                 <CategoryRecommended categories={categories} onCategorySelected={this.categoryChanged} />
-                <Button bsStyle="success" block onClick={this.next}>Neste</Button>
+                <Button bsStyle="success" block onClick={this.next} disabled={category == null}>Neste</Button>
                 <Button bsStyle="link" block onClick={abort}>Avbryt</Button>
             </div>
         );

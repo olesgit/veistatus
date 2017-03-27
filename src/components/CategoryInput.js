@@ -41,6 +41,7 @@ class CategoryInput extends Component {
         this.setState({
             value: ''
         })
+        this.props.onCategorySelected(null);
     }
 
     onChange = (event, { newValue }) => {
