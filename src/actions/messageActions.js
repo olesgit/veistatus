@@ -1,11 +1,6 @@
 import axios from 'axios'
 import * as api from '../constants/api'
 
-export const MESSAGE_ADDRESS_SPECIFIED = 'MESSAGE_ADDRESS_SPECIFIED'
-export const MESSAGE_CATEGORY_SPECIFIED = 'MESSAGE_CATEGORY_SPECIFIED'
-export const MESSAGE_PICTURES_SPECIFIED = 'MESSAGE_PICTURES_SPECIFIED'
-export const MESSAGE_DESCRIPTION_SPECIFIED = 'MESSAGE_DESCRIPTION_SPECIFIED'
-
 export const GET_CATEGORIES_REQUEST = 'GET_CATEGORIES_REQUEST'
 export const GET_CATEGORIES_SUCCESS = 'GET_CATEGORIES_SUCCESS'
 export const GET_CATEGORIES_FAILURE = 'GET_CATEGORIES_FAILURE'
@@ -16,34 +11,6 @@ export const MESSAGE_SUBMIT_FAILURE = 'MESSAGE_SUBMIT_FAILURE'
 
 export const MESSAGE_ABORT = 'MESSAGE_ABORT'
 export const MESSAGE_ACKNOWLEDGE = 'MESSAGE_ACKNOWLEDGE'
-
-export function addressSpecified(address) {
-    return {
-        type: MESSAGE_ADDRESS_SPECIFIED,
-        payload: address
-    };
-}
-
-export function categorySpecified(category) {
-    return {
-        type: MESSAGE_CATEGORY_SPECIFIED,
-        payload: category
-    };
-}
-
-export function picturesSpecified(pictures) {
-    return {
-        type: MESSAGE_PICTURES_SPECIFIED,
-        payload: pictures
-    };
-}
-
-export function descriptionSpecified(description) {
-    return {
-        type: MESSAGE_CATEGORY_SPECIFIED,
-        payload: description
-    };
-}
 
 export function abort() {
     return {
@@ -87,7 +54,7 @@ export function submitMessage(message) {
         message.bilder.forEach(bilde => form.append("bilder", bilde));
 
         dispatch(submitMessageRequest());
-        return axios.post(api.postMessage, form).getAllMessages()
+        return axios.post(api.postMessage, form)
             .then(response => dispatch(submitMessageSuccess(response)))
             .catch(error => dispatch(submitMessageFailure(error)));
     };

@@ -12,12 +12,19 @@ import MessageWizard from '../../components/Message/MessageWizard'
 class StartSideContainer extends Component {
 
     static propTypes = {
-        step: PropTypes.string,
         getCategories: PropTypes.func.isRequired
     }
 
-    static defaultProps = {
+    state = {
         step: 'welcome'
+    }
+
+    changeStep = (nextStep) => {
+        this.setState({ step: nextStep });
+    }
+
+    changeLocation = (geodata) => {
+        this.setState({ geodata: geodata, step: 'address' });
     }
 
     componentDidMount() {
@@ -25,13 +32,14 @@ class StartSideContainer extends Component {
     }
 
     render() {
+        const { step, geodata } = this.state;
         return (
             <div className="mainmapContainer">
                 <div id="mapcontainer">
-                    <MapSearchContainer />
-                    <MapViewContainer id="themaps" />
+                    <MapSearchContainer geodata={geodata} locationSeleted={this.changeLocation} showSearch={step === 'welcome'} />
+                    <MapViewContainer geodata={geodata} onSelectCoord={this.changeLocation} />
                 </div>
-                <MessageWizard step={this.props.step} />
+                <MessageWizard step={step} geodata={geodata} changeStep={this.changeStep} />
             </div>
         );
     }

@@ -8,7 +8,6 @@ import './Pictures.css'
 
 import cameraIcon from '../../images/kamera.svg'
 
-
 class Pictures extends Component {
 
     static propTypes = {
@@ -27,10 +26,14 @@ class Pictures extends Component {
         pictures: this.props.pictures
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState({ pictures: nextProps.pictures });
+    }
+
     next = () => {
         // TODO Do not "next" if no pictures are added
         if (this.props.picturesSpecified) {
-            this.props.picturesSpecified(this.state.pictures);
+            this.props.picturesSpecified(this.state.pictures || []);
         }
     }
 

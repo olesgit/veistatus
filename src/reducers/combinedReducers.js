@@ -1,12 +1,10 @@
-import { combineReducers } from 'redux';
-import flashMessages from "./flashMessagesReducer";
-import message from "./messageReducer";
-import map from './mapReducer';
+import { combineReducers } from 'redux'
+import flashMessages from "./flashMessagesReducer"
+import message from "./messageReducer"
 
 const rootReducer = combineReducers({
     flashMessages,
-    message,
-    map
+    message
 });
 
 export default rootReducer;
