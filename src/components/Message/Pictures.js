@@ -38,6 +38,9 @@ class Pictures extends Component {
 
     onDrop = (acceptedFiles, rejectedFiles) => {
 
+
+console.log(acceptedFiles);
+
         var filesToAdd = this.state.pictures;
 
         if (rejectedFiles.length > 0) {
@@ -53,6 +56,10 @@ class Pictures extends Component {
             }
             else {
                 inputfile.uuid = uuidV4();
+                inputfile.Name = inputfile.name;
+                inputfile.Size = inputfile.size;
+                inputfile.Type = inputfile.type;
+                inputfile.LastModified = inputfile.lastModified;
                 filesToAdd.push(inputfile);
             }
         })

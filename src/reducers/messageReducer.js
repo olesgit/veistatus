@@ -13,7 +13,6 @@ export default function messagesReducer(state = initialState, action = {}) {
             return update(state, action, 'category', 'picture')
         case types.MESSAGE_PICTURE_SPECIFIED:
 
-console.log(action);
 
             return update(state, action, 'picture', 'description')
         case types.MESSAGE_DESCRIPTION_SPECIFIED:
