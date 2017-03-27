@@ -85,7 +85,7 @@ class MapView extends React.Component {
     }
 
     renderMarker(geodata) {
-        if (geodata.adressSelectedBy !== 'none') {
+        if (geodata && geodata.adressSelectedBy !== 'none') {
             return (
                 <Marker position={[geodata.lat, geodata.lon]} icon={icon2}>
                     <Popup>
@@ -102,8 +102,11 @@ class MapView extends React.Component {
                 <Map
                     ref={this.bindMap}
                     style={{ height: "100vh" }}
-                    center={[this.props.geodata.centerlat, this.props.geodata.centerlon]}
-                    zoom={this.props.geodata.valgtZoom}
+                    center={[
+                        this.props.geodata ? this.props.geodata.centerlat : startLat,
+                        this.props.geodata ? this.props.geodata.centerlon : startLon
+                    ]}
+                    zoom={this.props.geodata ? this.props.geodata.valgtZoom : startZoom}
                     maxZoom={18}
                     minZoom={7}
                     onClick={this.handleClick}

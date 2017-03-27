@@ -31,7 +31,8 @@ class MessageWizard extends Component {
     static propTypes = {
         step: PropTypes.string,
         geodata: PropTypes.object,
-        changeStep: PropTypes.func
+        changeStep: PropTypes.func,
+        locationSeleted: PropTypes.func
     }
 
     static defaultProps = {
@@ -92,13 +93,14 @@ class MessageWizard extends Component {
 
     abort = () => {
         this.setState({ ...initialState });
+        this.props.locationSeleted(null);
         this.props.changeStep('address');
     }
 
     renderSteps(step) {
         if (checkStep(step, 'address', 'category', 'pictures', 'description', 'submit')) {
             return ([
-                <AddressContainer key="address-step" address={this.state.address} addressSpecified={this.changeAddress} editing={step === 'address'} geodata={this.props.geodata} />,
+                <AddressContainer key="address-step" address={this.state.address} addressSpecified={this.changeAddress} editing={step === 'address'} geodata={this.props.geodata} locationSeleted={this.props.locationSeleted} />,
                 <CategoryContainer key="category-step" category={this.state.category} categorySpecified={this.changeCategory} editing={step === 'category'} abort={this.abort} />,
                 <PictureContainer key="pictures-step" pictures={this.state.pictures} picturesSpecified={this.changePictures} editing={step === 'pictures'} abort={this.abort} />,
                 <DescriptionContainer key="description-step" description={this.state.description} descriptionSpecified={this.changeDescription} editing={step === 'description'} abort={this.abort} />,

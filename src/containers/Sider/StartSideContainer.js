@@ -39,7 +39,7 @@ class StartSideContainer extends Component {
                     <MapSearchContainer geodata={geodata} locationSeleted={this.changeLocation} showSearch={step === 'welcome'} />
                     <MapViewContainer geodata={geodata} onSelectCoord={this.changeLocation} />
                 </div>
-                <MessageWizard step={step} geodata={geodata} changeStep={this.changeStep} />
+                <MessageWizard step={step} geodata={geodata} locationSeleted={this.changeLocation} changeStep={this.changeStep} />
             </div>
         );
     }

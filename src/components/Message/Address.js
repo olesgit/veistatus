@@ -13,7 +13,8 @@ class Address extends Component {
         editing: PropTypes.bool,
         address: PropTypes.object,
         addressSpecified: PropTypes.func,
-        geodata: PropTypes.object
+        geodata: PropTypes.object,
+        locationSeleted: PropTypes.func
     }
 
     static defaultProps = {
@@ -28,7 +29,7 @@ class Address extends Component {
 
     render() {
 
-        const { editing, address } = this.props;
+        const { editing, address, geodata } = this.props;
 
         if (!editing && !address) {
             return null;
@@ -41,9 +42,9 @@ class Address extends Component {
         return (
             <div className="address-content">
                 <FormGroup controlId="adresse">
-                    <AddressInput geodata={this.props.geodata} showClear={true} />
+                    <AddressInput geodata={this.props.geodata} showClear={true} locationSeleted={this.props.locationSeleted} />
                 </FormGroup>
-                <Button bsStyle="success" block onClick={this.next}>Meld her</Button>
+                <Button bsStyle="success" block onClick={this.next} disabled={geodata == null}>Meld her</Button>
             </div>
         );
     }
