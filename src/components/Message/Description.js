@@ -36,7 +36,7 @@ class Description extends Component {
     next = () => {
         // TODO Do not "next" if description is empty
         if (this.props.descriptionSpecified) {
-            this.props.descriptionSpecified(this.state.description);
+            this.props.descriptionSpecified(this.state.description || "");
         }
     }
 
