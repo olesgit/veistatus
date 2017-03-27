@@ -64,7 +64,7 @@ class Category extends Component {
         }
 
         if (!editing) {
-            return <Step icon={categoryIcon} text={"Hull i veien > Veibane"} />
+            return <Step icon={categoryIcon} text={category.meldingstype.beskrivelse} />
         }
 
         return (
