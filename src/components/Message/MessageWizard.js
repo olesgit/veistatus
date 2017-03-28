@@ -64,7 +64,7 @@ class MessageWizard extends Component {
 
     renderReceipt(step) {
         if (checkStep(step, 'receipt')) {
-            return <ReceiptContainer acknowledged={this.acknowledged} />;
+            return <ReceiptContainer />;
         }
     }
 
