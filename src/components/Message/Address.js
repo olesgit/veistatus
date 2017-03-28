@@ -14,7 +14,8 @@ class Address extends Component {
         address: PropTypes.object,
         addressSpecified: PropTypes.func,
         geodata: PropTypes.object,
-        locationSeleted: PropTypes.func
+        locationSeleted: PropTypes.func,
+        goto: PropTypes.func
     }
 
     static defaultProps = {
@@ -29,14 +30,14 @@ class Address extends Component {
 
     render() {
 
-        const { editing, address, geodata } = this.props;
+        const { editing, address, geodata, goto } = this.props;
 
         if (!editing && !address) {
             return null;
         }
 
         if (!editing) {
-            return <Step icon={addressIcon} text={address.display_name} />;
+            return <Step icon={addressIcon} text={address.display_name} goto={goto} />;
         }
 
         return (

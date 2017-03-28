@@ -108,10 +108,10 @@ class MessageWizard extends Component {
     renderSteps(step) {
         if (checkStep(step, 'address', 'category', 'pictures', 'description', 'submit')) {
             return ([
-                <AddressContainer key="address-step" address={this.state.address} addressSpecified={this.changeAddress} editing={step === 'address'} geodata={this.props.geodata} locationSeleted={this.props.locationSeleted} />,
-                <CategoryContainer key="category-step" category={this.state.category} categorySpecified={this.changeCategory} editing={step === 'category'} abort={this.abort} />,
-                <PictureContainer key="pictures-step" pictures={this.state.pictures} picturesSpecified={this.changePictures} editing={step === 'pictures'} abort={this.abort} />,
-                <DescriptionContainer key="description-step" description={this.state.description} descriptionSpecified={this.changeDescription} editing={step === 'description'} abort={this.abort} />,
+                <AddressContainer key="address-step" address={this.state.address} addressSpecified={this.changeAddress} editing={step === 'address'} geodata={this.props.geodata} locationSeleted={this.props.locationSeleted} goto={() => this.props.changeStep('address')} />,
+                <CategoryContainer key="category-step" category={this.state.category} categorySpecified={this.changeCategory} editing={step === 'category'} abort={this.abort} goto={() => this.props.changeStep('category')} />,
+                <PictureContainer key="pictures-step" pictures={this.state.pictures} picturesSpecified={this.changePictures} editing={step === 'pictures'} abort={this.abort} goto={() => this.props.changeStep('pictures')} />,
+                <DescriptionContainer key="description-step" description={this.state.description} descriptionSpecified={this.changeDescription} editing={step === 'description'} abort={this.abort} goto={() => this.props.changeStep('description')} />,
                 <SubmitContainer key="submit-step" editing={step === 'submit'} message={this.createMessage()} abort={this.abort} />
             ]);
         }

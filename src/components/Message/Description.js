@@ -12,7 +12,8 @@ class Description extends Component {
         editing: PropTypes.bool,
         description: PropTypes.string,
         descriptionSpecified: PropTypes.func,
-        abort: PropTypes.func.isRequired
+        abort: PropTypes.func.isRequired,
+        goto: PropTypes.func
     }
 
     static defaultProps = {
@@ -41,7 +42,7 @@ class Description extends Component {
     }
 
     render() {
-        const { editing, abort } = this.props;
+        const { editing, abort, goto } = this.props;
         const { description } = this.state;
 
         if (!editing && description == null) {
@@ -49,7 +50,7 @@ class Description extends Component {
         }
 
         if (!editing) {
-            return <Step icon={descriptionIcon} text={description} />;
+            return <Step icon={descriptionIcon} text={description} goto={goto} />;
         }
 
         return (

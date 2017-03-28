@@ -15,7 +15,8 @@ class Pictures extends Component {
         pictures: PropTypes.array,
         picturesSpecified: PropTypes.func,
         addFlashMessage: PropTypes.func,
-        abort: PropTypes.func
+        abort: PropTypes.func,
+        goto: PropTypes.func
     }
 
     static defaultProps = {
@@ -70,7 +71,7 @@ class Pictures extends Component {
 
     render() {
 
-        const { editing, addFlashMessage, abort } = this.props;
+        const { editing, addFlashMessage, abort, goto } = this.props;
         const { pictures } = this.state;
 
         if (!editing && !pictures) {
@@ -78,7 +79,7 @@ class Pictures extends Component {
         }
 
         if (!editing) {
-            return <StepBilder icon={cameraIcon} pictures={this.props.pictures} />;
+            return <StepBilder icon={cameraIcon} pictures={this.props.pictures} goto={goto} />;
         }
 
         return (

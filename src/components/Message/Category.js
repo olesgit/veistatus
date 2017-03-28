@@ -15,7 +15,8 @@ class Category extends Component {
         categories: PropTypes.array,
         editing: PropTypes.bool.isRequired,
         categorySpecified: PropTypes.func.isRequired,
-        abort: PropTypes.func.isRequired
+        abort: PropTypes.func.isRequired,
+        goto: PropTypes.func
     }
 
     static defaultProps = {
@@ -54,7 +55,7 @@ class Category extends Component {
 
     render() {
 
-        const { editing, categories, abort } = this.props;
+        const { editing, categories, abort, goto } = this.props;
         const { category } = this.state;
 
         if (!editing && !category) {
@@ -62,7 +63,7 @@ class Category extends Component {
         }
 
         if (!editing) {
-            return <Step icon={categoryIcon} text={category.meldingstype.beskrivelse} />
+            return <Step icon={categoryIcon} text={category.meldingstype.beskrivelse} goto={goto} />
         }
 
         return (
