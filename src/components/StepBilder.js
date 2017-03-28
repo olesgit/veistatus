@@ -14,7 +14,7 @@ class StepBilder extends PureComponent {
 
     renderThumbnail(file) {
         return (
-            <div key={file.name} className="step-picture-preview">
+            <div key={file.uuid} className="step-picture-preview">
                 <Image src={file.preview} />
             </div>
         );

@@ -19,6 +19,8 @@ export const MESSAGE_ACKNOWLEDGE = 'MESSAGE_ACKNOWLEDGE'
 
 export const MESSAGE_CHANGE_STEP = 'MESSAGE_CHANGE_STEP'
 
+let fileRefs = {};
+
 export function addressSpecified(address) {
     return {
         type: MESSAGE_ADDRESS_SPECIFIED,
@@ -34,6 +36,8 @@ export function categorySpecified(category) {
 }
 
 export function picturesSpecified(pictures) {
+    fileRefs = {};
+    pictures.forEach(p => fileRefs[p.uuid] = p);
     return {
         type: MESSAGE_PICTURES_SPECIFIED,
         payload: pictures.map(p => ({ ...p }))
@@ -55,12 +59,14 @@ export function changeStep(nextStep) {
 }
 
 export function abort() {
+    fileRefs = {};
     return {
         type: MESSAGE_ABORT
     };
 }
 
 export function acknowledge() {
+    fileRefs = {};
     return {
         type: MESSAGE_ACKNOWLEDGE
     }
@@ -86,18 +92,24 @@ const submitMessageFailure = () => ({ type: MESSAGE_SUBMIT_FAILURE })
 export function submitMessage(message) {
     return function (dispatch) {
         var form = new FormData();
-        form.append("innsenderNavn", message.innsenderNavn);
-        form.append("innsenderEpost", message.innsenderEpost);
-        form.append("meldingstypeId", message.meldingstypeId);
-        form.append("beskrivelse", message.beskrivelse);
-        form.append("adresse", message.adresse);
-        form.append("latitude", message.latitude);
-        form.append("longitude", message.longitude);
-        message.bilder.forEach(bilde => form.append("bilder", bilde));
+        appendData(form, "innsenderNavn", message.innsenderNavn);
+        appendData(form, "innsenderEpost", message.innsenderEpost);
+        appendData(form, "meldingstypeId", message.meldingstypeId);
+        appendData(form, "beskrivelse", message.beskrivelse);
+        appendData(form, "adresse", message.adresse);
+        appendData(form, "latitude", message.latitude);
+        appendData(form, "longitude", message.longitude);
+        message.bilder.forEach(bilde => form.append("bilder", fileRefs[bilde.uuid]));
 
         dispatch(submitMessageRequest());
         return axios.post(api.postMessage, form)
             .then(response => dispatch(submitMessageSuccess(response)))
             .catch(error => dispatch(submitMessageFailure(error)));
     };
+}
+
+function appendData(form, key, value) {
+    if (value != null) {
+        form.append(key, value);
+    }
 }
