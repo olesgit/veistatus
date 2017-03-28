@@ -85,6 +85,20 @@ export function getCategories() {
     };
 }
 
+function shouldGetCategories(state) {
+    return !state.categories;
+}
+
+export function getCategoriesIfNeeded() {
+    return (dispatch, getState) => {
+        if (shouldGetCategories(getState())) {
+            return dispatch(getCategories());
+        } else {
+            return Promise.resolve();
+        }
+    };
+}
+
 const submitMessageRequest = () => ({ type: MESSAGE_SUBMIT_REQUEST })
 const submitMessageSuccess = () => ({ type: MESSAGE_SUBMIT_SUCCESS })
 const submitMessageFailure = () => ({ type: MESSAGE_SUBMIT_FAILURE })

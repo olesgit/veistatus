@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import MapViewContainer from '../../containers/Map/MapViewContainer';
 import MapSearchContainer from '../../containers/Map/MapSearchContainer';
-import { getCategories } from '../../actions/messageActions'
+import { getCategoriesIfNeeded } from '../../actions/messageActions'
 
 import '../../css/kart/Maps.css';
 
@@ -15,7 +15,7 @@ class StartSideContainer extends Component {
         step: PropTypes.string.isRequired,
         geodata: PropTypes.object,
         hideWelcome: PropTypes.number,
-        getCategories: PropTypes.func.isRequired
+        getCategoriesIfNeeded: PropTypes.func.isRequired
     }
 
     static defaultProps = {
@@ -23,7 +23,7 @@ class StartSideContainer extends Component {
     }
 
     componentDidMount() {
-        this.props.getCategories();
+        this.props.getCategoriesIfNeeded();
     }
 
     render() {
@@ -50,7 +50,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        getCategories: bindActionCreators(getCategories, dispatch)
+        getCategoriesIfNeeded: bindActionCreators(getCategoriesIfNeeded, dispatch)
     }
 }
 
