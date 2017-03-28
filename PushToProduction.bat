@@ -1,3 +1,4 @@
+@ECHO OFF
 setlocal EnableDelayedExpansion 
 
 SET /P input=Enter tag to promote to production (e.g. v1.1-rc.1 or testing): 
@@ -38,4 +39,3 @@ git tag production %sha1% 1> NUL 2> NUL
 git push origin production 1> NUL 2> NUL
 
 ECHO Tag created: %tag%
-pause

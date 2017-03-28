@@ -1,3 +1,4 @@
+@ECHO OFF
 setlocal EnableDelayedExpansion 
 
 SET /P input=Enter next version number (e.g. 1.1): 
