@@ -23,7 +23,8 @@ class MessageWizard extends Component {
 
     static propTypes = {
         step: PropTypes.string,
-        geodata: PropTypes.object
+        geodata: PropTypes.object,
+        hideWelcome: PropTypes.number
     }
 
     static defaultProps = {
@@ -37,6 +38,9 @@ class MessageWizard extends Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.geodata && this.props.geodata != nextProps.geodata) {
             this.setState({ show: true });
+        }
+        if (nextProps.hideWelcome !== this.props.hideWelcome) {
+            this.setState({ show: false });
         }
     }
 

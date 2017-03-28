@@ -14,7 +14,7 @@ class StartSideContainer extends Component {
     static propTypes = {
         step: PropTypes.string.isRequired,
         geodata: PropTypes.object,
-        hideWelcome: PropTypes.bool,
+        hideWelcome: PropTypes.number,
         getCategories: PropTypes.func.isRequired
     }
 
