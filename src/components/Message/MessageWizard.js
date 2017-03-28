@@ -15,13 +15,6 @@ import './MessageWizard.css'
 import showIcon from '../../images/collapse-show.svg'
 import hideIcon from '../../images/collapse-hide.svg'
 
-const initialState = {
-    address: null,
-    category: null,
-    pictures: null,
-    description: null
-};
-
 function checkStep(step, ...stepsToCheck) {
     return _.includes(stepsToCheck, step);
 }
@@ -30,9 +23,7 @@ class MessageWizard extends Component {
 
     static propTypes = {
         step: PropTypes.string,
-        geodata: PropTypes.object,
-        changeStep: PropTypes.func,
-        locationSeleted: PropTypes.func
+        geodata: PropTypes.object
     }
 
     static defaultProps = {
@@ -41,45 +32,11 @@ class MessageWizard extends Component {
 
     state = {
         show: true,
-        ...initialState
     }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.geodata && this.props.geodata != nextProps.geodata) {
             this.setState({ show: true });
-        }
-    }
-
-    changeAddress = (address) => {
-        this.setState({ address: address });
-        this.props.changeStep('category');
-    }
-
-    changeCategory = (category) => {
-        this.setState({ category: category });
-        this.props.changeStep('pictures');
-    }
-
-    changePictures = (pictures) => {
-        this.setState({ pictures: pictures });
-        this.props.changeStep('description');
-    }
-
-    changeDescription = (description) => {
-        this.setState({ description: description });
-        this.props.changeStep('submit');
-    }
-
-    createMessage() {
-        return {
-            "innsenderNavn": null,
-            "innsenderEpost": null,
-            "meldingstypeId": this.state.category && this.state.category.meldingstype.meldingstypeId,
-            "beskrivelse": this.state.description,
-            "adresse": this.state.address && this.state.address.display_name,
-            "latitude": this.state.address && this.state.address.lat,
-            "longitude": this.state.address && this.state.address.lon,
-            "bilder": this.state.pictures
         }
     }
 
@@ -93,26 +50,14 @@ class MessageWizard extends Component {
         }
     }
 
-    abort = () => {
-        this.setState({ ...initialState, show: false });
-        this.props.locationSeleted(null);
-        this.props.changeStep('welcome');
-    }
-
-    acknowledged = () => {
-        this.setState({ ...initialState, show: false });
-        this.props.locationSeleted(null);
-        this.props.changeStep('welcome');
-    }
-
     renderSteps(step) {
         if (checkStep(step, 'address', 'category', 'pictures', 'description', 'submit')) {
             return ([
-                <AddressContainer key="address-step" address={this.state.address} addressSpecified={this.changeAddress} editing={step === 'address'} geodata={this.props.geodata} locationSeleted={this.props.locationSeleted} goto={() => this.props.changeStep('address')} />,
-                <CategoryContainer key="category-step" category={this.state.category} categorySpecified={this.changeCategory} editing={step === 'category'} abort={this.abort} goto={() => this.props.changeStep('category')} />,
-                <PictureContainer key="pictures-step" pictures={this.state.pictures} picturesSpecified={this.changePictures} editing={step === 'pictures'} abort={this.abort} goto={() => this.props.changeStep('pictures')} />,
-                <DescriptionContainer key="description-step" description={this.state.description} descriptionSpecified={this.changeDescription} editing={step === 'description'} abort={this.abort} goto={() => this.props.changeStep('description')} />,
-                <SubmitContainer key="submit-step" editing={step === 'submit'} message={this.createMessage()} abort={this.abort} />
+                <AddressContainer key="address-step" />,
+                <CategoryContainer key="category-step" />,
+                <PictureContainer key="pictures-step" />,
+                <DescriptionContainer key="description-step" />,
+                <SubmitContainer key="submit-step" />
             ]);
         }
     }

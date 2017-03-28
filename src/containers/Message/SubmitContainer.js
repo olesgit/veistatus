@@ -1,11 +1,41 @@
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import Submit from '../../components/Message/Submit'
-import { submitMessage } from '../../actions/messageActions'
+import { submitMessage, abort } from '../../actions/messageActions'
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+function bindSubmitMessageToMessage(submitMessage, message) {
+    return () => submitMessage({
+        "innsenderNavn": null,
+        "innsenderEpost": null,
+        "meldingstypeId": message.category.meldingstype.meldingstypeId,
+        "beskrivelse": message.description,
+        "adresse": message.address.display_name,
+        "latitude": message.address.lat,
+        "longitude": message.address.lon,
+        "bilder": message.pictures
+    });
+}
+
+const mapStateToProps = (state) => {
     return {
-        submitMessage: () => dispatch(submitMessage(ownProps.message))
+        editing: state.message.step === 'submit',
+        message: state.message
     }
 }
 
-export default connect(null, mapDispatchToProps)(Submit)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        submitMessageAction: bindActionCreators(submitMessage, dispatch),
+        abort: bindActionCreators(abort, dispatch)
+    }
+}
+
+const mergeProps = (stateProps, dispatchProps) => {
+    return {
+        editing: stateProps.editing,
+        submitMessage: bindSubmitMessageToMessage(dispatchProps.submitMessageAction, stateProps.message),
+        abort: dispatchProps.abort
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(Submit)

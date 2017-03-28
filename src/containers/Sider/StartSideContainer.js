@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import MapViewContainer from '../../containers/Map/MapViewContainer';
 import MapSearchContainer from '../../containers/Map/MapSearchContainer';
-import { changeStep, getCategories } from '../../actions/messageActions'
+import { getCategories } from '../../actions/messageActions'
 
 import '../../css/kart/Maps.css';
 
@@ -13,17 +13,13 @@ class StartSideContainer extends Component {
 
     static propTypes = {
         step: PropTypes.string.isRequired,
-        getCategories: PropTypes.func.isRequired,
-        changeStep: PropTypes.func.isRequired
+        geodata: PropTypes.object,
+        hideWelcome: PropTypes.bool,
+        getCategories: PropTypes.func.isRequired
     }
 
-    state = {
-        geodata: null
-    }
-
-    changeLocation = (geodata) => {
-        this.setState({ geodata: geodata });
-        this.props.changeStep('address');
+    static defaultProps = {
+        step: 'welcome'
     }
 
     componentDidMount() {
@@ -31,15 +27,14 @@ class StartSideContainer extends Component {
     }
 
     render() {
-        const { step } = this.props;
-        const { geodata } = this.state;
+        const { step, geodata, hideWelcome } = this.props;
         return (
             <div className="mainmapContainer">
                 <div id="mapcontainer">
-                    <MapSearchContainer geodata={geodata} locationSeleted={this.changeLocation} showSearch={step === 'welcome'} />
-                    <MapViewContainer geodata={geodata} onSelectCoord={this.changeLocation} />
+                    <MapSearchContainer showSearch={step === 'welcome'} />
+                    <MapViewContainer />
                 </div>
-                <MessageWizard step={step} geodata={geodata} locationSeleted={this.changeLocation} changeStep={this.props.changeStep} />
+                <MessageWizard step={step} geodata={geodata} hideWelcome={hideWelcome} />
             </div>
         );
     }
@@ -47,14 +42,15 @@ class StartSideContainer extends Component {
 
 function mapStateToProps(state) {
     return {
-        step: state.message.step
+        step: state.message.step,
+        geodata: state.map.geodata,
+        hideWelcome: state.message.hideWelcome
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        getCategories: bindActionCreators(getCategories, dispatch),
-        changeStep: bindActionCreators(changeStep, dispatch)
+        getCategories: bindActionCreators(getCategories, dispatch)
     }
 }
 
