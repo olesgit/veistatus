@@ -9,7 +9,7 @@ body {
 
 .navbar {
   height: 131px;
-  /*border-bottom: solid 4px #ffa500;*/
+  border-bottom: solid 4px #ffa500;
   z-index: 2000;
 }
 
@@ -45,9 +45,7 @@ body {
 .oslo-logo {
   position: absolute;
   right: 0px;
-  bottom: -22px;
-  background-repeat: repeat-x;
-  width: 100%;
+  bottom: -23px;
   pointer-events: none;
 }
 

@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
-import { Navbar, Image } from 'react-bootstrap';
-import { Link } from 'react-router';
+import React, { Component } from 'react'
+import { Navbar, Image } from 'react-bootstrap'
+import { Link } from 'react-router'
 
 import './HeaderContainer.css'
 
-const logo = require('../../images/byvaapen.png');
+
+import logo from '../../images/byvaapen.png'
+import oslo_logo from '../../images/logo_oslo.png'
 
 class HeaderContainer extends Component {
     render() {
@@ -21,7 +23,7 @@ class HeaderContainer extends Component {
                             </div>
                         </Link>
                     </Navbar.Brand>
-                    <Image className="oslo-logo" src={"logo_oslo.png"} />
+                    <Image className="oslo-logo" src={oslo_logo} />
                 </Navbar.Header>
             </Navbar>
         )
