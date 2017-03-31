@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Navbar, Image } from 'react-bootstrap';
 import { Link } from 'react-router';
 
-import '../../css/layout/Header.css';
 import './HeaderContainer.css'
 
 const logo = require('../../images/byvaapen.png');

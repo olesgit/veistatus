@@ -1,7 +1,7 @@
 .byvaapen {
   width: 79.6px;
   height: 95px;
-  object-fit: contain;
+  pointer-events: none;
 }
 
 body {
@@ -26,6 +26,8 @@ body {
   padding-left: 14px;
   height: 72px;
 
+	vertical-align: middle;
+
   font-family: Lato;
   font-size: 16px;
   font-weight: normal;
@@ -46,6 +48,16 @@ body {
   right: 0px;
   bottom: -22px;
   background-repeat: repeat-x;
+  width: 100%;
+}
+
+.navbar-brand {
+	margin:0;
+	padding-top:9px;
+}
+
+.navbar-brand > img {
+	display: inline-block;
 }
 
 @media (max-width: 768px) {
