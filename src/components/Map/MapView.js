@@ -110,7 +110,7 @@ class MapView extends React.Component {
                     maxZoom={18}
                     minZoom={7}
                     onClick={this.handleClick}
-                    zoomControl={true}
+                    zoomControl={false}
                     dragging={true}
                     boxZoom={true}
                 >
