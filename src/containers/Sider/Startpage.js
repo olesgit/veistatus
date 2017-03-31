@@ -5,11 +5,11 @@ import MapViewContainer from '../../containers/Map/MapViewContainer';
 import MapSearchContainer from '../../containers/Map/MapSearchContainer';
 import { getCategoriesIfNeeded } from '../../actions/messageActions'
 
-import '../../css/kart/Maps.css';
+import './Startpage.css';
 
 import MessageWizard from '../../components/Message/MessageWizard'
 
-class StartSideContainer extends Component {
+class Startpage extends Component {
 
     static propTypes = {
         step: PropTypes.string.isRequired,
@@ -29,8 +29,8 @@ class StartSideContainer extends Component {
     render() {
         const { step, geodata, hideWelcome } = this.props;
         return (
-            <div className="mainmapContainer">
-                <div id="mapcontainer">
+            <div>
+                <div className="map-container">
                     <MapSearchContainer showSearch={step === 'welcome'} />
                     <MapViewContainer />
                 </div>
@@ -54,4 +54,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(StartSideContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(Startpage);
