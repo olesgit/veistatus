@@ -7,19 +7,12 @@ import { getCategoriesIfNeeded } from '../../actions/messageActions'
 
 import './Startpage.css';
 
-import MessageWizard from '../../components/Message/MessageWizard'
+import MessageWizardContainer from '../Message/MessageWizardContainer'
 
 class Startpage extends Component {
 
     static propTypes = {
-        step: PropTypes.string.isRequired,
-        geodata: PropTypes.object,
-        hideWelcome: PropTypes.number,
         getCategoriesIfNeeded: PropTypes.func.isRequired
-    }
-
-    static defaultProps = {
-        step: 'welcome'
     }
 
     componentDidMount() {
@@ -27,25 +20,16 @@ class Startpage extends Component {
     }
 
     render() {
-        const { step, geodata, hideWelcome } = this.props;
         return (
             <div>
                 <div className="map-container">
-                    <MapSearchContainer showSearch={step === 'welcome'} />
+                    <MapSearchContainer />
                     <MapViewContainer />
                 </div>
-                <MessageWizard step={step} geodata={geodata} hideWelcome={hideWelcome} />
+                <MessageWizardContainer />
             </div>
         );
     }
-}
-
-function mapStateToProps(state) {
-    return {
-        step: state.message.step,
-        geodata: state.map.geodata,
-        hideWelcome: state.message.hideWelcome
-    };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -54,4 +38,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Startpage);
+export default connect(null, mapDispatchToProps)(Startpage);

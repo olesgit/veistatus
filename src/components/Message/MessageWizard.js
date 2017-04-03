@@ -22,30 +22,55 @@ function checkStep(step, ...stepsToCheck) {
 class MessageWizard extends Component {
 
     static propTypes = {
-        step: PropTypes.string,
         geodata: PropTypes.object,
-        hideWelcome: PropTypes.number
-    }
-
-    static defaultProps = {
-        step: 'welcome'
+        hideWelcome: PropTypes.number,
+        message: PropTypes.shape({
+            step: PropTypes.string,
+            address: PropTypes.object,
+            category: PropTypes.object,
+        }).isRequired,
+        locationSeleted: PropTypes.func.isRequired,
+        addressSpecified: PropTypes.func.isRequired,
+        categorySpecified: PropTypes.func.isRequired
     }
 
     state = {
         show: true,
+        address: this.props.message.address,
+        category: this.props.message.category
     }
 
     componentWillReceiveProps(nextProps) {
+
         if (nextProps.geodata && this.props.geodata != nextProps.geodata) {
             this.setState({ show: true });
         }
+
         if (nextProps.hideWelcome !== this.props.hideWelcome) {
             this.setState({ show: false });
+        }
+
+        // Address is a special case where onChange may also be triggered in MapView or MapSearch
+        if (nextProps.geodata !== this.state.address) {
+            this.setState({ address: nextProps.geodata });
         }
     }
 
     toggleCollapse = () => {
         this.setState({ show: !this.state.show });
+    }
+
+    addressChanged = (value) => {
+        this.props.locationSeleted(value);
+        this.setState({ address: value });
+    }
+
+    categoryChanged = (value) => {
+        this.setState({ category: value });
+    }
+
+    nextDisabled() {
+        return this.props.geodata == null
     }
 
     renderWelcome(step) {
@@ -57,8 +82,8 @@ class MessageWizard extends Component {
     renderSteps(step) {
         if (checkStep(step, 'address', 'category', 'pictures', 'description', 'submit')) {
             return ([
-                <AddressContainer key="address-step" />,
-                <CategoryContainer key="category-step" />,
+                <AddressContainer key="address-step" value={this.state.address} onChange={this.addressChanged} />,
+                <CategoryContainer key="category-step" value={this.state.category} onChange={this.categoryChanged} />,
                 <PictureContainer key="pictures-step" />,
                 <DescriptionContainer key="description-step" />,
                 <SubmitContainer key="submit-step" />
@@ -72,14 +97,42 @@ class MessageWizard extends Component {
         }
     }
 
+    renderAbortButton() {
+        var { step, abort } = this.props.message
+        if (checkStep(step, 'category', 'pictures', 'description', 'submit')) {
+            return (<Button bsStyle="link" block onClick={abort}>Avbryt</Button>)
+        }
+    }
+
+    renderNextButton() {
+        var { step } = this.props.message
+        if (checkStep(step, 'address', 'category', 'pictures', 'description', 'submit')) {
+            return (<Button bsStyle="success" block onClick={this.next} disabled={this.nextDisabled()}>
+                {step === 'address' ? "Meld her" : "Neste"}
+            </Button>)
+        }
+    }
+
+    next = () => {
+        const { step } = this.props.message;
+        if (step === 'address' && this.props.addressSpecified) {
+            this.props.addressSpecified(this.state.address);
+        }
+        else if (step === 'category' && this.props.categorySpecified) {
+            this.props.categorySpecified(this.state.category);
+        }
+    }
+
     render() {
-        const { step } = this.props;
+        const { message } = this.props;
+        const { step } = message;
         const { show } = this.state;
 
         const hideCollapse = !checkStep(step, 'welcome', 'address');
         const collapseIcon = show ? hideIcon : showIcon;
 
         const buttonClasses = classNames('message-collapse', { hidden: hideCollapse });
+
 
         return (
             <div>
@@ -90,6 +143,8 @@ class MessageWizard extends Component {
                                 {this.renderWelcome(step)}
                                 {this.renderSteps(step)}
                                 {this.renderReceipt(step)}
+                                {this.renderNextButton()}
+                                {this.renderAbortButton()}
                             </div>
                         </div>
                     </Collapse>

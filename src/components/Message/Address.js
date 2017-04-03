@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { FormGroup, Button } from 'react-bootstrap'
+import { FormGroup } from 'react-bootstrap'
 import AddressInput from '../AddressInput'
 import Step from '../Step'
 
@@ -12,9 +12,8 @@ class Address extends Component {
     static propTypes = {
         editing: PropTypes.bool,
         address: PropTypes.object,
-        addressSpecified: PropTypes.func,
-        geodata: PropTypes.object,
-        locationSeleted: PropTypes.func,
+        value: PropTypes.object,
+        onChange: PropTypes.func,
         goto: PropTypes.func
     }
 
@@ -22,15 +21,9 @@ class Address extends Component {
         editing: true
     }
 
-    next = () => {
-        if (this.props.addressSpecified) {
-            this.props.addressSpecified(this.props.geodata);
-        }
-    }
-
     render() {
 
-        const { editing, address, geodata, goto } = this.props;
+        const { editing, address, goto, value, onChange } = this.props;
 
         if (!editing && !address) {
             return null;
@@ -43,9 +36,8 @@ class Address extends Component {
         return (
             <div className="address-content">
                 <FormGroup controlId="adresse">
-                    <AddressInput geodata={this.props.geodata} showClear={true} locationSeleted={this.props.locationSeleted} />
+                    <AddressInput geodata={value} showClear={true} locationSeleted={onChange} />
                 </FormGroup>
-                <Button bsStyle="success" block onClick={this.next} disabled={geodata == null}>Meld her</Button>
             </div>
         );
     }
