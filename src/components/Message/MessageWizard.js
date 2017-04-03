@@ -28,19 +28,22 @@ class MessageWizard extends Component {
             step: PropTypes.string,
             address: PropTypes.object,
             category: PropTypes.object,
-            pictures: PropTypes.array
+            pictures: PropTypes.array,
+            description: PropTypes.string
         }).isRequired,
         locationSeleted: PropTypes.func.isRequired,
         addressSpecified: PropTypes.func.isRequired,
         categorySpecified: PropTypes.func.isRequired,
-        picturesSpecified: PropTypes.func.isRequired
+        picturesSpecified: PropTypes.func.isRequired,
+        descriptionSpecified: PropTypes.func.isRequired
     }
 
     state = {
         show: true,
         address: this.props.message.address,
         category: this.props.message.category,
-        pictures: this.props.message.pictures
+        pictures: this.props.message.pictures,
+        description: this.props.message.description
     }
 
     componentWillReceiveProps(nextProps) {
@@ -76,6 +79,10 @@ class MessageWizard extends Component {
         this.setState({ pictures: value });
     }
 
+    descriptionChanged = (value) => {
+        this.setState({ description: value });
+    }
+
     nextDisabled() {
         return this.props.geodata == null
     }
@@ -92,7 +99,7 @@ class MessageWizard extends Component {
                 <AddressContainer key="address-step" value={this.state.address} onChange={this.addressChanged} />,
                 <CategoryContainer key="category-step" value={this.state.category} onChange={this.categoryChanged} />,
                 <PicturesContainer key="pictures-step" value={this.state.pictures} onChange={this.picturesChanged} />,
-                <DescriptionContainer key="description-step" />,
+                <DescriptionContainer key="description-step" value={this.state.description} onChange={this.descriptionChanged} />,
                 <SubmitContainer key="submit-step" />
             ]);
         }
@@ -130,6 +137,9 @@ class MessageWizard extends Component {
         }
         else if (step === 'pictures' && this.props.picturesSpecified) {
             this.props.picturesSpecified(this.state.pictures);
+        }
+        else if (step === 'description' && this.props.descriptionSpecified) {
+            this.props.descriptionSpecified(this.state.description);
         }
     }
 
