@@ -35,15 +35,16 @@ class MessageWizard extends Component {
         addressSpecified: PropTypes.func.isRequired,
         categorySpecified: PropTypes.func.isRequired,
         picturesSpecified: PropTypes.func.isRequired,
-        descriptionSpecified: PropTypes.func.isRequired
+        descriptionSpecified: PropTypes.func.isRequired,
+        abort: PropTypes.func.isRequired
     }
 
     state = {
         show: true,
-        address: this.props.message.address,
-        category: this.props.message.category,
-        pictures: this.props.message.pictures,
-        description: this.props.message.description
+        address: this.props.message.address || null,
+        category: this.props.message.category || null,
+        pictures: this.props.message.pictures || [],
+        description: this.props.message.description || ''
     }
 
     componentWillReceiveProps(nextProps) {
@@ -56,7 +57,7 @@ class MessageWizard extends Component {
             this.setState({ show: false });
         }
 
-        // Address is a special case where onChange may also be triggered in MapView or MapSearch
+        // Address may also be changed in MapView or MapSearch
         if (nextProps.geodata !== this.state.address) {
             this.setState({ address: nextProps.geodata });
         }
@@ -84,7 +85,9 @@ class MessageWizard extends Component {
     }
 
     nextDisabled() {
-        return this.props.geodata == null
+        const { step } = this.props.message;
+        return (step === 'address' && this.state.address == null) ||
+            (step === 'category' && this.state.category == null)
     }
 
     renderWelcome(step) {
@@ -112,15 +115,14 @@ class MessageWizard extends Component {
     }
 
     renderAbortButton() {
-        var { step, abort } = this.props.message
-        if (checkStep(step, 'category', 'pictures', 'description', 'submit')) {
-            return (<Button bsStyle="link" block onClick={abort}>Avbryt</Button>)
+        if (checkStep(this.props.message.step, 'category', 'pictures', 'description', 'submit')) {
+            return (<Button bsStyle="link" block onClick={this.abort}>Avbryt</Button>)
         }
     }
 
     renderNextButton() {
         var { step } = this.props.message
-        if (checkStep(step, 'address', 'category', 'pictures', 'description', 'submit')) {
+        if (checkStep(step, 'address', 'category', 'pictures', 'description')) {
             return (<Button bsStyle="success" block onClick={this.next} disabled={this.nextDisabled()}>
                 {step === 'address' ? "Meld her" : "Neste"}
             </Button>)
@@ -141,6 +143,17 @@ class MessageWizard extends Component {
         else if (step === 'description' && this.props.descriptionSpecified) {
             this.props.descriptionSpecified(this.state.description);
         }
+    }
+
+    abort = () => {
+        this.setState({
+            ...this.state,
+            address: null,
+            category: null,
+            pictures: [],
+            description: ''
+        });
+        this.props.abort();
     }
 
     render() {
