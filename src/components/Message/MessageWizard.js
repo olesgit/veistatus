@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import { Button, Collapse, Image } from 'react-bootstrap'
 import AddressContainer from '../../containers/Message/AddressContainer'
 import CategoryContainer from '../../containers/Message/CategoryContainer'
-import PictureContainer from '../../containers/Message/PictureContainer'
+import PicturesContainer from '../../containers/Message/PicturesContainer'
 import DescriptionContainer from '../../containers/Message/DescriptionContainer'
 import SubmitContainer from '../../containers/Message/SubmitContainer'
 import ReceiptContainer from '../../containers/Message/ReceiptContainer'
@@ -28,16 +28,19 @@ class MessageWizard extends Component {
             step: PropTypes.string,
             address: PropTypes.object,
             category: PropTypes.object,
+            pictures: PropTypes.array
         }).isRequired,
         locationSeleted: PropTypes.func.isRequired,
         addressSpecified: PropTypes.func.isRequired,
-        categorySpecified: PropTypes.func.isRequired
+        categorySpecified: PropTypes.func.isRequired,
+        picturesSpecified: PropTypes.func.isRequired
     }
 
     state = {
         show: true,
         address: this.props.message.address,
-        category: this.props.message.category
+        category: this.props.message.category,
+        pictures: this.props.message.pictures
     }
 
     componentWillReceiveProps(nextProps) {
@@ -69,6 +72,10 @@ class MessageWizard extends Component {
         this.setState({ category: value });
     }
 
+    picturesChanged = (value) => {
+        this.setState({ pictures: value });
+    }
+
     nextDisabled() {
         return this.props.geodata == null
     }
@@ -84,7 +91,7 @@ class MessageWizard extends Component {
             return ([
                 <AddressContainer key="address-step" value={this.state.address} onChange={this.addressChanged} />,
                 <CategoryContainer key="category-step" value={this.state.category} onChange={this.categoryChanged} />,
-                <PictureContainer key="pictures-step" />,
+                <PicturesContainer key="pictures-step" value={this.state.pictures} onChange={this.picturesChanged} />,
                 <DescriptionContainer key="description-step" />,
                 <SubmitContainer key="submit-step" />
             ]);
@@ -121,6 +128,9 @@ class MessageWizard extends Component {
         else if (step === 'category' && this.props.categorySpecified) {
             this.props.categorySpecified(this.state.category);
         }
+        else if (step === 'pictures' && this.props.picturesSpecified) {
+            this.props.picturesSpecified(this.state.pictures);
+        }
     }
 
     render() {
@@ -132,7 +142,6 @@ class MessageWizard extends Component {
         const collapseIcon = show ? hideIcon : showIcon;
 
         const buttonClasses = classNames('message-collapse', { hidden: hideCollapse });
-
 
         return (
             <div>
