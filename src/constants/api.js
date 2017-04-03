@@ -11,6 +11,11 @@ function RESOLVE_HOST() {
             bymelding_service_host: 'http://bymelding-service-test.bymoslo.no:80'
         };
     }
+    else if (process.env.REACT_APP_REACT_ENV === "staging") {
+        return {
+            bymelding_service_host: 'http://bymelding-service-staging.bymoslo.no:80'
+        };
+    }
 
     else if (process.env.REACT_APP_REACT_ENV === "development") {
         return {
