@@ -23,7 +23,7 @@ class HeaderContainer extends Component {
                             </div>
                         </Link>
                     </Navbar.Brand>
-                    <Image className="oslo-logo" src={oslo_logo} />
+                    <Image className="oslo-logo" width={90} height={50} src={oslo_logo} />
                 </Navbar.Header>
             </Navbar>
         )
