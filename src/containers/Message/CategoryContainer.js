@@ -5,6 +5,7 @@ import { changeStep } from '../../actions/messageActions'
 const mapStateToProps = (state) => {
     return {
         editing: state.message.step === 'category',
+        category: state.message.category,
         categories: state.message.categories
     }
 }
