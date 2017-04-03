@@ -13,7 +13,7 @@ function RESOLVE_HOST() {
     }
     else if (process.env.REACT_APP_REACT_ENV === "staging") {
         return {
-            bymelding_service_host: 'http://bymelding-service-staging.bymoslo.no:80'
+            bymelding_service_host: 'http://stage-bymelding-service.bym-stage-service.1b8f4e58.svc.dockerapp.io:5003'
         };
     }
 
