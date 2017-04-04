@@ -41,6 +41,7 @@
     right: 0px;
     background-color: #ffffff;
     border: solid 1px #979797;
+    z-index: 10000;
 }
 
 .category-input-suggestions-list {

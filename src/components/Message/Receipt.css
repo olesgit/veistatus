@@ -1,0 +1,12 @@
+.receipt-content {
+    height: 420px;
+    text-align: center;
+    padding-top: 140px;
+}
+
+.receipt-content > button {
+    width: 124px;
+    height: 40px;
+    border-radius: 6px;
+    margin-top: 60px;
+}
