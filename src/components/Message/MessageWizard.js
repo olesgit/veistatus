@@ -107,7 +107,7 @@ class MessageWizard extends Component {
                 <CategoryContainer key="category-step" value={this.state.category} onChange={this.categoryChanged} />,
                 <PicturesContainer key="pictures-step" value={this.state.pictures} onChange={this.picturesChanged} />,
                 <DescriptionContainer key="description-step" value={this.state.description} onChange={this.descriptionChanged} />,
-                <SubmitContainer key="submit-step" />
+                <SubmitContainer key="submit-step" submitted={this.submitted} />
             ]);
         }
     }
@@ -150,6 +150,15 @@ class MessageWizard extends Component {
     }
 
     abort = () => {
+        this.clearState();
+        this.props.abort();
+    }
+
+    submitted = () => {
+        this.clearState();
+    }
+
+    clearState() {
         this.setState({
             ...this.state,
             address: null,
@@ -157,7 +166,6 @@ class MessageWizard extends Component {
             pictures: [],
             description: ''
         });
-        this.props.abort();
     }
 
     render() {

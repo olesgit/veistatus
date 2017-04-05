@@ -6,18 +6,14 @@ import './Submit.css'
 class Submit extends Component {
 
     static propTypes = {
-        editing: PropTypes.bool,
-        submitMessage: PropTypes.func
-    }
-
-    static defaultProps = {
-        editing: true
+        editing: PropTypes.bool.isRequired,
+        submitMessage: PropTypes.func.isRequired,
+        submitted: PropTypes.func.isRequired
     }
 
     submit = () => {
-        if (this.props.submitMessage) {
-            this.props.submitMessage();
-        }
+        this.props.submitMessage()
+            .then(this.props.submitted);
     }
 
     render() {
@@ -28,7 +24,9 @@ class Submit extends Component {
         }
 
         return (
-            <Button className="message-submit" bsStyle="success" block onClick={this.submit}>Send inn</Button>
+            <div className="submit-content">
+                <Button className="message-submit" bsStyle="success" block onClick={this.submit}>Send inn</Button>
+            </div>
         );
     }
 }
