@@ -14,7 +14,7 @@ class Receipt extends Component {
 
         return (
             <div className="receipt-content">
-                <h1>Takk for at du gjør byen bedre.</h1>
+                <h1>Takk for at du gjør byen bedre</h1>
                 <Button bsStyle="success" onClick={acknowledge}>OK</Button>
             </div>
         );
