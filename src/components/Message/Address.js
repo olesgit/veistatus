@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { FormGroup } from 'react-bootstrap'
+import { FormGroup, Button } from 'react-bootstrap'
 import AddressInput from '../AddressInput'
 import Step from '../Step'
 
@@ -14,7 +14,8 @@ class Address extends Component {
         address: PropTypes.object,
         value: PropTypes.object,
         onChange: PropTypes.func,
-        goto: PropTypes.func
+        goto: PropTypes.func,
+        showMap: PropTypes.func.isRequired
     }
 
     static defaultProps = {
@@ -23,7 +24,7 @@ class Address extends Component {
 
     render() {
 
-        const { editing, address, goto, value, onChange } = this.props;
+        const { editing, address, goto, value, onChange, showMap } = this.props;
 
         if (!editing && !address) {
             return null;
@@ -38,8 +39,14 @@ class Address extends Component {
                 <FormGroup controlId="adresse">
                     <AddressInput geodata={value} showClear={true} locationSeleted={onChange} />
                 </FormGroup>
-            </div>
-        );
+                {address &&
+                    <span className="address-addon">
+                        <Button bsStyle="link" onClick={showMap}>
+                            Velg addresse i kart
+                        </Button>
+                    </span>
+                }
+            </div>);
     }
 }
 

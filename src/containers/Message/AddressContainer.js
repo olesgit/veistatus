@@ -4,14 +4,15 @@ import { changeStep } from '../../actions/messageActions'
 
 const mapStateToProps = (state) => {
     return {
-        editing: state.message.step === 'address',
+        editing: state.message.step === 'address-map' || state.message.step === 'address',
         address: state.message.address
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        goto: () => dispatch(changeStep('address'))
+        goto: () => dispatch(changeStep('address')),
+        showMap: () => dispatch(changeStep('address-map'))
     }
 }
 

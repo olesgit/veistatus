@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { Button } from 'react-bootstrap'
 
+import './Submit.css'
+
 class Submit extends Component {
 
     static propTypes = {
@@ -26,9 +28,7 @@ class Submit extends Component {
         }
 
         return (
-            <div>
-                <Button bsStyle="success" block onClick={this.submit}>Send inn</Button>
-            </div>
+            <Button className="message-submit" bsStyle="success" block onClick={this.submit}>Send inn</Button>
         );
     }
 }

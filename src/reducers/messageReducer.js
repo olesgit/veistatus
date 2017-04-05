@@ -17,7 +17,7 @@ export default function messagesReducer(state = initialState, action = {}) {
             return update(state, action, 'description', 'submit')
 
         case LOCATION_SELECTED:
-            return { ...state, step: 'address' }
+            return { ...state, step: 'address-map' }
 
         case types.GET_CATEGORIES_SUCCESS:
             return { ...state, categories: action.payload }

@@ -19,6 +19,10 @@ function checkStep(step, ...stepsToCheck) {
     return _.includes(stepsToCheck, step);
 }
 
+function isWizardSteps(step) {
+    return checkStep(step, 'address', 'category', 'pictures', 'description', 'submit');
+}
+
 class MessageWizard extends Component {
 
     static propTypes = {
@@ -86,7 +90,7 @@ class MessageWizard extends Component {
 
     nextDisabled() {
         const { step } = this.props.message;
-        return (step === 'address' && this.state.address == null) ||
+        return ((step === 'address' || step === 'address-map') && this.state.address == null) ||
             (step === 'category' && this.state.category == null)
     }
 
@@ -97,7 +101,7 @@ class MessageWizard extends Component {
     }
 
     renderSteps(step) {
-        if (checkStep(step, 'address', 'category', 'pictures', 'description', 'submit')) {
+        if (checkStep(step, 'address', 'address-map', 'category', 'pictures', 'description', 'submit')) {
             return ([
                 <AddressContainer key="address-step" value={this.state.address} onChange={this.addressChanged} />,
                 <CategoryContainer key="category-step" value={this.state.category} onChange={this.categoryChanged} />,
@@ -116,22 +120,22 @@ class MessageWizard extends Component {
 
     renderAbortButton() {
         if (checkStep(this.props.message.step, 'category', 'pictures', 'description', 'submit')) {
-            return (<Button bsStyle="link" block onClick={this.abort}>Avbryt</Button>)
+            return (<Button className="wizard-abort" bsStyle="link" block onClick={this.abort}>Avbryt</Button>)
         }
     }
 
     renderNextButton() {
         var { step } = this.props.message
-        if (checkStep(step, 'address', 'category', 'pictures', 'description')) {
-            return (<Button bsStyle="success" block onClick={this.next} disabled={this.nextDisabled()}>
-                {step === 'address' ? "Meld her" : "Neste"}
+        if (checkStep(step, 'address', 'address-map', 'category', 'pictures', 'description')) {
+            return (<Button className="wizard-next" bsStyle="success" block onClick={this.next} disabled={this.nextDisabled()}>
+                {step === 'address-map' ? "Meld her" : "Neste"}
             </Button>)
         }
     }
 
     next = () => {
         const { step } = this.props.message;
-        if (step === 'address' && this.props.addressSpecified) {
+        if ((step === 'address' || step === 'address-map') && this.props.addressSpecified) {
             this.props.addressSpecified(this.state.address);
         }
         else if (step === 'category' && this.props.categorySpecified) {
@@ -161,17 +165,18 @@ class MessageWizard extends Component {
         const { step } = message;
         const { show } = this.state;
 
-        const hideCollapse = !checkStep(step, 'welcome', 'address');
+        const hideCollapse = !checkStep(step, 'welcome');
         const collapseIcon = show ? hideIcon : showIcon;
 
         const buttonClasses = classNames('message-collapse', { hidden: hideCollapse });
+        const contentClasses = classNames('message-content', { 'message-steps': isWizardSteps(step) });
 
         return (
             <div>
                 <div className="message-wizard">
                     <Collapse in={show}>
                         <div className="message-container">
-                            <div className="message-content">
+                            <div className={contentClasses}>
                                 {this.renderWelcome(step)}
                                 {this.renderSteps(step)}
                                 {this.renderReceipt(step)}
@@ -188,7 +193,7 @@ class MessageWizard extends Component {
                 </div>
                 {
                     checkStep(step, 'category', 'pictures', 'description', 'submit', 'receipt') &&
-                    <div className="modal-backdrop fade in"></div>
+                    <div className="modal-backdrop wizard-backdrop fade in"></div>
                 }
             </div>
         );
