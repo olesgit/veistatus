@@ -1,0 +1,36 @@
+.receipt-content {
+    height: 420px;
+    text-align: center;
+    padding-top: 110px;
+}
+
+.receipt-content > h1 {
+    font-family: Lato;
+    font-size: 30px;
+    font-weight: bold;
+    color: #4a4a4a;
+}
+
+.receipt-content > button {
+    width: 124px;
+    height: 40px;
+    border-radius: 6px;
+    margin-top: 60px;
+}
+
+/* mobile */
+@media only screen and (max-width: 500px) {
+
+    .receipt-content {
+        height: 200px;
+        padding-top: 24px;
+    }
+
+    .receipt-content > h1 {
+        font-size: 16px
+    }
+
+    .receipt-content > button {
+        margin-top: 48px;
+    }
+}

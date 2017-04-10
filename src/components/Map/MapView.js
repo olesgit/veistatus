@@ -6,12 +6,13 @@ import { /*divIcon,*/ icon } from 'leaflet';
 import { startLat, startLon, startZoom } from "../../constants/settings";
 import '../../css/kart/kart.css';
 
-const markers = [
-    { lat: 59.9412, lng: 10.77 },
-    { lat: 59.9445, lng: 10.77 },
-    { lat: 59.9467, lng: 10.77 }
-];
+// const markers = [
+//     { lat: 59.9412, lng: 10.77 },
+//     { lat: 59.9445, lng: 10.77 },
+//     { lat: 59.9467, lng: 10.77 }
+// ];
 
+import './MapView.css'
 
 // const icon1 = divIcon({className: 'leaflet-div-icon2'});  //built in red circle
 
@@ -85,7 +86,7 @@ class MapView extends React.Component {
     }
 
     renderMarker(geodata) {
-        if (geodata.adressSelectedBy !== 'none') {
+        if (geodata && geodata.adressSelectedBy !== 'none') {
             return (
                 <Marker position={[geodata.lat, geodata.lon]} icon={icon2}>
                     <Popup>
@@ -98,32 +99,33 @@ class MapView extends React.Component {
 
     render() {
         return (
-            <div>
-                <Map
-                    ref={this.bindMap}
-                    style={{ height: "100vh" }}
-                    center={[this.props.geodata.centerlat, this.props.geodata.centerlon]}
-                    zoom={this.props.geodata.valgtZoom}
-                    maxZoom={18}
-                    minZoom={7}
-                    onClick={this.handleClick}
-                    zoomControl={true}
-                    dragging={true}
-                    boxZoom={true}
-                >
-                    <TileLayer
-                        url='https://api.mapbox.com/styles/v1/webforvaltningen/cirlr93tl0010gyly7o56ugi3/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoid2ViZm9ydmFsdG5pbmdlbiIsImEiOiJjaXJsczQ5dnAwMDMxaG5rd2xnNGt2MGZvIn0.BGtT-dezZ_5hseqXmkMAoQ'
-                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    />
+            <Map
+                ref={this.bindMap}
+                style={{ height: "100vh" }}
+                center={[
+                    this.props.geodata ? this.props.geodata.centerlat : startLat,
+                    this.props.geodata ? this.props.geodata.centerlon : startLon
+                ]}
+                zoom={this.props.geodata ? this.props.geodata.valgtZoom : startZoom}
+                maxZoom={18}
+                minZoom={7}
+                onClick={this.handleClick}
+                zoomControl={false}
+                dragging={true}
+                boxZoom={true}
+            >
+                <TileLayer
+                    url='https://api.mapbox.com/styles/v1/webforvaltningen/cirlr93tl0010gyly7o56ugi3/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoid2ViZm9ydmFsdG5pbmdlbiIsImEiOiJjaXJsczQ5dnAwMDMxaG5rd2xnNGt2MGZvIn0.BGtT-dezZ_5hseqXmkMAoQ'
+                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                />
 
-                    {this.renderMarker(this.props.geodata)}
+                {this.renderMarker(this.props.geodata)}
 
-                    <MarkerClusterGroup
-                        markers={markers}
-                        wrapperOptions={{ enableDefaultStyle: true }}
-                    />
-                </Map>
-            </div>
+                {/*<MarkerClusterGroup
+                    markers={markers}
+                    wrapperOptions={{ enableDefaultStyle: true }}
+                />*/}
+            </Map>
         )
     }
 }

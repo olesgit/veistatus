@@ -8,21 +8,22 @@ class StepBilder extends PureComponent {
 
     static propTypes = {
         icon: PropTypes.string.isRequired,
-        pictures: PropTypes.array.isRequired
+        pictures: PropTypes.array.isRequired,
+        goto: PropTypes.func.isRequired
     }
 
     renderThumbnail(file) {
         return (
-            <div key={file.name} className="step-picture-preview">
+            <div key={file.uuid} className="step-picture-preview">
                 <Image src={file.preview} />
             </div>
         );
     }
 
     render() {
-        const { icon, pictures } = this.props;
+        const { icon, pictures, goto } = this.props;
         return (
-            <div className="step-complete clearfix">
+            <div className="step-complete clearfix" onClick={goto}>
                 <Image src={icon} />
                 <div>
                     {pictures.map(this.renderThumbnail)}

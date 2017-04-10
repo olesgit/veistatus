@@ -1,25 +1,30 @@
-import React, { Component } from 'react';
-import { Navbar, Image } from 'react-bootstrap';
-import { Link } from 'react-router';
+import React, { Component } from 'react'
+import { Navbar, Image } from 'react-bootstrap'
+import { Link } from 'react-router'
 
-import '../../css/layout/Header.css';
+import './HeaderContainer.css'
 
-const logo = require('../../images/byvaap-cmyk.png');
+
+import logo from '../../images/byvaapen.png'
+import oslo_logo from '../../images/logo_oslo.png'
 
 class HeaderContainer extends Component {
     render() {
         return (
-            <Navbar fluid fixedTop  >
+            <Navbar fluid fixedTop>
                 <Navbar.Header>
                     <Navbar.Brand>
                         <Link to={{ pathname: '/' }}>
-                            <Image src={logo} />
-                            <span className="header-text">BYMelding</span>
+                            <Image src={logo} className="byvaapen" />
+                            <div className="header-text">
+                                Oslo kommune
+                                <br />
+                                <span className="header-text-strong">Bymiljøetaten</span>
+                            </div>
                         </Link>
                     </Navbar.Brand>
-                    <Navbar.Toggle />
+                    <Image className="oslo-logo" width={90} height={50} src={oslo_logo} />
                 </Navbar.Header>
-                <Image src={"logo_oslo.png"} style={{ position: 'absolute', right: '0px', top: '32px' }} />
             </Navbar>
         )
     }

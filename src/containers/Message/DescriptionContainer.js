@@ -1,7 +1,6 @@
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import Description from '../../components/Message/Description'
-import { descriptionSpecified, abort } from '../../actions/messageActions'
+import { changeStep } from '../../actions/messageActions'
 
 const mapStateToProps = (state) => {
     return {
@@ -12,8 +11,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        descriptionSpecified: bindActionCreators(descriptionSpecified, dispatch),
-        abort: bindActionCreators(abort, dispatch)
+        goto: () => dispatch(changeStep('description'))
     }
 }
 

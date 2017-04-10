@@ -1,13 +1,16 @@
-.message-container {
-    padding-top: 4px;
+.message-wizard {
+    position: relative;
+    z-index: 10;
+}
 
-    opacity: 0.95;
-    background-color: #ffffff;
+.message-container {
+    padding-top: 30px;
+    background-color: rgba(255, 255, 255, 0.95);
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
 }
 
 .message-content {
-    width: 740px;
+    max-width: 740px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -21,4 +24,45 @@
 
     border-radius: 0px;
     border-top: none;
+}
+
+/* Steps */
+.message-steps {
+    height: 750px;
+}
+
+/* Buttons */
+.wizard-next {
+    margin-top: 20px;
+
+    height: 40px;
+    border-radius: 6px;
+}
+
+.wizard-abort {
+    margin-top: 15px!important;
+    height: 40px;
+
+    font-family: Lato;
+    font-size: 16px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.44;
+    letter-spacing: normal;
+    color: #01436a;
+}
+
+/* Backdrop */
+.wizard-backdrop {
+    z-index: 1;
+}
+
+.modal-backdrop.in {
+    filter: alpha(opacity=70);
+    opacity: .7;
+}
+
+.modal-backdrop {
+    background-color: rgb(215, 215, 215);
 }

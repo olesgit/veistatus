@@ -21,8 +21,7 @@ class CategoryInput extends Component {
 
     static defaultProps = {
         category: null,
-        categories: [],
-        onCategorySelected: null
+        categories: []
     }
 
     state = {
@@ -42,6 +41,7 @@ class CategoryInput extends Component {
         this.setState({
             value: ''
         })
+        this.props.onCategorySelected(null);
     }
 
     onChange = (event, { newValue }) => {
@@ -58,7 +58,7 @@ class CategoryInput extends Component {
         return this.props.categories.filter(category => category.meldingskategorier.some(c => _.includes(c.navn.toLowerCase(), value.toLowerCase())));
     }
 
-    onSuggestionsSelected = (event, { suggestion }) => {
+    onSuggestionSelected = (event, { suggestion }) => {
         if (this.props.onCategorySelected) {
             this.props.onCategorySelected(suggestion);
         }

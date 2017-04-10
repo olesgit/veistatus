@@ -1,10 +1,8 @@
-import React, {Component, PropTypes} from 'react';
-import {Grid} from 'react-bootstrap';
+import React, { Component, PropTypes } from 'react';
 import HeaderContainer from './Layout/HeaderContainer';
 import PageHeader from '../components/Layout/PageHeader';
-//import Footer from '../components/Layout/Footer';
 import FlashMessagesList from "../components/common/FlashMessagesList";
-import {getDisplayName} from '../constants/clientRoutes';
+import { getDisplayName } from '../constants/clientRoutes';
 
 export default class App extends Component {
     constructor(props, context) {
@@ -26,7 +24,7 @@ export default class App extends Component {
         if (location.state && location.state.subTitle)
             pageTitleFromState = location.state.subTitle;
 
-        this.setState({pageTitle: title, subTitle: pageTitleFromState});
+        this.setState({ pageTitle: title, subTitle: pageTitleFromState });
     }
 
     componentWillMount() {
@@ -45,11 +43,9 @@ export default class App extends Component {
         return (
             <div>
                 <HeaderContainer />
-                <PageHeader pageTitle={this.state.pageTitle} subTitle={this.state.subTitle}/>
+                <PageHeader pageTitle={this.state.pageTitle} subTitle={this.state.subTitle} />
                 <FlashMessagesList />
-                <Grid>
-                    {this.props.children}
-                </Grid>
+                {this.props.children}
             </div>
         );
     }

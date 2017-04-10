@@ -45,6 +45,7 @@ class AddressInput extends Component {
 
     onClear = () => {
         this.geoSuggest.clear();
+        this.props.locationSeleted(null);
     }
 
     onSearch = () => {

@@ -13,8 +13,8 @@ class Receipt extends Component {
         const { acknowledge } = this.props;
 
         return (
-            <div>
-                <h1>Takk for at du gjør byen bedre.</h1>
+            <div className="receipt-content">
+                <h1>Takk for at du gjør byen bedre</h1>
                 <Button bsStyle="success" onClick={acknowledge}>OK</Button>
             </div>
         );

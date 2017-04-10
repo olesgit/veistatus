@@ -1,35 +1,31 @@
 import React, { Component, PropTypes } from 'react'
 import { Button } from 'react-bootstrap'
 
+import './Submit.css'
+
 class Submit extends Component {
 
     static propTypes = {
-        editing: PropTypes.bool,
-        sumbitMessage: PropTypes.func,
-        abort: PropTypes.func.isRequired
+        editing: PropTypes.bool.isRequired,
+        submitMessage: PropTypes.func.isRequired,
+        submitted: PropTypes.func.isRequired
     }
 
-    static defaultProps = {
-        editing: true
-    }
-
-    next = () => {
-        if (this.props.sumbitMessage) {
-            this.props.sumbitMessage();
-        }
+    submit = () => {
+        this.props.submitMessage()
+            .then(this.props.submitted);
     }
 
     render() {
-        const { editing, abort } = this.props;
+        const { editing } = this.props;
 
         if (!editing) {
             return null;
         }
 
         return (
-            <div>
-                <Button bsStyle="success" block onClick={this.next}>Send inn</Button>
-                <Button bsStyle="link" block onClick={abort}>Avbryt</Button>
+            <div className="submit-content">
+                <Button className="message-submit" bsStyle="success" block onClick={this.submit}>Send inn</Button>
             </div>
         );
     }

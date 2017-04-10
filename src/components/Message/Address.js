@@ -12,40 +12,41 @@ class Address extends Component {
     static propTypes = {
         editing: PropTypes.bool,
         address: PropTypes.object,
-        addressSpecified: PropTypes.func,
-        geodata: PropTypes.object
+        value: PropTypes.object,
+        onChange: PropTypes.func,
+        goto: PropTypes.func,
+        showMap: PropTypes.func.isRequired
     }
 
     static defaultProps = {
         editing: true
     }
 
-    next = () => {
-        if (this.props.addressSpecified) {
-            this.props.addressSpecified(this.props.geodata);
-        }
-    }
-
     render() {
 
-        const { editing, address } = this.props;
+        const { editing, address, goto, value, onChange, showMap } = this.props;
 
         if (!editing && !address) {
             return null;
         }
 
         if (!editing) {
-            return <Step icon={addressIcon} text={address.display_name} />;
+            return <Step icon={addressIcon} text={address.display_name} goto={goto} />;
         }
 
         return (
             <div className="address-content">
                 <FormGroup controlId="adresse">
-                    <AddressInput geodata={this.props.geodata} showClear={true} />
+                    <AddressInput geodata={value} showClear={true} locationSeleted={onChange} />
                 </FormGroup>
-                <Button bsStyle="success" block onClick={this.next}>Meld her</Button>
-            </div>
-        );
+                {address &&
+                    <span className="address-addon">
+                        <Button bsStyle="link" onClick={showMap}>
+                            Velg addresse i kart
+                        </Button>
+                    </span>
+                }
+            </div>);
     }
 }
 

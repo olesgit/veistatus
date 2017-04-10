@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Submit from '../../components/Message/Submit'
-import { submitMessage, abort } from '../../actions/messageActions'
+import { submitMessage } from '../../actions/messageActions'
 
 function bindSubmitMessageToMessage(submitMessage, message) {
     return () => submitMessage({
@@ -25,16 +25,15 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        submitMessageAction: bindActionCreators(submitMessage, dispatch),
-        abort: bindActionCreators(abort, dispatch)
+        submitMessageAction: bindActionCreators(submitMessage, dispatch)
     }
 }
 
-const mergeProps = (stateProps, dispatchProps) => {
+const mergeProps = (stateProps, dispatchProps, ownProps) => {
     return {
+        ...ownProps,
         editing: stateProps.editing,
-        submitMessage: bindSubmitMessageToMessage(dispatchProps.submitMessageAction, stateProps.message),
-        abort: dispatchProps.abort
+        submitMessage: bindSubmitMessageToMessage(dispatchProps.submitMessageAction, stateProps.message)
     }
 }
 

@@ -1,65 +1,47 @@
 import React, { Component, PropTypes } from 'react'
-import { Button, FormGroup, FormControl } from 'react-bootstrap'
+import { FormGroup, FormControl } from 'react-bootstrap'
 import Step from '../Step'
 
 import './Description.css'
-import descriptionIcon from '../../images/Camera.png'
+
+import descriptionIcon from '../../images/beskrivelse.svg'
 
 class Description extends Component {
 
     static propTypes = {
         editing: PropTypes.bool,
         description: PropTypes.string,
-        descriptionSpecified: PropTypes.func,
-        abort: PropTypes.func.isRequired
+        value: PropTypes.string,
+        onChange: PropTypes.func,
+        goto: PropTypes.func
     }
 
     static defaultProps = {
         editing: true
     }
 
-    state = {
-        description: this.props.description
-    }
-
-    handleChange = (event) => {
-        this.setState({ description: event.target.value });
-    }
-
-    next = () => {
-        // TODO Do not "next" if description is empty
-        if (this.props.descriptionSpecified) {
-            this.props.descriptionSpecified(this.state.description);
-        }
-    }
-
     render() {
-        const { editing, abort } = this.props;
-        const { description } = this.state;
+        const { editing, description, value, onChange, goto } = this.props;
 
         if (!editing && description == null) {
             return null;
         }
 
         if (!editing) {
-            return <Step icon={descriptionIcon} text={description} />;
+            return <Step icon={descriptionIcon} text={description} goto={goto} />;
         }
 
         return (
-            <div>
-                <FormGroup className="description-input-container" controlId="beskrivelse">
-                    <FormControl
-                        className="description-input"
-                        placeholder="Beskriv problemet"
-                        componentClass="textarea"
-                        value={description || ''}
-                        onChange={this.handleChange}
-                        rows={7}
-                    />
-                </FormGroup>
-                <Button bsStyle="success" block onClick={this.next}>Neste</Button>
-                <Button bsStyle="link" block onClick={abort}>Avbryt</Button>
-            </div>
+            <FormGroup className="description-input-container" controlId="beskrivelse">
+                <FormControl
+                    className="description-input"
+                    placeholder="Beskriv problemet"
+                    componentClass="textarea"
+                    value={value || ''}
+                    onChange={e => onChange(e.target.value)}
+                    rows={7}
+                />
+            </FormGroup>
         );
     }
 }
