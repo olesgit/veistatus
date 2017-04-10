@@ -44,7 +44,7 @@ class MessageWizard extends Component {
     }
 
     renderSteps(step) {
-        if (checkStep(step, 'address', 'category', 'picture', 'description', 'submit')) {
+        if (checkStep(step, 'address', 'category', 'pictures', 'description', 'submit')) {
             return ([
                 <AddressContainer key="address-step" />,
                 <CategoryContainer key="category-step" />,

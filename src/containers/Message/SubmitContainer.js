@@ -12,7 +12,7 @@ function bindSubmitMessageToMessage(submitMessage, message) {
         "adresse": message.address.display_name,
         "latitude": message.address.lat,
         "longitude": message.address.lon,
-        "bilderBase64": message.pictures
+        "bilder": message.pictures
     });
 }
 

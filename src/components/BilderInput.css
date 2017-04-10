@@ -1,3 +1,16 @@
+.bilder-dropzone {
+    width: 128px;
+    height: 128px;
+    background-color: white;
+    float: left;
+    margin-left: 10px;
+    border: dashed 1px #979797;
+}
+
+.bilder-dropzone:first-child {
+    margin-left: 0px;
+}
+
 .centerPictureFrame {
     height: 128px;      /* equals image's max-height */
     width: 128px;
@@ -15,16 +28,53 @@
 }
 
 .centerPictureImg {
-    /*background: #3A6F9A;*/
     vertical-align: middle;
-    max-height: 128px;
-    max-width: 128px;
 }
 
-.thumbnails {
-  display: block;
-  max-width:128px;
-  max-height:128px;
-  width: auto;
-  height: auto;
+.picture-preview {
+    position: relative;
+    margin-left: 10px;
+    float: left;
+    width: 128px;
+    height: 128px;
+}
+
+.picture-preview > img {
+    max-width: 128px;
+    max-height: 128px;
+}
+
+.picture-preview:first-child {
+    margin-left: 0px;
+}
+
+.picture-preview > button {
+    position: absolute;
+    top: 5px; 
+    right: 7px;
+
+    border: none;
+    background: transparent;
+    padding: 0px;
+}
+
+.picture-preview > button:hover {
+    border: none;
+    background: transparent;
+}
+
+.picture-preview > button:focus, .picture-preview > button.focus {
+    box-shadow: none;
+}
+
+.picture-preview > button.disabled, .picture-preview > button:disabled {
+    border: none;
+    background: transparent;
+}
+
+.picture-preview > button:active, .picture-preview > button.active,
+.show > .picture-preview > button.dropdown-toggle {
+    border: none;
+    background: transparent;
+    background-image: none;
 }
