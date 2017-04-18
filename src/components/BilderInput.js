@@ -20,8 +20,7 @@ class BilderInput extends Component {
 
     renderThumbnail = (file) => {
         return (
-            <div key={file.name} className="picture-preview">
-                <Image src={file.preview} />
+            <div key={file.name} className="bilder-preview bilder-thumbnail" style={{ backgroundImage: `url(${file.preview})` }}>
                 <Button onClick={() => this.props.onDelete(file)}>
                     <Image src={deleteIcon} />
                 </Button>
@@ -36,11 +35,9 @@ class BilderInput extends Component {
             <div className="clearfix">
                 {pictures.map(this.renderThumbnail)}
                 {pictures.length < 4 &&
-                    <Dropzone className="bilder-dropzone" onDrop={onDrop} preventDropOnDocument={true} maxSize={MAX_IMAGE_SIZE}>
-                        <div className="centerPictureFrame">
-                            <span className="centerPictureHelper"></span>
-                            <Image className="centerPictureImg" src={addIcon} alt='legg til bilde' />
-                        </div>
+                    <Dropzone className="bilder-dropzone bilder-thumbnail" onDrop={onDrop} preventDropOnDocument={true} maxSize={MAX_IMAGE_SIZE}>
+                        <span className="bilder-dropzone-helper"></span>
+                        <Image src={addIcon} alt='legg til bilde' />
                     </Dropzone>
                 }
             </div>

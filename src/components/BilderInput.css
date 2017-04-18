@@ -1,54 +1,35 @@
-.bilder-dropzone {
-    width: 128px;
+.bilder-thumbnail {
     height: 128px;
-    background-color: white;
-    float: left;
-    margin-left: 10px;
-    border: dashed 1px #979797;
-}
-
-.bilder-dropzone:first-child {
-    margin-left: 0px;
-}
-
-.centerPictureFrame {
-    height: 128px;      /* equals image's max-height */
     width: 128px;
-    /*border: 1px solid red;*/
-    white-space: nowrap;
-    
-    text-align: center; 
-    /*margin: 1em 0;*/
+    float: left;
+    margin-right: 9px;
+    margin-bottom: 18px;
 }
 
-.centerPictureHelper {
+
+/* Add Picture Button */
+.bilder-dropzone {
+    background-color: white;
+    border: dashed 1px #979797;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.bilder-dropzone-helper {
     display: inline-block;
     height: 100%;
     vertical-align: middle;
 }
 
-.centerPictureImg {
-    vertical-align: middle;
-}
-
-.picture-preview {
+/* Thumbnails */
+.bilder-preview {
     position: relative;
-    margin-left: 10px;
-    float: left;
-    width: 128px;
-    height: 128px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-.picture-preview > img {
-    max-width: 128px;
-    max-height: 128px;
-}
-
-.picture-preview:first-child {
-    margin-left: 0px;
-}
-
-.picture-preview > button {
+.bilder-preview > button {
     position: absolute;
     top: 5px; 
     right: 7px;
@@ -58,22 +39,22 @@
     padding: 0px;
 }
 
-.picture-preview > button:hover {
+.bilder-preview > button:hover {
     border: none;
     background: transparent;
 }
 
-.picture-preview > button:focus, .picture-preview > button.focus {
+.bilder-preview > button:focus, .bilder-preview > button.focus {
     box-shadow: none;
 }
 
-.picture-preview > button.disabled, .picture-preview > button:disabled {
+.bilder-preview > button.disabled, .bilder-preview > button:disabled {
     border: none;
     background: transparent;
 }
 
-.picture-preview > button:active, .picture-preview > button.active,
-.show > .picture-preview > button.dropdown-toggle {
+.bilder-preview > button:active, .bilder-preview > button.active,
+.show > .bilder-preview > button.dropdown-toggle {
     border: none;
     background: transparent;
     background-image: none;
