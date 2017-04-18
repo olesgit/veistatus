@@ -11,21 +11,39 @@ class Submit extends Component {
         submitted: PropTypes.func.isRequired
     }
 
+    state = {
+        submitting: false
+    }
+
     submit = () => {
+        this.setState({ submitting: true });
         this.props.submitMessage()
-            .then(this.props.submitted);
+            .then(this.success)
+            .catch(this.failure);
+    }
+
+    success = () => {
+        this.setState({ submitting: false });
+        this.props.submitted();
+    }
+
+    failure = () => {
+        this.setState({ submitting: false });
     }
 
     render() {
         const { editing } = this.props;
+        const { submitting } = this.state;
 
         if (!editing) {
             return null;
         }
 
+        const text = submitting ? "Sender inn..." : "Send inn";
+
         return (
             <div className="submit-content">
-                <Button className="message-submit" bsStyle="success" block onClick={this.submit}>Send inn</Button>
+                <Button className="message-submit" bsStyle="success" block disabled={submitting} onClick={this.submit}>{text}</Button>
             </div>
         );
     }
