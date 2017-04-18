@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import React, { Component, PropTypes } from 'react'
 import Step from '../Step'
 import CategoryInput from '../CategoryInput'
@@ -23,9 +24,18 @@ class Category extends Component {
         categories: []
     }
 
+    state = {
+        isActive: false
+    }
+
+    onShowSuggestions = (shown) => {
+        this.setState({ isActive: shown });
+    }
+
     render() {
 
         const { editing, categories, category, value, onChange, goto } = this.props;
+        const { isActive } = this.state;
 
         if (!editing && !category) {
             return null;
@@ -35,9 +45,11 @@ class Category extends Component {
             return <Step icon={categoryIcon} text={category.meldingstype.beskrivelse} goto={goto} />
         }
 
+        var classes = classNames("category-content", { 'category-content--active': isActive })
+
         return (
-            <div className="category-content">
-                <CategoryInput category={value} categories={categories} onCategorySelected={onChange} />
+            <div className={classes}>
+                <CategoryInput category={value} categories={categories} onCategorySelected={onChange} onShowSuggestions={this.onShowSuggestions} />
                 <h4>MEST BRUKTE</h4>
                 <CategoryRecommended categories={categories} onCategorySelected={onChange} />
             </div>

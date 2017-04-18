@@ -1,5 +1,5 @@
 .recommended-categories {
-    margin-bottom: 20px;
+    margin: 0px 4px 6px 14px;
 }
 
 .recommended-category {
@@ -7,7 +7,8 @@
     background-color: #01436a;
     border: solid 1px #979797;
 
-    margin-left: 9px;
+    margin-right: 10px;
+    margin-bottom: 14px;
     padding: 2px 21px;
 
     font-family: Lato;
@@ -37,4 +38,13 @@
 
 .recommended-category:disabled {
     opacity: 0.5;
+}
+
+/* mobile */
+@media only screen and (max-width: 500px) {
+
+    .recommended-category {
+        font-size: 12px;
+    }
+
 }
