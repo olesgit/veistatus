@@ -198,7 +198,7 @@ class MessageWizard extends Component {
                         </Button>
                     </div>
                 </div>
-                &nbsp;
+                <div className="message-wizard-hack">&nbsp;</div>
                 {
                     checkStep(step, 'category', 'pictures', 'description', 'submit', 'receipt') &&
                     <div className="modal-backdrop wizard-backdrop fade in"></div>

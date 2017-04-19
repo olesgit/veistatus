@@ -85,4 +85,8 @@
     .message-wizard-container, .message-wizard, .message-container {
         height: 100%;
     }
+
+    .message-wizard-hack {
+        display: none;
+    }
 }
