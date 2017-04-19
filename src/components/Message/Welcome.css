@@ -37,3 +37,67 @@
     letter-spacing: normal;
     color: #4a4a4a;
 }
+
+#meld-sak {
+    margin-top: 60px;
+    height: 40px;
+    display: none;
+}
+
+/* Oslo Kommune Logo */
+.welcome-header {
+    display: none;
+}
+
+.welcome-header > img {
+    width: 37px;
+    height: 44px;
+    display: inline-block;
+}
+
+.welcome-header-text {
+    display: inline-block;
+    margin-left: 6px;
+    border-left: solid 1px #4d4d4d;
+    padding-left: 7px;
+    vertical-align: bottom;
+    font-family: Lato;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    color: #4a4a4a;
+}
+
+.welcome-header-text strong {
+    font-weight: 900;
+}
+
+/* mobile */
+@media only screen and (max-width: 500px) {
+
+    .welcome-header {
+        display: block;
+    }
+
+    #meld-sak {
+        display: block;
+    }
+
+    .welcome-content h1 {
+        font-size: 24px;
+        margin-top: 26px;
+        margin-bottom: 15px;
+    }
+
+    .welcome-content p {
+        font-size: 16px;
+    }
+    
+    .welcome-content ul {
+        font-size: 16px;
+    }
+    
+}

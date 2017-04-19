@@ -8,8 +8,7 @@ import PicturesContainer from '../../containers/Message/PicturesContainer'
 import DescriptionContainer from '../../containers/Message/DescriptionContainer'
 import SubmitContainer from '../../containers/Message/SubmitContainer'
 import ReceiptContainer from '../../containers/Message/ReceiptContainer'
-
-import Welcome from './Welcome'
+import WelcomeContainer from '../../containers/Message/WelcomeContainer'
 
 import './MessageWizard.css'
 import showIcon from '../../images/collapse-show.svg'
@@ -96,7 +95,7 @@ class MessageWizard extends Component {
 
     renderWelcome(step) {
         if (checkStep(step, 'welcome')) {
-            return <Welcome />
+            return <WelcomeContainer />
         }
     }
 
