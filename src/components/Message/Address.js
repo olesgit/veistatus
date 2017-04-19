@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { FormGroup, Button } from 'react-bootstrap'
+import { FormGroup, FormControl, Button } from 'react-bootstrap'
 import AddressInput from '../AddressInput'
 import Step from '../Step'
 
@@ -36,8 +36,13 @@ class Address extends Component {
 
         return (
             <div className="address-content">
-                <FormGroup controlId="adresse">
+                <FormGroup id="address" controlId="adresse">
                     <AddressInput geodata={value} showClear={true} locationSeleted={onChange} />
+                </FormGroup>
+                <FormGroup id="address-static" controlId="adresse-static">
+                    <FormControl.Static>
+                        {value ? value.display_name : ''}
+                    </FormControl.Static>
                 </FormGroup>
                 {address &&
                     <span className="address-addon">
