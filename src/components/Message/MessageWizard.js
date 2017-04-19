@@ -179,7 +179,7 @@ class MessageWizard extends Component {
         const contentClasses = classNames('message-content', { 'message-steps': isWizardSteps(step) });
 
         return (
-            <div>
+            <div className="message-wizard-container">
                 <div className="message-wizard">
                     <Collapse in={show}>
                         <div className="message-container">
@@ -192,12 +192,13 @@ class MessageWizard extends Component {
                             </div>
                         </div>
                     </Collapse>
-                    <div style={{ textAlign: 'center' }}>
+                    <div className="message-collapse-container">
                         <Button className={buttonClasses} onClick={this.toggleCollapse}>
                             <Image src={collapseIcon} />
                         </Button>
                     </div>
                 </div>
+                &nbsp;
                 {
                     checkStep(step, 'category', 'pictures', 'description', 'submit', 'receipt') &&
                     <div className="modal-backdrop wizard-backdrop fade in"></div>

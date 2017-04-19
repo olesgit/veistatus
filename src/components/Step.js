@@ -16,9 +16,7 @@ class Step extends PureComponent {
         return (
             <div className="step-complete clearfix" onClick={goto}>
                 <Image src={icon} />
-                <div>
-                    <span>{text}</span>
-                </div>
+                <p>{text}</p>
             </div>
         );
     }

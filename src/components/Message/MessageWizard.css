@@ -4,7 +4,6 @@
 }
 
 .message-container {
-    padding-top: 30px;
     background-color: rgba(255, 255, 255, 0.95);
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
 }
@@ -13,6 +12,11 @@
     max-width: 740px;
     margin-left: auto;
     margin-right: auto;
+    padding-bottom: 30px;
+}
+
+.message-collapse-container {
+    position: relative;
 }
 
 .message-collapse {
@@ -24,6 +28,10 @@
 
     border-radius: 0px;
     border-top: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
 }
 
 /* Steps */
@@ -65,4 +73,16 @@
 
 .modal-backdrop {
     background-color: rgb(215, 215, 215);
+}
+
+/* mobile */
+@media only screen and (max-width: 500px) {
+
+    .message-collapse-container {
+        display: none;
+    }
+    
+    .message-wizard-container, .message-wizard, .message-container {
+        height: 100%;
+    }
 }

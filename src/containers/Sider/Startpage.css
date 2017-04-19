@@ -1,3 +1,7 @@
+#startpage {
+    height: 100%;
+}
+
 .map-container {
     position: fixed;
     top: 130px;

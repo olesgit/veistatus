@@ -1,32 +1,31 @@
-.step-complete {
+.step-picture-complete {
     border-bottom: solid 2px #e9e9e9;
-    padding-bottom: 8px;
-    margin-top: 17px;
+    padding-top: 17px;
 }
 
-.step-complete:first-child {
-    margin-top: 30px;
+.step-picture-complete:first-child {
+    padding-top: 30px;
 }
 
-.step-complete > img {
+.step-picture-complete > img {
     border-right: solid 1px #9b9b9b;
-    padding-right: 11px;
+    padding-right: 6px;
     float: left;
 }
 
-.step-complete > div {
+.step-picture-complete > div {
     margin-left: 52px;
 }
 
 .step-picture-preview {
-    position: relative;
-    margin-left: 10px;
+    margin-right: 9px;
+    margin-bottom: 18px;
     float: left;
     width: 128px;
     height: 128px;
-}
-
-.step-picture-preview > img {
-    max-width: 128px;
-    max-height: 128px;
+    
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }

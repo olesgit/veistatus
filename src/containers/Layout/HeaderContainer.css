@@ -62,13 +62,17 @@ body {
 @media only screen and (max-width: 500px) {
 
     .navbar {
-        height: 35px;
-        min-height: 35px;
-        margin-bottom: initial;
+      height: 35px;
+      min-height: 35px;
+      margin-bottom: initial;
     }
     
     .navbar-brand {
       display: none;
     }
     
+    body {
+      padding-top: 35px!important;
+    }
+
 }

@@ -14,8 +14,7 @@ class StepBilder extends PureComponent {
 
     renderThumbnail(file) {
         return (
-            <div key={file.uuid} className="step-picture-preview">
-                <Image src={file.preview} />
+            <div key={file.uuid} className="step-picture-preview" style={{ backgroundImage: `url(${file.preview})` }}>
             </div>
         );
     }
@@ -23,7 +22,7 @@ class StepBilder extends PureComponent {
     render() {
         const { icon, pictures, goto } = this.props;
         return (
-            <div className="step-complete clearfix" onClick={goto}>
+            <div className="step-picture-complete clearfix" onClick={goto}>
                 <Image src={icon} />
                 <div>
                     {pictures.map(this.renderThumbnail)}

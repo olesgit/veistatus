@@ -1,13 +1,13 @@
 .map-search {
-    margin-top: 40px;
+    margin-top: 80px;
     width: 100%;
     z-index: 500;
 }
 
 .map-search-content {
-    width: 740px;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 0 14px;
 }
 
 .map-search-content > .address-input-group {

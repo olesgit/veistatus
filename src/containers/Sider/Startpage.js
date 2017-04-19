@@ -21,7 +21,7 @@ class Startpage extends Component {
 
     render() {
         return (
-            <div>
+            <div id="startpage">
                 <div className="map-container">
                     <MapViewContainer />
                 </div>

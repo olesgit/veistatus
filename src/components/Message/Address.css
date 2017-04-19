@@ -3,6 +3,7 @@
     display: table;
     border-collapse: separate;
     width: 100%;
+    padding-top: 30px;
 }
 
 .address-content > .form-group {

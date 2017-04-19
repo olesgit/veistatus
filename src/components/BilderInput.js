@@ -20,7 +20,7 @@ class BilderInput extends Component {
 
     renderThumbnail = (file) => {
         return (
-            <div key={file.name} className="bilder-preview bilder-thumbnail" style={{ backgroundImage: `url(${file.preview})` }}>
+            <div key={file.uuid} className="bilder-preview bilder-thumbnail" style={{ backgroundImage: `url(${file.preview})` }}>
                 <Button onClick={() => this.props.onDelete(file)}>
                     <Image src={deleteIcon} />
                 </Button>
