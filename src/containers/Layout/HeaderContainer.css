@@ -58,6 +58,17 @@ body {
 	display: inline-block;
 }
 
-@media (max-width: 768px) {
+/* mobile */
+@media only screen and (max-width: 500px) {
 
+    .navbar {
+        height: 35px;
+        min-height: 35px;
+        margin-bottom: initial;
+    }
+    
+    .navbar-brand {
+      display: none;
+    }
+    
 }
