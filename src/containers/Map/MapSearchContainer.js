@@ -6,7 +6,8 @@ import { locationSelected } from '../../actions/mapActions'
 const mapStateToProps = (state) => {
     return {
         geodata: state.map.geodata,
-        showSearch: state.message.step === 'welcome'
+        showSearch: state.message.step === 'welcome' || state.message.step === 'map',
+        showMap: state.message.step === 'map'
     }
 }
 

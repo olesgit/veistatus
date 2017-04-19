@@ -4,7 +4,7 @@ import { changeStep } from '../../actions/messageActions'
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        goto: () => dispatch(changeStep('address-map'))
+        goto: () => dispatch(changeStep('map'))
     }
 }
 

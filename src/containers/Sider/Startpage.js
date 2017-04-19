@@ -23,10 +23,10 @@ class Startpage extends Component {
         return (
             <div>
                 <div className="map-container">
-                    <MapSearchContainer />
                     <MapViewContainer />
                 </div>
                 <MessageWizardContainer />
+                <MapSearchContainer />
             </div>
         );
     }

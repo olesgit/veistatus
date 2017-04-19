@@ -101,7 +101,6 @@ class MapView extends React.Component {
         return (
             <Map
                 ref={this.bindMap}
-                style={{ height: "100vh" }}
                 center={[
                     this.props.geodata ? this.props.geodata.centerlat : startLat,
                     this.props.geodata ? this.props.geodata.centerlon : startLon

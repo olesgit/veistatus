@@ -1,8 +1,7 @@
 .map-search {
-    position: absolute;
-    z-index: 1000;
-    top: 420px;
+    margin-top: 40px;
     width: 100%;
+    z-index: 500;
 }
 
 .map-search-content {
@@ -13,4 +12,13 @@
 
 .map-search-content > .address-input-group {
     border: none;
+}
+
+/* mobile */
+@media only screen and (max-width: 500px) {
+
+    .map-search[data-showMap="false"] {
+        display: none;
+    }
+    
 }
