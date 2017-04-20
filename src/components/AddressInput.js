@@ -52,6 +52,21 @@ class AddressInput extends Component {
         this.geoSuggest.searchSuggests();
     }
 
+    shouldSkipSuggest = (suggest) => {
+        // Last two terms should be 'Oslo' and 'Norway'
+        const count = suggest.terms.length;
+        return count < 2 ||
+            suggest.terms[count - 1].value !== "Norway" ||
+            suggest.terms[count - 2].value !== "Oslo";
+    }
+
+    getSuggestLabel = (suggest) => {
+        return suggest.terms
+            .slice(0, suggest.terms.length - 2)
+            .map(term => term.value)
+            .join(', ');
+    }
+
     render() {
 
         const { geodata, showClear, showSearch } = this.props;
@@ -73,18 +88,9 @@ class AddressInput extends Component {
                     onSuggestSelect={this.onSuggestSelect}
                     bounds={OSLO_BOX}
                     autoActivateFirstSuggest={true}
-
-                //fixtures={fixtures}
-                //getSuggestLabel={this.getSuggestLabel}
-                //skipSuggest={this.getCustomSuggestLabel} //if function returns true, suggestion will not be shown in embedded list
-                //location={new google.maps.LatLng(53.558572, 9.9278215)}
-                //location={latlng}
-                //radius="20"
-                //types={['geocode']}  // Four types are supported: 'establishment' for businesses, 'geocode' for addresses, '(regions)' for administrative regions and '(cities)' for localities. If nothing is specified, all types are returned.
-                //style={thestyle}
-                //queryDelay="350"
-                //onChange={this.onChange}
-                //onKeyPress
+                    skipSuggest={this.shouldSkipSuggest}
+                    types={['geocode', 'establishment']}
+                    getSuggestLabel={this.getSuggestLabel}
                 />
 
                 <InputGroup.Button>
@@ -136,29 +142,4 @@ export default AddressInput;
     //     else {
     //         console.log("Error: lookup on places returns: ", status);
     //     }
-    // }
-
-
-    // getSuggestLabel(suggest) {
-    //     return (suggest.description);  //Bogstadveien, Oslo, Norway"
-
-    //     // //Eksempel: To remove Oslo, Norway ie
-    //     // if(suggest.terms && suggest.terms.length > 0) {
-    //     //     var retval = "";
-    //     //     suggest.terms.map((term) => {
-    //     //         if(term.value !== 'Oslo' && term.value !== 'Norway') {
-    //     //             if(retval !== '') retval = retval + ', ' + term.value;
-    //     //             else retval = term.value;
-    //     //         }
-    //     //         return retval;
-    //     //     })
-    //     //     if(retval === "") retval = "Oslo, Norway";
-    //     //     return(retval);
-    //     // }
-    //     // else {
-    //     // if(suggest.description)
-    //     //     return(suggest.description);
-    //     // else if(suggest.label)
-    //     //     return(suggest.label);
-    //     // }
     // }
