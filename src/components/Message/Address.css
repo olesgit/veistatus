@@ -4,6 +4,7 @@
     border-collapse: separate;
     width: 100%;
     padding-top: 30px;
+    margin: 0 auto;
 }
 
 .address-content > .form-group {
@@ -40,6 +41,15 @@
     display: none;
 }
 
+#address-static label {
+    font-weight: normal;
+    margin-bottom: 0px;
+}
+
+#address-static p {
+    font-weight: bold;
+}
+
 /* mobile */
 @media only screen and (max-width: 500px) {
 
@@ -51,4 +61,7 @@
         display: block;
     }
     
+    .address-content {
+        max-width: 270px;
+    }
 }

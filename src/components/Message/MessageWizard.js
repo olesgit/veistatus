@@ -118,7 +118,7 @@ class MessageWizard extends Component {
     }
 
     renderAbortButton() {
-        if (checkStep(this.props.message.step, 'category', 'pictures', 'description', 'submit')) {
+        if (checkStep(this.props.message.step, 'address-map', 'category', 'pictures', 'description', 'submit')) {
             return (<Button className="wizard-abort" bsStyle="link" block onClick={this.abort}>Avbryt</Button>)
         }
     }
@@ -188,8 +188,10 @@ class MessageWizard extends Component {
                                 {this.renderWelcome(step)}
                                 {this.renderSteps(step)}
                                 {this.renderReceipt(step)}
-                                {this.renderNextButton()}
-                                {this.renderAbortButton()}
+                                <div className="message-footer">
+                                    {this.renderNextButton()}
+                                    {this.renderAbortButton()}
+                                </div>
                             </div>
                         </div>
                     </Collapse>

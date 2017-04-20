@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { FormGroup, FormControl, Button } from 'react-bootstrap'
+import { FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap'
 import AddressInput from '../AddressInput'
 import Step from '../Step'
 
@@ -40,6 +40,7 @@ class Address extends Component {
                     <AddressInput geodata={value} showClear={true} locationSeleted={onChange} />
                 </FormGroup>
                 <FormGroup id="address-static" controlId="adresse-static">
+                    <ControlLabel>Valgt adresse:</ControlLabel>
                     <FormControl.Static>
                         {value ? value.display_name : ''}
                     </FormControl.Static>

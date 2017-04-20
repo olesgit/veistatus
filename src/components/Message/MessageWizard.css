@@ -40,6 +40,10 @@
 }
 
 /* Buttons */
+.message-footer {
+    padding: 0px 15px;
+}
+
 .wizard-next {
     margin-top: 20px;
 
@@ -59,6 +63,10 @@
     line-height: 1.44;
     letter-spacing: normal;
     color: #01436a;
+}
+
+.wizard-step-address-map .wizard-abort {
+    display: none;
 }
 
 /* Backdrop */
@@ -93,5 +101,9 @@
 
     .wizard-step-map {
         display: none;
+    }
+    
+    .wizard-step-address-map .wizard-abort {
+        display: block;
     }
 }
