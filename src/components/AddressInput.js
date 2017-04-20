@@ -5,7 +5,7 @@ import Geosuggest from 'react-geosuggest';
 import './AddressInput.css';
 
 import clearIcon from '../images/clear.svg'
-import searchIcon from '../images/clear.svg'
+import searchIcon from '../images/sok.svg'
 
 const DEFAULT_ZOOM = 18;
 const OSLO_BOX_SW = new window.google.maps.LatLng(59.7868158061153, 10.49674987792969);
@@ -111,35 +111,3 @@ class AddressInput extends Component {
 }
 
 export default AddressInput;
-
-
-    // onSuggestSelect = (data) => {
-    //     var service = new window.google.maps.places.PlacesService(document.createElement('div'));
-    //     service.getDetails({
-    //         placeId: data.placeId
-    //     }, (place, status) => this.callback(place, status, data)
-    //     );
-    // }
-
-    // callback = (place, status, data) => {
-    //     if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-    //         var lat = place.geometry.location.lat();
-    //         var lon = place.geometry.location.lng();
-    //         const geodata = {
-    //             adressSelectedBy: 'text',
-    //             lat: lat,
-    //             lon: lon,
-    //             valgtZoom: 18,
-    //             display_name: data.adresse,
-    //             id: data.id,
-    //             centerlat: lat,
-    //             centerlon: lon
-    //         };
-    //         if (geodata.adressSelectedBy && this.props.locationSeleted) {
-    //             //this.props.locationSeleted(geodata);
-    //         }
-    //     }
-    //     else {
-    //         console.log("Error: lookup on places returns: ", status);
-    //     }
-    // }
