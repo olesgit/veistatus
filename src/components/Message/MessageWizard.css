@@ -106,4 +106,8 @@
     .wizard-step-address-map .wizard-abort {
         display: block;
     }
+
+    .wizard-step-address-map .message-container {
+        height: auto;
+    }
 }
