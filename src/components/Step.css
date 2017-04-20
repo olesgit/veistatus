@@ -26,6 +26,8 @@
     line-height: normal;
     letter-spacing: normal;
     color: #707070;
+
+    white-space: pre-wrap;
 }
 
 /* Do not show when map is shown */
