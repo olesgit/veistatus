@@ -39,7 +39,8 @@ class MessageWizard extends Component {
         categorySpecified: PropTypes.func.isRequired,
         picturesSpecified: PropTypes.func.isRequired,
         descriptionSpecified: PropTypes.func.isRequired,
-        abort: PropTypes.func.isRequired
+        abort: PropTypes.func.isRequired,
+        goto: PropTypes.func.isRequired
     }
 
     state = {
@@ -117,18 +118,44 @@ class MessageWizard extends Component {
         }
     }
 
-    renderAbortButton() {
+    renderAbortButton(id) {
         if (checkStep(this.props.message.step, 'address-map', 'category', 'pictures', 'description', 'submit')) {
-            return (<Button className="wizard-abort" bsStyle="link" block onClick={this.abort}>Avbryt</Button>)
+            return (<Button id={id} className="wizard-abort" bsStyle="link" block onClick={this.abort}>Avbryt</Button>)
         }
     }
 
     renderNextButton() {
         var { step } = this.props.message
         if (checkStep(step, 'address', 'address-map', 'category', 'pictures', 'description')) {
-            return (<Button className="wizard-next" bsStyle="success" block onClick={this.next} disabled={this.nextDisabled()}>
+            return (<Button id="next" className="wizard-next" bsStyle="success" block onClick={this.next} disabled={this.nextDisabled()}>
                 {step === 'address-map' ? "Meld her" : "Neste"}
             </Button>)
+        }
+    }
+
+    renderMobileButtons(step) {
+        if (checkStep(step, 'category', 'pictures', 'description')) {
+            return [
+                <Button id="previous-mobile" className="wizard-previous-mobile" bsStyle="link" onClick={this.previous}>
+                    -- Tilbake
+                </Button>,
+                <Button id="next-mobile" className="wizard-next-mobile" bsStyle="success" onClick={this.next} disabled={this.nextDisabled()}>
+                    Neste
+                </Button>
+            ]
+        }
+    }
+
+    previous = () => {
+        const { step } = this.props.message;
+        if (step === 'category') {
+            this.props.goto('address');
+        }
+        else if (step === 'pictures') {
+            this.props.goto('category');
+        }
+        else if (step === 'description') {
+            this.props.goto('pictures');
         }
     }
 
@@ -188,10 +215,12 @@ class MessageWizard extends Component {
                                 {this.renderWelcome(step)}
                                 {this.renderSteps(step)}
                                 {this.renderReceipt(step)}
-                                <div className="message-footer">
+                                <div className="message-footer clearfix">
                                     {this.renderNextButton()}
-                                    {this.renderAbortButton()}
+                                    {this.renderAbortButton("abort")}
+                                    {this.renderMobileButtons(step)}
                                 </div>
+                                {this.renderAbortButton("abort-mobile")}
                             </div>
                         </div>
                     </Collapse>

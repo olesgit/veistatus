@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import MessageWizard from '../../components/Message/MessageWizard'
 import { locationSelected } from '../../actions/mapActions'
-import { addressSpecified, categorySpecified, picturesSpecified, descriptionSpecified, abort } from '../../actions/messageActions'
+import { addressSpecified, categorySpecified, picturesSpecified, descriptionSpecified, abort, changeStep } from '../../actions/messageActions'
 
 const mapStateToProps = (state) => {
     return {
@@ -19,7 +19,8 @@ const mapDispatchToProps = (dispatch) => {
         locationSeleted: locationSelected,
         picturesSpecified: picturesSpecified,
         descriptionSpecified: descriptionSpecified,
-        abort: abort
+        abort: abort,
+        goto: changeStep
     }, dispatch)
 }
 

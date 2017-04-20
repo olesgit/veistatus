@@ -27,3 +27,12 @@
     letter-spacing: normal;
     color: #707070;
 }
+
+/* mobile */
+@media only screen and (max-width: 500px) {
+
+    .step-complete {
+        display: none;
+    }
+    
+}

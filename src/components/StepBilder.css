@@ -29,3 +29,12 @@
     background-position: center;
     background-repeat: no-repeat;
 }
+
+/* mobile */
+@media only screen and (max-width: 500px) {
+
+    .step-picture-complete {
+        display: none;
+    }
+    
+}
