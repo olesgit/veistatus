@@ -78,6 +78,11 @@
 /* mobile */
 @media only screen and (max-width: 500px) {
 
+    .message-container {
+        background-color: rgba(255, 255, 255, 1);
+        box-shadow: none;
+    }
+
     .message-collapse-container {
         display: none;
     }
