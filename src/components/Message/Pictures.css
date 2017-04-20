@@ -24,3 +24,12 @@
     margin-left: 10px;
     vertical-align: middle;
 }
+
+/* mobile */
+@media only screen and (max-width: 500px) {
+
+    .pictures-content {
+        margin-top: 0px;
+    }
+    
+}
