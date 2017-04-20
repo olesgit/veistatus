@@ -69,16 +69,21 @@ class MapView extends React.Component {
             lat: e.latlng.lat,
             lon: e.latlng.lng
         };
-        nominatim.reverse(query, this.reverseComplted);
+        nominatim.reverse(query, (err, data) => this.reverseComplted(err, data, query));
     }
 
-    reverseComplted = (err, data) => {
+    reverseComplted = (err, data, query) => {
         if (err) {
             throw err;
         }
         let geodata = {
-            lat: Number(data.lat), lon: Number(data.lon), place_id: '', display_name: data.display_name, valgtZoom: this.map.getZoom(),
-            id: '', adressSelectedBy: 'click', centerlat: this.map.getCenter().lat, centerlon: this.map.getCenter().lng
+            lat: query.lat,
+            lon: query.lon,
+            display_name: data.display_name,
+            valgtZoom: this.map.getZoom(),
+            adressSelectedBy: 'click',
+            centerlat: this.map.getCenter().lat,
+            centerlon: this.map.getCenter().lng
         };
 
         if (this.props.onSelectCoord) {
