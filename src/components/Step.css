@@ -28,6 +28,11 @@
     color: #707070;
 }
 
+/* Do not show when map is shown */
+.wizard-step-address-map .step-complete {
+    display: none;
+}
+
 /* mobile */
 @media only screen and (max-width: 500px) {
 

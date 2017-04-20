@@ -37,7 +37,7 @@
 
 /* Steps */
 .message-steps {
-    height: 750px;
+    min-height: 750px;
 }
 
 
@@ -138,12 +138,14 @@
         display: block!important;
     }
 
-    .wizard-step-address-map .message-container.collapse {
+    .wizard-step-address-map .message-container.collapse,
+    .wizard-step-address .message-container.collapse {
         height: auto!important;
         box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
     }
 
-    .wizard-step-address-map .message-content {
+    .wizard-step-address-map .message-content,
+    .wizard-step-address .message-content {
         padding-bottom: 16px;
     }
 
@@ -151,7 +153,8 @@
         display: none;
     }
 
-    .wizard-step-address-map #next {
+    .wizard-step-address-map #next,
+    .wizard-step-address #next {
         display: block;
     }
     
@@ -171,15 +174,18 @@
         display: block;
     }
     
-    .wizard-step-address-map #abort {
+    .wizard-step-address-map #abort,
+    .wizard-step-address #abort {
         display: block;
     }
     
-    .wizard-step-address-map #abort-mobile {
+    .wizard-step-address-map #abort-mobile,
+    .wizard-step-address #abort-mobile {
         display: none;
     }
 
-    .wizard-step-address-map .message-container {
+    .wizard-step-address-map .message-container,
+    .wizard-step-address .message-container {
         height: auto;
     }
 }

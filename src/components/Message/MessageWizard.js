@@ -119,7 +119,7 @@ class MessageWizard extends Component {
     }
 
     renderAbortButton(id) {
-        if (checkStep(this.props.message.step, 'address-map', 'category', 'pictures', 'description', 'submit')) {
+        if (checkStep(this.props.message.step, 'address', 'address-map', 'category', 'pictures', 'description', 'submit')) {
             return (<Button id={id} className="wizard-abort" bsStyle="link" block onClick={this.abort}>Avbryt</Button>)
         }
     }
@@ -231,7 +231,7 @@ class MessageWizard extends Component {
                     </div>
                 </div>
                 {
-                    checkStep(step, 'category', 'pictures', 'description', 'submit', 'receipt') &&
+                    checkStep(step, 'address', 'category', 'pictures', 'description', 'submit', 'receipt') &&
                     <div className="modal-backdrop wizard-backdrop fade in"></div>
                 }
             </div>

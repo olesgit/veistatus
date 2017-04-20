@@ -30,6 +30,11 @@
     background-repeat: no-repeat;
 }
 
+/* Do not show when map is shown */
+.wizard-step-address-map .step-picture-complete {
+    display: none;
+}
+
 /* mobile */
 @media only screen and (max-width: 500px) {
 

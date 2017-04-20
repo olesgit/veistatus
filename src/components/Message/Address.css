@@ -64,4 +64,8 @@
     .address-content {
         max-width: 270px;
     }
+
+    .address-addon {
+        display: none;
+    }
 }
