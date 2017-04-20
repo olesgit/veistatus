@@ -23,7 +23,6 @@ class Submit extends Component {
     }
 
     success = () => {
-        this.setState({ submitting: false });
         this.props.submitted();
     }
 

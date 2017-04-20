@@ -53,7 +53,7 @@ var query_done = function (params, done) {
             return done(err);
         }
 
-        if (params.format == 'json') {
+        if (params.format === 'json') {
             data = JSON.parse(data);
         }
 

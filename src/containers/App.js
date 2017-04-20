@@ -5,7 +5,7 @@ import FlashMessagesList from "../components/common/FlashMessagesList";
 export default class App extends Component {
 
     static propTypes = {
-        children: PropTypes.arrayOf(PropTypes.node)
+        children: PropTypes.node
     }
 
     render() {

@@ -32,7 +32,7 @@ class CategoryInput extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.category != this.props.category) {
+        if (nextProps.category !== this.props.category) {
             this.setState({
                 value: getSuggestionValue(nextProps.category),
                 suggestions: []

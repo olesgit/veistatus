@@ -53,7 +53,7 @@ class MessageWizard extends Component {
 
     componentWillReceiveProps(nextProps) {
 
-        if (nextProps.geodata && this.props.geodata != nextProps.geodata) {
+        if (nextProps.geodata && this.props.geodata !== nextProps.geodata) {
             this.setState({ show: true });
         }
 
@@ -136,10 +136,10 @@ class MessageWizard extends Component {
     renderMobileButtons(step) {
         if (checkStep(step, 'category', 'pictures', 'description')) {
             return [
-                <Button id="previous-mobile" className="wizard-previous-mobile" bsStyle="link" onClick={this.previous}>
+                <Button id="previous-mobile" key="previous" className="wizard-previous-mobile" bsStyle="link" onClick={this.previous}>
                     Tilbake
                 </Button>,
-                <Button id="next-mobile" className="wizard-next-mobile" bsStyle="success" onClick={this.next} disabled={this.nextDisabled()}>
+                <Button id="next-mobile" key="next" className="wizard-next-mobile" bsStyle="success" onClick={this.next} disabled={this.nextDisabled()}>
                     Neste
                 </Button>
             ]
