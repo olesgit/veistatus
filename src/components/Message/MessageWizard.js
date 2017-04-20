@@ -137,7 +137,7 @@ class MessageWizard extends Component {
         if (checkStep(step, 'category', 'pictures', 'description')) {
             return [
                 <Button id="previous-mobile" className="wizard-previous-mobile" bsStyle="link" onClick={this.previous}>
-                    -- Tilbake
+                    Tilbake
                 </Button>,
                 <Button id="next-mobile" className="wizard-next-mobile" bsStyle="success" onClick={this.next} disabled={this.nextDisabled()}>
                     Neste

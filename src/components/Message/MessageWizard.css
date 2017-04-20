@@ -40,11 +40,12 @@
     height: 750px;
 }
 
-/* Buttons */
-.message-footer {
-    padding: 0px 15px;
+
+.wizard-step-map {
+    display: none;
 }
 
+/* Buttons */
 .wizard-next {
     margin-top: 20px;
 
@@ -58,6 +59,7 @@
     height: 40px;
     width: 120px;
     border-radius: 6px;
+    display: none;
 }
 
 .wizard-previous-mobile {
@@ -66,6 +68,7 @@
     height: 40px;
     width: 120px;
     color: #4d4d4d;
+    display: none;
 }
 
 .wizard-abort {
@@ -114,6 +117,10 @@
         box-shadow: none;
     }
 
+    .message-footer {
+        padding: 0px 15px;
+    }
+
     .message-steps {
         height: 100%;
     }
@@ -126,12 +133,18 @@
         height: 100%;
     }
 
-    .wizard-step-map {
-        display: none;
+    .message-container.collapse {
+        height: 100%!important;
+        display: block!important;
     }
-    
-    .wizard-step-address-map .wizard-abort {
-        display: block;
+
+    .wizard-step-address-map .message-container.collapse {
+        height: auto!important;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    }
+
+    .wizard-step-address-map .message-content {
+        padding-bottom: 16px;
     }
 
     #next {
@@ -147,6 +160,18 @@
     }
 
     #abort-mobile {
+        display: block;
+    }
+
+    .wizard-next-mobile {
+        display: block;
+    }
+
+    .wizard-previous-mobile {
+        display: block;
+    }
+    
+    .wizard-step-address-map #abort {
         display: block;
     }
     
