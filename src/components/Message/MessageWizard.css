@@ -94,4 +94,8 @@
     .message-wizard-hack {
         display: none;
     }
+
+    .wizard-step-map {
+        display: none;
+    }
 }

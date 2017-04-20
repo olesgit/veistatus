@@ -175,11 +175,12 @@ class MessageWizard extends Component {
         const hideCollapse = !checkStep(step, 'welcome');
         const collapseIcon = show ? hideIcon : showIcon;
 
+        const wizardClasses = classNames('message-wizard-container', `wizard-step-${step}`)
         const buttonClasses = classNames('message-collapse', { hidden: hideCollapse });
         const contentClasses = classNames('message-content', { 'message-steps': isWizardSteps(step) });
 
         return (
-            <div className="message-wizard-container">
+            <div className={wizardClasses}>
                 <div className="message-wizard">
                     <Collapse in={show}>
                         <div className="message-container">

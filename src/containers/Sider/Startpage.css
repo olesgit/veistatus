@@ -1,5 +1,6 @@
 #startpage {
     height: 100%;
+    overflow: auto;
 }
 
 .map-container {
@@ -8,4 +9,13 @@
     left: 0px;
     right: 0px;
     bottom: 0px;
+}
+
+/* mobile */
+@media only screen and (max-width: 500px) {
+    
+    .map-container {
+        top: 35px;
+    }
+    
 }
