@@ -123,6 +123,7 @@
 
     .message-steps {
         height: 100%;
+        min-height: 0px;
     }
 
     .message-collapse-container {
