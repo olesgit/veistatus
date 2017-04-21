@@ -91,7 +91,7 @@ class AddressInput extends Component {
                     skipSuggest={this.shouldSkipSuggest}
                     types={['geocode', 'establishment']}
                     getSuggestLabel={this.getSuggestLabel}
-                    queryDelay="0"
+                    queryDelay={0}
                 />
 
                 <InputGroup.Button>
