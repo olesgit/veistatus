@@ -54,17 +54,17 @@ class AddressInput extends Component {
 
     shouldSkipSuggest = (suggest) => {
         // Last two terms should be 'Oslo' and 'Norway'
+        // Note: need this check because of a bug in geosuggest 
+        // where country code is not sent to google
         const count = suggest.terms.length;
-        return count < 2 ||
-            suggest.terms[count - 1].value !== "Norway" ||
-            suggest.terms[count - 2].value !== "Oslo";
+        return count <= 2 ||
+            suggest.terms[count - 2].value !== "Oslo" ||
+            !(suggest.terms[count - 1].value === "Norway" ||
+                suggest.terms[count - 1].value === "Norge");
     }
 
     getSuggestLabel = (suggest) => {
-        return suggest.terms
-            .slice(0, suggest.terms.length - 2)
-            .map(term => term.value)
-            .join(', ');
+        return suggest.structured_formatting.main_text;
     }
 
     render() {
@@ -91,6 +91,7 @@ class AddressInput extends Component {
                     skipSuggest={this.shouldSkipSuggest}
                     types={['geocode', 'establishment']}
                     getSuggestLabel={this.getSuggestLabel}
+                    queryDelay="0"
                 />
 
                 <InputGroup.Button>
