@@ -1,90 +1,65 @@
-import * as cookieHandler from '../utils/cookieHandler';
-import { browserHistory } from 'react-router';
-import jwtDecode from 'jwt-decode';
-import axios from 'axios';
-import * as api from "../constants/api";
-import * as utils from "../utils/utils";
+import axios from 'axios'
+import * as api from '../constants/api'
+import * as cookieHandler from '../utils/cookieHandler'
 
+export const LOGIN_USER_REQUEST = 'LOGIN_USER_REQUEST'
+export const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS'
+export const LOGIN_USER_FAILURE = 'LOGIN_USER_FAILURE'
 
-import
-{
-    SIGNIN_USER, SIGNIN_USER_SUCCESS, SIGNIN_USER_FAILURE, LOGOUT_USER,
-    AUTH_TOKEN_IS_VALID, AUTH_TOKEN_IS_INVALID, AUTH_TOKEN_IS_EXPIRED, SET_CURRENT_SERVICE_INFO
-} from "./ActionTypes";
+const loginUserRequest = (email) => ({ type: LOGIN_USER_REQUEST, payload: email })
+const loginUserSuccess = (user) => ({ type: LOGIN_USER_SUCCESS, payload: user })
+const loginUserFailure = (error) => ({ type: LOGIN_USER_FAILURE, payload: error, error: true })
 
-const signInUserRequest = (user) => ({ type: SIGNIN_USER, payload: user });
-const signInUserFailure = (error) => ({ type: SIGNIN_USER_FAILURE, error: error });
+export function login(email, password) {
+    return function (dispatch) {
+        dispatch(loginUserRequest(email));
+        return axios.post(api.login, { epost: email, passord: password, serviceId: "1aeffc5d-9d3e-4db9-aead-525a33660b9c" })
+            .then(response => loginSuccess(response, dispatch))
+            .catch(error => loginFailure(error, dispatch));
+    };
+}
 
-export function GetAuthenticationServiceInfo()
-{
-    let url = api.AuthenticationServiceInfo;
-    return dispatch =>
-    {
-        return axios.get(url).then(res =>
-        {
-            const service = utils.successData(res)
-            dispatch(setCurrentServiceInfo(service))
-        })
+function loginSuccess(response, dispatch) {
+    let bymtoken = response.data.result;
+    cookieHandler.saveBymCookie(bymtoken);
+    cookieHandler.setAuthorizationToken();
+    const decodedToken = cookieHandler.decodeToken();
+    dispatch(loginUserSuccess(decodedToken))
+}
+
+function loginFailure(error, dispatch) {
+    dispatch(loginUserFailure(error));
+    let message = "Kunne ikke logge inn";
+    if (error.response && error.response.data && error.response.data.errorMessage) {
+        // Known error messages:
+        // "E-post er påkrevd"
+        // "E-post er ikke validert"
+        // "Passord må være minimum 6 tegn"
+        // "E-post eller passord er ikke riktig!"
+        message = "Feil e-postadresse eller passord";
     }
+
+    return Promise.reject(message)
 }
 
-export function loginUser(user)
-{
-    console.log(user)
-    return dispatch =>
-    {
-        let url = api.loginApi()
-        dispatch(signInUserRequest(user.epost));
-        return axios.post(url, user)
-            .then(res =>
-            {
-                let bymtoken = utils.successData(res);
-                if (bymtoken)
-                {
-                    cookieHandler.saveBymCookie(bymtoken);
-                    cookieHandler.SetAuthorizationToken();
-                    const decodedToken = cookieHandler.decodeToken();
-                    dispatch(signInUserSuccess(decodedToken));
-                }
-                else
-                {
-                    let error = utils.errorData(res)
-                    dispatch(signInUserFailure(error)); 
-                }
-            })
-    };
-}
-
-const logoutUser = (userName) => ({ type: LOGOUT_USER, user: userName });
-
-export function signOutAndRemoveCookie(userName)
-{
-    return function (dispatch)
-    {
-        dispatch(logoutUser(userName));
-        cookieHandler.removeBymCookie();
-        browserHistory.push('/login');
-    };
-}
+// Validate Token
+export const AUTH_TOKEN_IS_VALID = 'AUTH_TOKEN_IS_VALID';
+export const AUTH_TOKEN_IS_INVALID = 'AUTH_TOKEN_IS_INVALID';
+export const AUTH_TOKEN_IS_EXPIRED = 'AUTH_TOKEN_IS_EXPIRED';
 
 const validToken = token => ({ type: AUTH_TOKEN_IS_VALID, payload: token });
 const invalidToken = () => ({ type: AUTH_TOKEN_IS_INVALID });
 const expiredToken = () => ({ type: AUTH_TOKEN_IS_EXPIRED });
 
-export function decodeAndValidateToken(dispatch)
-{
-
+export function decodeAndValidateToken(dispatch) {
     const jwt = cookieHandler.loadBymCookie();
-
-    if (jwt == null)
-    {
+    if (jwt == null) {
         return null;
     }
 
-    const token = decodeToken(jwt);
+    const token = cookieHandler.decodeToken(jwt);
 
-    if (token == null)
-    {
+    if (token == null) {
         dispatch(invalidToken());
         return null;
     }
@@ -95,40 +70,11 @@ export function decodeAndValidateToken(dispatch)
 
     const expired = notBeforeTime > now || now > expirationTime;
 
-    if (expired)
-    {
+    if (expired) {
         dispatch(expiredToken());
         return null;
     }
 
     dispatch(validToken(token));
     return token;
-}
-
-function decodeToken(jwt)
-{
-    if (jwt)
-    {
-        try
-        {
-            return jwtDecode(jwt);
-        } catch (err)
-        {
-            // Decoding error, invalid/malformed token
-        }
-    }
-}
-export function setCurrentServiceInfo(service)
-{
-    return {
-        type: SET_CURRENT_SERVICE_INFO,
-        service
-    };
-}
-export function signInUserSuccess(user)
-{
-    return {
-        type: SIGNIN_USER_SUCCESS,
-        user
-    };
 }
