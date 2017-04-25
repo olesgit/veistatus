@@ -1,4 +1,4 @@
-import { RESET_PASSWORD_SUCCESS } from '../actions/loginActions'
+import { RESET_PASSWORD_SUCCESS, CHANGE_PASSWORD_SUCCESS } from '../actions/loginActions'
 import { ADD_FLASH_MESSAGE, DELETE_FLASH_MESSAGE } from "../actions/ActionTypes"
 import shortid from "shortid"
 import findIndex from "lodash/findIndex"
@@ -31,6 +31,15 @@ export default (state = [], action = {}) => {
                     id: shortid.generate(),
                     type: 'success',
                     text: "En epost med link for tilbakestilling av passord er sendt"
+                }
+            ]);
+
+        case CHANGE_PASSWORD_SUCCESS:
+            return ([
+                {
+                    id: shortid.generate(),
+                    type: 'success',
+                    text: "Passord endret"
                 }
             ]);
 

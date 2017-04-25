@@ -56,7 +56,7 @@ class ForgotPassword extends Component {
         const loginText = submitting ? "Tilbakestiller passord..." : "Tilbakestill passord";
 
         return (
-            <Modal id="forgot-password-dialog" className="ok" show={true} onHide={onHide} backdrop="static" bsSize="large">
+            <Modal id="forgot-password-dialog" show={true} onHide={onHide} backdrop="static" bsSize="large">
                 <Modal.Header>
                     <button type="button" className="close" aria-label="Close" onClick={onHide}>
                         <Image src={closeIcon} />

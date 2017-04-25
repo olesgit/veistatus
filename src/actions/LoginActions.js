@@ -86,6 +86,36 @@ function registerFailure(error, dispatch) {
     return Promise.reject(message)
 }
 
+// Change Passord
+
+export const CHANGE_PASSWORD_REQUEST = 'CHANGE_PASSWORD_REQUEST'
+export const CHANGE_PASSWORD_SUCCESS = 'CHANGE_PASSWORD_SUCCESS'
+export const CHANGE_PASSWORD_FAILURE = 'CHANGE_PASSWORD_FAILURE'
+
+const changePasswordRequest = () => ({ type: CHANGE_PASSWORD_REQUEST })
+const changePasswordSuccess = () => ({ type: CHANGE_PASSWORD_SUCCESS })
+const changePasswordFailure = (error) => ({ type: CHANGE_PASSWORD_FAILURE, payload: error, error: true })
+
+export function changePassword(brukerId, password) {
+    return function (dispatch) {
+        dispatch(changePasswordRequest());
+        return axios.put(api.changePassword(brukerId), { passord: password })
+            .then(() => dispatch(changePasswordSuccess()))
+            .catch(error => changePasswordFailed(error, dispatch));
+    };
+}
+
+function changePasswordFailed(error, dispatch) {
+    dispatch(changePasswordFailure(error));
+    let message = "Kunne ikke endre passord";
+    if (error.response && error.response.data && error.response.data.errorMessage) {
+        if (error.response.data.errorMessage === "Passord må være minimum 6 tegn\r\n") {
+            message = "Passord må være på minimum 6 tegn";
+        }
+    }
+    return Promise.reject(message)
+}
+
 // Reset Password
 
 export const RESET_PASSWORD_REQUEST = 'RESET_PASSWORD_REQUEST'

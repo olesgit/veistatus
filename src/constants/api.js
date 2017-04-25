@@ -58,6 +58,7 @@ export const postMessage = bymeldingServiceBaseUrl + "/api/meldinger"
 // Autentisering
 export const login = autentiseringServiceBaseUrl + '/api/token'
 export const resetPassword = autentiseringServiceBaseUrl + '/api/glemtpassord'
+export const changePassword = brukerId => autentiseringServiceBaseUrl + `/api/brukere/${brukerId}/passord`
 
 
 

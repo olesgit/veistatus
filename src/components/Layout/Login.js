@@ -63,7 +63,7 @@ class Login extends Component {
         const loginText = submitting ? "Logger inn..." : "Logg inn";
 
         return (
-            <Modal className="ok" show={true} onHide={onHide} backdrop="static" bsSize="large">
+            <Modal show={true} onHide={onHide} backdrop="static" bsSize="large">
                 <Modal.Header>
                     <button type="button" className="close" aria-label="Close" onClick={onHide}>
                         <Image src={closeIcon} />

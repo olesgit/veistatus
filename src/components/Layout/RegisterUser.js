@@ -74,7 +74,7 @@ class RegisterUser extends Component {
         const registerText = submitting ? "Oppretter konto..." : "Opprett konto";
 
         return (
-            <Modal id="register-user-dialog" className="ok" show={true} onHide={onHide} backdrop="static" bsSize="large">
+            <Modal id="register-user-dialog" show={true} onHide={onHide} backdrop="static" bsSize="large">
                 <Modal.Header>
                     <button type="button" className="close" aria-label="Close" onClick={onHide}>
                         <Image src={closeIcon} />

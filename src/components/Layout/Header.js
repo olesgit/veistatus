@@ -4,6 +4,7 @@ import { Link } from 'react-router'
 import LoginContainer from '../../containers/Layout/LoginContainer'
 import RegisterUserContainer from '../../containers/Layout/RegisterUserContainer'
 import ForgotPasswordContainer from '../../containers/Layout/ForgotPasswordContainer'
+import ProfileContainer from '../../containers/Layout/ProfileContainer'
 
 import './Header.css'
 
@@ -19,7 +20,8 @@ class Header extends Component {
     state = {
         login: false,
         register: false,
-        password: false
+        password: false,
+        profile: false
     }
 
     show = (ev, name) => {
@@ -33,7 +35,7 @@ class Header extends Component {
 
     render() {
         const { signedIn } = this.props;
-        const { login, register, password } = this.state;
+        const { login, register, password, profile } = this.state;
         return (
             <Navbar fluid fixedTop>
                 <Navbar.Header>
@@ -58,6 +60,7 @@ class Header extends Component {
                 {login && <LoginContainer onHide={() => this.hide('login')} onForgotPassword={(ev) => this.show(ev, 'password')} />}
                 {register && <RegisterUserContainer onHide={() => this.hide('register')} />}
                 {password && <ForgotPasswordContainer onHide={() => this.hide('password')} />}
+                {profile && <ProfileContainer onHide={() => this.hide('profile')} />}
             </Navbar>
         );
     }
