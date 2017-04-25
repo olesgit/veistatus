@@ -180,3 +180,14 @@ export function decodeAndValidateToken(dispatch) {
     dispatch(validToken(token));
     return token;
 }
+
+// Logout
+export const LOGOUT_USER = 'LOGOUT_USER';
+const logoutUser = () => ({ type: LOGOUT_USER });
+
+export function logout() {
+    return function (dispatch) {
+        cookieHandler.removeBymCookie();
+        dispatch(logoutUser());
+    };
+}

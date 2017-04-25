@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { Navbar, Image, Nav, NavItem } from 'react-bootstrap'
+import { Navbar, Image, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
 import { Link } from 'react-router'
 import LoginContainer from '../../containers/Layout/LoginContainer'
 import RegisterUserContainer from '../../containers/Layout/RegisterUserContainer'
@@ -10,11 +10,14 @@ import './Header.css'
 
 import logo from '../../images/byvaapen.png'
 import oslo_logo from '../../images/logo_oslo.png'
+import settingsIcon from '../../images/innstillinger.svg'
+import userIcon from '../../images/profil.svg'
 
 class Header extends Component {
 
     static propTypes = {
-        signedIn: PropTypes.bool.isRequired
+        signedIn: PropTypes.bool.isRequired,
+        logout: PropTypes.func.isRequired
     }
 
     state = {
@@ -36,6 +39,10 @@ class Header extends Component {
     render() {
         const { signedIn } = this.props;
         const { login, register, password, profile } = this.state;
+
+        const settings = <Image src={settingsIcon} />
+        const user = <Image src={userIcon} />
+
         return (
             <Navbar fluid fixedTop>
                 <Navbar.Header>
@@ -54,6 +61,17 @@ class Header extends Component {
                     <Nav pullRight>
                         {!signedIn && <NavItem onClick={(ev) => this.show(ev, 'register')}>Registrer deg</NavItem>}
                         {!signedIn && <NavItem onClick={(ev) => this.show(ev, 'login')}>Logg inn</NavItem>}
+                        {
+                            signedIn &&
+                            <NavDropdown id="bruker-meny" title={user} noCaret>
+                                <MenuItem onClick={(ev) => this.show(ev, 'profile')}>Din profil</MenuItem>
+                                <MenuItem onClick={() => this.props.logout()}>Logg ut</MenuItem>
+                            </NavDropdown>
+                        }
+                        <NavDropdown id="innstillinger" title={settings} noCaret>
+                            <MenuItem>Vilkår</MenuItem>
+                            <MenuItem>Om Bymelding</MenuItem>
+                        </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
                 <Image className="oslo-logo" width={90} height={50} src={oslo_logo} />
