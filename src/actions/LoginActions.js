@@ -2,6 +2,10 @@ import axios from 'axios'
 import * as api from '../constants/api'
 import * as cookieHandler from '../utils/cookieHandler'
 
+const BYM_SERVICE_ID = "1aeffc5d-9d3e-4db9-aead-525a33660b9c";
+
+// Login
+
 export const LOGIN_USER_REQUEST = 'LOGIN_USER_REQUEST'
 export const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS'
 export const LOGIN_USER_FAILURE = 'LOGIN_USER_FAILURE'
@@ -13,7 +17,7 @@ const loginUserFailure = (error) => ({ type: LOGIN_USER_FAILURE, payload: error,
 export function login(email, password) {
     return function (dispatch) {
         dispatch(loginUserRequest(email));
-        return axios.post(api.login, { epost: email, passord: password, serviceId: "1aeffc5d-9d3e-4db9-aead-525a33660b9c" })
+        return axios.post(api.login, { epost: email, passord: password, serviceId: BYM_SERVICE_ID })
             .then(response => loginSuccess(response, dispatch))
             .catch(error => loginFailure(error, dispatch));
     };
@@ -38,7 +42,34 @@ function loginFailure(error, dispatch) {
         // "E-post eller passord er ikke riktig!"
         message = "Feil e-postadresse eller passord";
     }
+    return Promise.reject(message)
+}
 
+// Reset Password
+
+export const RESET_PASSWORD_REQUEST = 'RESET_PASSWORD_REQUEST'
+export const RESET_PASSWORD_SUCCESS = 'RESET_PASSWORD_SUCCESS'
+export const RESET_PASSWORD_FAILURE = 'RESET_PASSWORD_FAILURE'
+
+const resetPasswordRequest = (email) => ({ type: RESET_PASSWORD_REQUEST, payload: email })
+const resetPasswordSuccess = () => ({ type: RESET_PASSWORD_SUCCESS })
+const resetPasswordFailure = (error) => ({ type: RESET_PASSWORD_FAILURE, payload: error, error: true })
+
+export function reset(email) {
+    return function (dispatch) {
+        dispatch(resetPasswordRequest(email));
+        return axios.post(api.resetPassword, { epost: email, serviceId: BYM_SERVICE_ID })
+            .then(() => dispatch(resetPasswordSuccess()))
+            .catch(error => resetFailure(error, dispatch));
+    };
+}
+
+function resetFailure(error, dispatch) {
+    dispatch(resetPasswordFailure(error));
+    let message = "Kunne ikke tilbakestille passord";
+    if (error.response && error.response.data && error.response.data.errorMessage) {
+        message = "Ukjent e-postadresse";
+    }
     return Promise.reject(message)
 }
 

@@ -57,7 +57,7 @@ class Header extends Component {
                 <Image className="oslo-logo" width={90} height={50} src={oslo_logo} />
                 {login && <LoginContainer onHide={() => this.hide('login')} onForgotPassword={(ev) => this.show(ev, 'password')} />}
                 {register && <RegisterUserContainer onHide={() => this.hide('register')} />}
-                {password && <ForgotPasswordContainer onHide={() => this.hide('login')} />}
+                {password && <ForgotPasswordContainer onHide={() => this.hide('password')} />}
             </Navbar>
         );
     }

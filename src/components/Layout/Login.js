@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { Modal, Button, FormGroup, ControlLabel, FormControl, HelpBlock, Image } from 'react-bootstrap'
 
-import './Login.css'
-
 import closeIcon from '../../images/lukk.svg'
 
 class Login extends Component {
@@ -62,7 +60,7 @@ class Login extends Component {
         const { onHide } = this.props;
         const { email, password, emailState, passwordState, submitting, errorMessage } = this.state;
 
-        const loginText = submitting ? "Logger inn..." : "Logg inn"
+        const loginText = submitting ? "Logger inn..." : "Logg inn";
 
         return (
             <Modal className="ok" show={true} onHide={onHide} backdrop="static" bsSize="large">

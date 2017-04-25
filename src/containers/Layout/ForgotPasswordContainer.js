@@ -1,10 +1,12 @@
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import ForgotPassword from '../../components/Layout/ForgotPassword'
+import { reset } from '../../actions/loginActions'
 
-const mapStateToProps = (state) => {
+const mapDispatchToProps = (dispatch) => {
     return {
-        //geodata: state.map.geodata
+        resetPassword: bindActionCreators(reset, dispatch)
     }
 }
 
-export default connect(mapStateToProps)(ForgotPassword)
+export default connect(null, mapDispatchToProps)(ForgotPassword)
