@@ -1,10 +1,12 @@
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import RegisterUser from '../../components/Layout/RegisterUser'
+import { register } from '../../actions/loginActions'
 
-const mapStateToProps = (state) => {
+const mapDispatchToProps = (dispatch) => {
     return {
-        //geodata: state.map.geodata
+        registerUser: bindActionCreators(register, dispatch)
     }
 }
 
-export default connect(mapStateToProps)(RegisterUser)
+export default connect(null, mapDispatchToProps)(RegisterUser)

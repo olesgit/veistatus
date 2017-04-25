@@ -57,12 +57,12 @@
 }
 
 .modal-body {
-    max-width: 360px;
+    max-width: 390px;
     margin: 0 auto;
 }
 
 .modal-footer {
-    max-width: 360px;
+    max-width: 390px;
     margin: 0 auto;
     border: none;
     padding-bottom: 68px;

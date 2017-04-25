@@ -1,0 +1,43 @@
+#register-user-dialog .modal-body p,
+#register-user-dialog .modal-body ul {
+    padding-left: 15px;
+    font-family: Lato;
+    font-size: 24px;
+    color: #4a4a4a;
+    line-height: 2.04;
+}
+
+#register-user-dialog .modal-body p {
+    margin-bottom: 0px;
+}
+
+#register-user-dialog .modal-body ul {
+    margin-bottom: 18px;
+}
+
+#register-user-dialog .modal-header {
+    padding-bottom: 0px;
+}
+
+#register-user-dialog .modal-body {
+    padding-top: 0px;
+}
+
+#register-user-dialog .checkbox {
+    margin-top: 25px;
+    margin-left: 5px;
+}
+
+#register-user-dialog .checkbox > label {
+    padding-left: 0px;
+}
+
+#register-user-dialog .checkbox > label > img {
+    vertical-align: middle;
+    margin-right: 7px;
+    margin-bottom: 4px;
+}
+
+#register-user-dialog input[type=checkbox] {
+    display: none;
+}
