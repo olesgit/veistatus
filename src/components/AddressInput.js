@@ -41,6 +41,7 @@ class AddressInput extends Component {
 
     onSuggestSelect = (suggest) => {
         this.props.locationSeleted(createGeodata(suggest.placeId, suggest.label, suggest.location.lat, suggest.location.lng));
+        this.geoSuggest.blur();
     }
 
     onClear = () => {
