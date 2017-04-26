@@ -4,6 +4,7 @@ import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 import { /*divIcon,*/ icon } from 'leaflet'
 import { startLat, startLon, startZoom } from "../../constants/settings"
 import '../../css/kart/kart.css'
+import OpenMarker from './OpenMarker'
 
 const nominatim = require('./Nominatim')
 
@@ -24,7 +25,7 @@ var icon2 = icon({
     //shadowSize:   [24, 30], // size of the shadow
     iconAnchor: [12, 30], // point of the icon which will correspond to marker's location
     //shadowAnchor: [4, 62],  // the same for the shadow
-    popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+    popupAnchor: [0, -33] // point from which the popup should open relative to the iconAnchor
 });
 
 //TileLayer settings:
@@ -66,6 +67,7 @@ class MapView extends React.Component {
     }
 
     handleClick = (e) => {
+        console.log(e)
         var query = {
             lat: e.latlng.lat,
             lon: e.latlng.lng
@@ -77,6 +79,7 @@ class MapView extends React.Component {
         if (err) {
             throw err;
         }
+
         let geodata = {
             lat: query.lat,
             lon: query.lon,
@@ -84,7 +87,8 @@ class MapView extends React.Component {
             valgtZoom: this.map.getZoom(),
             adressSelectedBy: 'click',
             centerlat: this.map.getCenter().lat,
-            centerlon: this.map.getCenter().lng
+            centerlon: this.map.getCenter().lng,
+            outOfBounds: data.address.state !== "Oslo"
         };
 
         if (this.props.onSelectCoord) {
@@ -94,13 +98,24 @@ class MapView extends React.Component {
 
     renderMarker(geodata) {
         if (geodata && geodata.adressSelectedBy !== 'none') {
-            return (
-                <Marker position={[geodata.lat, geodata.lon]} icon={icon2}>
-                    <Popup>
-                        <span>Din valgte posisjon: <br /> {geodata.display_name}</span>
-                    </Popup>
-                </Marker>
-            );
+            if (geodata.outOfBounds) {
+                return (
+                    <OpenMarker key={geodata.display_name} position={[geodata.lat, geodata.lon]} icon={icon2}>
+                        <Popup>
+                            <span>Adressen er utenfor Oslo</span>
+                        </Popup>
+                    </OpenMarker>
+                );
+            }
+            else {
+                return (
+                    <Marker position={[geodata.lat, geodata.lon]} icon={icon2}>
+                        <Popup>
+                            <span>Din valgte posisjon: <br /> {geodata.display_name}</span>
+                        </Popup>
+                    </Marker>
+                );
+            }
         }
     }
 
