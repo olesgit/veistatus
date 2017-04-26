@@ -104,3 +104,16 @@
 .modal-body > .help-block {
     margin-bottom: 28px;
 }
+
+/* mobile */
+@media (max-width: 767px) {
+
+    .modal-dialog {
+        margin: 0px;
+        height: 100%;
+    }
+
+    .modal-body {
+        height: 100%;
+    }
+}
