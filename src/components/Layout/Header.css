@@ -80,7 +80,6 @@ nav .dropdown-menu a {
 .navbar-collapse {
   background-color: #fff;
   border-top: none;
-  border-bottom: solid 1px #39393a;
 }
 
 #settings-txt {
@@ -111,5 +110,9 @@ nav .dropdown-menu a {
 
     #settings-txt {
       display: block;
+    }
+
+    .navbar-collapse {
+      border-bottom: solid 1px #39393a;
     }
 }
