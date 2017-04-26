@@ -59,3 +59,18 @@
     background: transparent;
     background-image: none;
 }
+
+.bilder-dropzone .add.hover,
+.bilder-preview > button > .del.hover {
+    display: none;
+}
+
+.bilder-dropzone:hover .add,
+.bilder-preview > button:hover > .del {
+    display: none;
+}
+
+.bilder-dropzone:hover .add.hover,
+.bilder-preview > button:hover > .del.hover {
+    display: inline;
+}
