@@ -4,8 +4,8 @@ import { Modal, Button, FormGroup, ControlLabel, FormControl, HelpBlock, Image, 
 import './RegisterUser.css'
 
 import closeIcon from '../../images/lukk.svg'
-import checked from '../../images/valgt-radiobutton.svg'
-import notChecked from '../../images/ikke-valgt-radiobutton.svg'
+import checked from '../../images/check-box-checked.svg'
+import notChecked from '../../images/check-box.svg'
 
 class RegisterUser extends Component {
 
