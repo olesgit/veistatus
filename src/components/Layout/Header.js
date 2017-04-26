@@ -27,6 +27,14 @@ class Header extends Component {
         profile: false
     }
 
+    showLogin = () => {
+        this.setState({ login: true });
+    }
+
+    showRegisterUser = () => {
+        this.setState({ register: true });
+    }
+
     show = (ev, name) => {
         this.setState({ [name]: true });
         if (ev.target.blur) ev.target.blur();

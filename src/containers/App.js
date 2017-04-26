@@ -8,12 +8,24 @@ export default class App extends Component {
         children: PropTypes.node
     }
 
+    showLoginDialog = () => {
+        this.header.getWrappedInstance().showLogin();
+    }
+
+    showRegisterUser = () => {
+        this.header.getWrappedInstance().showRegisterUser();
+    }
+
     render() {
         return (
             <div>
-                <HeaderContainer />
+                <HeaderContainer ref={r => this.header = r} />
                 <FlashMessagesList />
-                {this.props.children}
+                {React.cloneElement({ ...this.props }.children,
+                    {
+                        showLoginDialog: this.showLoginDialog,
+                        showRegisterUser: this.showRegisterUser
+                    })}
             </div>
         );
     }

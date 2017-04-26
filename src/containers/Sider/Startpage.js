@@ -12,7 +12,9 @@ import MessageWizardContainer from '../Message/MessageWizardContainer'
 class Startpage extends Component {
 
     static propTypes = {
-        getCategoriesIfNeeded: PropTypes.func.isRequired
+        getCategoriesIfNeeded: PropTypes.func.isRequired,
+        showLoginDialog: PropTypes.func.isRequired,
+        showRegisterUser: PropTypes.func.isRequired
     }
 
     componentDidMount() {
@@ -25,7 +27,7 @@ class Startpage extends Component {
                 <div className="map-container">
                     <MapViewContainer />
                 </div>
-                <MessageWizardContainer />
+                <MessageWizardContainer showLoginDialog={this.props.showLoginDialog} showRegisterUser={this.props.showRegisterUser} />
                 <MapSearchContainer />
             </div>
         );

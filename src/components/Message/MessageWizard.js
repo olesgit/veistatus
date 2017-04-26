@@ -32,7 +32,9 @@ class MessageWizard extends Component {
         }).isRequired,
         locationSeleted: PropTypes.func.isRequired,
         abort: PropTypes.func.isRequired,
-        goto: PropTypes.func.isRequired
+        goto: PropTypes.func.isRequired,
+        showLoginDialog: PropTypes.func.isRequired,
+        showRegisterUser: PropTypes.func.isRequired
     }
 
     state = {
@@ -114,6 +116,8 @@ class MessageWizard extends Component {
                     category={this.state.category}
                     pictures={this.state.pictures}
                     description={this.state.description}
+                    showLoginDialog={this.props.showLoginDialog}
+                    showRegisterUser={this.props.showRegisterUser}
                 />
             ]);
         }

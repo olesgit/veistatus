@@ -19,6 +19,7 @@ function bindSubmitMessageToMessage(submitMessage, stateProps, ownProps) {
 const mapStateToProps = (state) => {
     return {
         editing: state.message.step === 'submit',
+        signedIn: state.login.sub != null,
         user: state.login
     }
 }
@@ -33,6 +34,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     return {
         ...ownProps,
         editing: stateProps.editing,
+        signedIn: stateProps.signedIn,
         submitMessage: bindSubmitMessageToMessage(dispatchProps.submitMessageAction, stateProps, ownProps)
     }
 }
