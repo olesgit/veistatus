@@ -67,7 +67,6 @@ class MapView extends React.Component {
     }
 
     handleClick = (e) => {
-        console.log(e)
         var query = {
             lat: e.latlng.lat,
             lon: e.latlng.lng
