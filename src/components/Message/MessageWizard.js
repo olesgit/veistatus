@@ -28,27 +28,19 @@ class MessageWizard extends Component {
         geodata: PropTypes.object,
         hideWelcome: PropTypes.number,
         message: PropTypes.shape({
-            step: PropTypes.string,
-            address: PropTypes.object,
-            category: PropTypes.object,
-            pictures: PropTypes.array,
-            description: PropTypes.string
+            step: PropTypes.string
         }).isRequired,
         locationSeleted: PropTypes.func.isRequired,
-        addressSpecified: PropTypes.func.isRequired,
-        categorySpecified: PropTypes.func.isRequired,
-        picturesSpecified: PropTypes.func.isRequired,
-        descriptionSpecified: PropTypes.func.isRequired,
         abort: PropTypes.func.isRequired,
         goto: PropTypes.func.isRequired
     }
 
     state = {
         show: true,
-        address: this.props.message.address || null,
-        category: this.props.message.category || null,
-        pictures: this.props.message.pictures || [],
-        description: this.props.message.description || ''
+        address: null,
+        category: null,
+        pictures: null,
+        description: null
     }
 
     componentWillReceiveProps(nextProps) {
@@ -73,19 +65,11 @@ class MessageWizard extends Component {
 
     addressChanged = (value) => {
         this.props.locationSeleted(value);
-        this.setState({ address: value });
+        this.handleChange('address', value);
     }
 
-    categoryChanged = (value) => {
-        this.setState({ category: value });
-    }
-
-    picturesChanged = (value) => {
-        this.setState({ pictures: value });
-    }
-
-    descriptionChanged = (value) => {
-        this.setState({ description: value });
+    handleChange = (key, value) => {
+        this.setState({ [key]: value });
     }
 
     nextDisabled() {
@@ -103,11 +87,34 @@ class MessageWizard extends Component {
     renderSteps(step) {
         if (checkStep(step, 'address', 'address-map', 'category', 'pictures', 'description', 'submit')) {
             return ([
-                <AddressContainer key="address-step" value={this.state.address} onChange={this.addressChanged} />,
-                <CategoryContainer key="category-step" value={this.state.category} onChange={this.categoryChanged} />,
-                <PicturesContainer key="pictures-step" value={this.state.pictures} onChange={this.picturesChanged} />,
-                <DescriptionContainer key="description-step" value={this.state.description} onChange={this.descriptionChanged} />,
-                <SubmitContainer key="submit-step" submitted={this.submitted} />
+                <AddressContainer
+                    key="address-step"
+                    value={this.state.address}
+                    onChange={this.addressChanged}
+                />,
+                <CategoryContainer
+                    key="category-step"
+                    value={this.state.category}
+                    onChange={value => this.handleChange('category', value)}
+                />,
+                <PicturesContainer
+                    key="pictures-step"
+                    value={this.state.pictures}
+                    onChange={value => this.handleChange('pictures', value)}
+                />,
+                <DescriptionContainer
+                    key="description-step"
+                    value={this.state.description}
+                    onChange={value => this.handleChange('description', value)}
+                />,
+                <SubmitContainer
+                    key="submit-step"
+                    submitted={this.submitted}
+                    address={this.state.address}
+                    category={this.state.category}
+                    pictures={this.state.pictures}
+                    description={this.state.description}
+                />
             ]);
         }
     }
@@ -161,17 +168,17 @@ class MessageWizard extends Component {
 
     next = () => {
         const { step } = this.props.message;
-        if ((step === 'address' || step === 'address-map') && this.props.addressSpecified) {
-            this.props.addressSpecified(this.state.address);
+        if (step === 'address' || step === 'address-map') {
+            this.props.goto('category');
         }
-        else if (step === 'category' && this.props.categorySpecified) {
-            this.props.categorySpecified(this.state.category);
+        else if (step === 'category') {
+            this.props.goto('pictures');
         }
-        else if (step === 'pictures' && this.props.picturesSpecified) {
-            this.props.picturesSpecified(this.state.pictures);
+        else if (step === 'pictures') {
+            this.props.goto('description');
         }
-        else if (step === 'description' && this.props.descriptionSpecified) {
-            this.props.descriptionSpecified(this.state.description);
+        else if (step === 'description') {
+            this.props.goto('submit');
         }
     }
 
@@ -189,8 +196,8 @@ class MessageWizard extends Component {
             ...this.state,
             address: null,
             category: null,
-            pictures: [],
-            description: ''
+            pictures: null,
+            description: null
         });
     }
 

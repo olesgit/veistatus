@@ -3,23 +3,23 @@ import { bindActionCreators } from 'redux'
 import Submit from '../../components/Message/Submit'
 import { submitMessage } from '../../actions/messageActions'
 
-function bindSubmitMessageToMessage(submitMessage, message) {
+function bindSubmitMessageToMessage(submitMessage, stateProps, ownProps) {
     return () => submitMessage({
-        "innsenderNavn": null,
-        "innsenderEpost": null,
-        "meldingstypeId": message.category.meldingstype.meldingstypeId,
-        "beskrivelse": message.description,
-        "adresse": message.address.display_name,
-        "latitude": message.address.lat,
-        "longitude": message.address.lon,
-        "bilder": message.pictures
+        "innsenderNavn": stateProps.user != null ? stateProps.user.sub : null,
+        "innsenderEpost": stateProps.user != null ? stateProps.user.sub : null,
+        "meldingstypeId": ownProps.category.meldingstype.meldingstypeId,
+        "beskrivelse": ownProps.description,
+        "adresse": ownProps.address.display_name,
+        "latitude": ownProps.address.lat,
+        "longitude": ownProps.address.lon,
+        "bilder": ownProps.pictures
     });
 }
 
 const mapStateToProps = (state) => {
     return {
         editing: state.message.step === 'submit',
-        message: state.message
+        user: state.login
     }
 }
 
@@ -33,7 +33,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     return {
         ...ownProps,
         editing: stateProps.editing,
-        submitMessage: bindSubmitMessageToMessage(dispatchProps.submitMessageAction, stateProps.message)
+        submitMessage: bindSubmitMessageToMessage(dispatchProps.submitMessageAction, stateProps, ownProps)
     }
 }
 

@@ -12,7 +12,6 @@ class Category extends Component {
 
     static propTypes = {
         editing: PropTypes.bool.isRequired,
-        category: PropTypes.object,
         categories: PropTypes.array,
         value: PropTypes.object,
         onChange: PropTypes.func,
@@ -34,15 +33,15 @@ class Category extends Component {
 
     render() {
 
-        const { editing, categories, category, value, onChange, goto } = this.props;
+        const { editing, categories, value, onChange, goto } = this.props;
         const { isActive } = this.state;
 
-        if (!editing && !category) {
+        if (!editing && !value) {
             return null;
         }
 
         if (!editing) {
-            return <Step icon={categoryIcon} text={category.meldingstype.beskrivelse} goto={goto} />
+            return <Step icon={categoryIcon} text={value.meldingstype.beskrivelse} goto={goto} />
         }
 
         var classes = classNames("category-content", { 'category-content--active': isActive })

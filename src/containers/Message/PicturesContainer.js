@@ -6,8 +6,7 @@ import { addFlashMessage } from "../../actions/FlashMessagesAction";
 
 const mapStateToProps = (state) => {
     return {
-        editing: state.message.step === 'pictures',
-        pictures: state.message.pictures
+        editing: state.message.step === 'pictures'
     }
 }
 

@@ -10,7 +10,6 @@ class Description extends Component {
 
     static propTypes = {
         editing: PropTypes.bool,
-        description: PropTypes.string,
         value: PropTypes.string,
         onChange: PropTypes.func,
         goto: PropTypes.func
@@ -21,14 +20,14 @@ class Description extends Component {
     }
 
     render() {
-        const { editing, description, value, onChange, goto } = this.props;
+        const { editing, value, onChange, goto } = this.props;
 
-        if (!editing && description == null) {
+        if (!editing && value == null) {
             return null;
         }
 
         if (!editing) {
-            return <Step icon={descriptionIcon} text={description} goto={goto} />;
+            return <Step icon={descriptionIcon} text={value} goto={goto} />;
         }
 
         return (

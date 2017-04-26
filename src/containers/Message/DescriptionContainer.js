@@ -4,8 +4,7 @@ import { changeStep } from '../../actions/messageActions'
 
 const mapStateToProps = (state) => {
     return {
-        editing: state.message.step === 'description',
-        description: state.message.description
+        editing: state.message.step === 'description'
     }
 }
 

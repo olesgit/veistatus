@@ -11,11 +11,11 @@ class Address extends Component {
 
     static propTypes = {
         editing: PropTypes.bool,
-        address: PropTypes.object,
         value: PropTypes.object,
         onChange: PropTypes.func,
         goto: PropTypes.func,
-        showMap: PropTypes.func.isRequired
+        showMap: PropTypes.func.isRequired,
+        showGotoMap: PropTypes.bool.isRequired
     }
 
     static defaultProps = {
@@ -24,14 +24,14 @@ class Address extends Component {
 
     render() {
 
-        const { editing, address, goto, value, onChange, showMap } = this.props;
+        const { editing, goto, value, onChange, showMap, showGotoMap } = this.props;
 
-        if (!editing && !address) {
+        if (!editing && !value) {
             return null;
         }
 
         if (!editing) {
-            return <Step icon={addressIcon} text={address.display_name} goto={goto} />;
+            return <Step icon={addressIcon} text={value.display_name} goto={goto} />;
         }
 
         return (
@@ -45,7 +45,7 @@ class Address extends Component {
                         {value ? value.display_name : ''}
                     </FormControl.Static>
                 </FormGroup>
-                {address &&
+                {showGotoMap &&
                     <span className="address-addon">
                         <Button bsStyle="link" onClick={showMap}>
                             Velg addresse i kart

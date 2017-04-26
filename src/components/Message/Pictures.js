@@ -12,7 +12,6 @@ class Pictures extends Component {
 
     static propTypes = {
         editing: PropTypes.bool,
-        pictures: PropTypes.array,
         value: PropTypes.array,
         onChange: PropTypes.func,
         addFlashMessage: PropTypes.func,
@@ -54,14 +53,14 @@ class Pictures extends Component {
 
     render() {
 
-        const { editing, addFlashMessage, value, pictures, goto } = this.props;
+        const { editing, addFlashMessage, value, goto } = this.props;
 
-        if (!editing && !pictures) {
+        if (!editing && !value) {
             return null;
         }
 
         if (!editing) {
-            return <StepBilder icon={cameraIcon} pictures={pictures} goto={goto} />;
+            return <StepBilder icon={cameraIcon} pictures={value} goto={goto} />;
         }
 
         return (
