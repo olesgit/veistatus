@@ -39,7 +39,52 @@ var icon2 = icon({
 //         minZoom: 7,
 //         detectRetina: true
 
+function removePart(name, part) {
+    if (!part) return name;
+    let index = name.lastIndexOf(", " + part);
+    if (index !== -1) return name.substring(0, index);
+    index = name.lastIndexOf(part + ", ");
+    if (index === 0) return name.substring(part.length + 2);
+    index = name.lastIndexOf(part);
+    if (index === 0) return name.substring(part.length);
+    return name;
 
+}
+
+function formatAddress(name, address) {
+    name = removePart(name, address.country);
+    name = removePart(name, address.postcode);
+    name = removePart(name, address.state);
+    name = removePart(name, address.suburb);
+    name = removePart(name, address.city_district);
+    name = removePart(name, address.neighbourhood);
+    name = removePart(name, address.hotel);
+    name = removePart(name, address.bicycle_parking);
+    name = removePart(name, address.restaurant);
+    name = removePart(name, address.convenience);
+    if (address.house_number && address.road) {
+        name = name.replace(`${address.house_number}, ${address.road}`, `${address.road} ${address.house_number}`);
+    } else if (address.house_number && address.pedestrian) {
+        name = name.replace(`${address.house_number}, ${address.pedestrian}`, `${address.pedestrian} ${address.house_number}`);
+    }
+
+    return name;
+}
+
+function formatAddress_new(name, address) {
+    if (address.house_number && address.road) {
+        return `${address.road} ${address.house_number}`;
+    } else if (address.house_number && address.pedestrian) {
+        return `${address.pedestrian} ${address.house_number}`;
+    } else if (address.road) {
+        return address.road;
+    } else if (address.pedestrian) {
+        return address.pedestrian;
+    } else {
+        console.log('other place', name, address)
+        return formatAddress(name, address);
+    }
+}
 
 class MapView extends React.Component {
 
@@ -80,7 +125,7 @@ class MapView extends React.Component {
         let geodata = {
             lat: query.lat,
             lon: query.lon,
-            display_name: data.display_name,
+            display_name: formatAddress_new(data.display_name, data.address),
             valgtZoom: 18,
             adressSelectedBy: 'click',
             outOfBounds: data.address.state !== "Oslo"
