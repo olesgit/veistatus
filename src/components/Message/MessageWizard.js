@@ -64,7 +64,7 @@ class MessageWizard extends Component {
     }
 
     doHideWelcome = () => {
-        if (this.state.show) {
+        if (this.state.show && this.props.message.step === 'welcome') {
             this.setState({ show: false });
         }
     }
