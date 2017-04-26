@@ -63,6 +63,12 @@ class MessageWizard extends Component {
         }
     }
 
+    doHideWelcome = () => {
+        if (this.state.show) {
+            this.setState({ show: false });
+        }
+    }
+
     toggleCollapse = () => {
         this.setState({ show: !this.state.show });
     }

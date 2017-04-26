@@ -44,7 +44,8 @@ class MapView extends React.Component {
 
     static propTypes = {
         onSelectCoord: PropTypes.func,
-        geodata: PropTypes.object
+        geodata: PropTypes.object,
+        onFocus: PropTypes.func.isRequired
     }
 
     static defaultProps = {
@@ -118,6 +119,7 @@ class MapView extends React.Component {
                 zoomControl={false}
                 dragging={true}
                 boxZoom={true}
+                onFocus={this.props.onFocus}
             >
                 <TileLayer
                     url='https://api.mapbox.com/styles/v1/webforvaltningen/cirlr93tl0010gyly7o56ugi3/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoid2ViZm9ydmFsdG5pbmdlbiIsImEiOiJjaXJsczQ5dnAwMDMxaG5rd2xnNGt2MGZvIn0.BGtT-dezZ_5hseqXmkMAoQ'

@@ -21,13 +21,21 @@ class Startpage extends Component {
         this.props.getCategoriesIfNeeded();
     }
 
+    shouldHideWelcome = () => {
+        this.wizard.getWrappedInstance().doHideWelcome();
+    }
+
     render() {
         return (
             <div id="startpage">
                 <div className="map-container">
-                    <MapViewContainer />
+                    <MapViewContainer onFocus={this.shouldHideWelcome} />
                 </div>
-                <MessageWizardContainer showLoginDialog={this.props.showLoginDialog} showRegisterUser={this.props.showRegisterUser} />
+                <MessageWizardContainer
+                    ref={r => this.wizard = r}
+                    showLoginDialog={this.props.showLoginDialog}
+                    showRegisterUser={this.props.showRegisterUser}
+                />
                 <MapSearchContainer />
             </div>
         );
