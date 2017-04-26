@@ -23,6 +23,8 @@
     float: left;
     width: 128px;
     height: 128px;
+
+    opacity: 0.6;
     
     position: relative;
     background-size: cover;
