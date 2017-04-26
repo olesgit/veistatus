@@ -181,11 +181,11 @@ class MessageWizard extends Component {
             this.props.goto('pictures');
         }
         else if (step === 'pictures') {
-            this.handleChange('pictures', []);
+            if (this.state.pictures === null) this.handleChange('pictures', []);
             this.props.goto('description');
         }
         else if (step === 'description') {
-            this.handleChange('description', '');
+            if (this.state.description === null) this.handleChange('description', '');
             this.props.goto('submit');
         }
     }
