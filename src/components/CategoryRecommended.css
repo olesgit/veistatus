@@ -41,7 +41,7 @@
 }
 
 /* mobile */
-@media only screen and (max-width: 500px) {
+@media (max-width: 767px) {
 
     .recommended-category {
         font-size: 12px;

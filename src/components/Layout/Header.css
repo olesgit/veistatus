@@ -69,8 +69,27 @@ nav .dropdown-menu a {
   padding: 8px 25px 8px 15px;
 }
 
+.navbar-toggle {
+  float: left;
+  margin: 0px 15px 10px 15px;
+  padding: 4px 2px;
+  background-color: transparent!important;
+  border: none;
+}
+
+.navbar-collapse {
+  background-color: #fff;
+  border-top: none;
+  border-bottom: solid 1px #39393a;
+}
+
+#settings-txt {
+  display: none;
+  padding: 0px;
+}
+
 /* mobile */
-@media only screen and (max-width: 500px) {
+@media (max-width: 767px) {
 
     .navbar {
       height: 35px;
@@ -86,4 +105,11 @@ nav .dropdown-menu a {
       padding-top: 35px!important;
     }
 
+    #settings-img {
+      display: none;
+    }
+
+    #settings-txt {
+      display: block;
+    }
 }

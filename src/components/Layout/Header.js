@@ -40,7 +40,11 @@ class Header extends Component {
         const { signedIn } = this.props;
         const { login, register, password, profile } = this.state;
 
-        const settings = <Image src={settingsIcon} />
+        const settings = [
+            <Image id="settings-img" src={settingsIcon} />,
+            <span id="settings-txt">Instillinger</span>
+        ];
+
         const user = <Image src={userIcon} />
 
         return (
@@ -56,6 +60,9 @@ class Header extends Component {
                             </div>
                         </Link>
                     </Navbar.Brand>
+                    <Navbar.Toggle>
+                        <Image src={settingsIcon} width={17} height={17} />
+                    </Navbar.Toggle>
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav pullRight>

@@ -19,7 +19,7 @@
 }
 
 /* mobile */
-@media only screen and (max-width: 500px) {
+@media (max-width: 767px) {
 
     .receipt-content {
         height: 200px;
