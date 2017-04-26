@@ -23,7 +23,7 @@
 .message-collapse {
     width: 150px;
     height: 40px;
-    opacity: 0.95;
+    opacity: 0.89;
     background-color: #ffffff;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
 
@@ -33,6 +33,27 @@
     left: 0;
     right: 0;
     margin: 0 auto;
+}
+
+.message-collapse img.hover {
+    display: none;
+}
+
+.message-collapse:active,
+.message-collapse:focus,
+.message-collapse:hover {
+    color: transparent!important;
+    border-color: transparent!important;
+    background-color: #ffffff!important;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+.message-collapse:hover img {
+    display: none;
+}
+
+.message-collapse:hover img.hover {
+    display: inline;
 }
 
 /* Steps */

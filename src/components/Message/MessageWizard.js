@@ -13,6 +13,8 @@ import WelcomeContainer from '../../containers/Message/WelcomeContainer'
 import './MessageWizard.css'
 import showIcon from '../../images/collapse-show.svg'
 import hideIcon from '../../images/collapse-hide.svg'
+import showHoverIcon from '../../images/collapse-show-hover.svg'
+import hideHoverIcon from '../../images/collapse-hide-hover.svg'
 
 function checkStep(step, ...stepsToCheck) {
     return _.includes(stepsToCheck, step);
@@ -214,6 +216,7 @@ class MessageWizard extends Component {
 
         const hideCollapse = !checkStep(step, 'welcome');
         const collapseIcon = show ? hideIcon : showIcon;
+        const collapseHoverIcon = show ? hideHoverIcon : showHoverIcon;
 
         const wizardClasses = classNames('message-wizard-container', `wizard-step-${step}`)
         const buttonClasses = classNames('message-collapse', { hidden: hideCollapse });
@@ -240,6 +243,7 @@ class MessageWizard extends Component {
                     <div className="message-collapse-container">
                         <Button className={buttonClasses} onClick={this.toggleCollapse}>
                             <Image src={collapseIcon} />
+                            <Image className="hover" src={collapseHoverIcon} />
                         </Button>
                     </div>
                 </div>
