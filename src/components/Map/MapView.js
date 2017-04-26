@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
+import { Map, TileLayer, Marker, Popup, ZoomControl } from 'react-leaflet'
 //import MarkerClusterGroup from 'react-leaflet-markercluster'
 import { /*divIcon,*/ icon } from 'leaflet'
 import { startLat, startLon, startZoom } from "../../constants/settings"
@@ -55,9 +55,7 @@ class MapView extends React.Component {
             lat: startLat,
             lon: startLon,
             valgtZoom: startZoom,
-            display_name: '',
-            centerlat: startLat,
-            centerlon: startLon
+            display_name: ''
         }
     }
 
@@ -83,10 +81,8 @@ class MapView extends React.Component {
             lat: query.lat,
             lon: query.lon,
             display_name: data.display_name,
-            valgtZoom: this.map.getZoom(),
+            valgtZoom: 18,
             adressSelectedBy: 'click',
-            centerlat: this.map.getCenter().lat,
-            centerlon: this.map.getCenter().lng,
             outOfBounds: data.address.state !== "Oslo"
         };
 
@@ -123,8 +119,8 @@ class MapView extends React.Component {
             <Map
                 ref={this.bindMap}
                 center={[
-                    this.props.geodata ? this.props.geodata.centerlat : startLat,
-                    this.props.geodata ? this.props.geodata.centerlon : startLon
+                    this.props.geodata ? this.props.geodata.lat : startLat,
+                    this.props.geodata ? this.props.geodata.lon : startLon
                 ]}
                 zoom={this.props.geodata ? this.props.geodata.valgtZoom : startZoom}
                 maxZoom={18}
@@ -146,6 +142,8 @@ class MapView extends React.Component {
                     markers={markers}
                     wrapperOptions={{ enableDefaultStyle: true }}
                 />*/}
+
+                <ZoomControl position="bottomright" />
             </Map>
         )
     }

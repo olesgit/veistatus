@@ -17,11 +17,9 @@ function createGeodata(id, name, lat, lon) {
         display_name: name,
         lat: lat,
         lon: lon,
-        valgtzoom: DEFAULT_ZOOM,
+        valgtZoom: DEFAULT_ZOOM,
         adressSelectedBy: 'search',
-        id: id,
-        centerlat: lat,
-        centerlon: lon
+        id: id
     }
 }
 
