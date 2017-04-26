@@ -41,3 +41,18 @@
 #register-user-dialog input[type=checkbox] {
     display: none;
 }
+
+/* mobile */
+@media (max-width: 767px) {
+    
+    #register-user-dialog h4 {
+        font-size: 24px;
+        margin-bottom: 0px;
+    }
+
+    #register-user-dialog p,
+    #register-user-dialog ul {
+        font-size: 16px!important;
+    }
+    
+}

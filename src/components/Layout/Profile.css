@@ -77,3 +77,18 @@
 #profile-dialog input[type=checkbox] {
     display: none;
 }
+
+/* mobile */
+@media (max-width: 767px) {
+    
+    #profile-dialog h4 {
+        font-size: 24px;
+        margin-bottom: 0px;
+    }
+
+    #profile-dialog h2,
+    #profile-dialog ul {
+        font-size: 18px;
+    }
+    
+}
