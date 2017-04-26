@@ -84,7 +84,7 @@ class MessageWizard extends Component {
 
     nextDisabled() {
         const { step } = this.props.message;
-        return ((step === 'address' || step === 'address-map') && this.state.address == null) ||
+        return ((step === 'address' || step === 'address-map') && (this.state.address == null || this.state.address.outOfBounds)) ||
             (step === 'category' && this.state.category == null)
     }
 
