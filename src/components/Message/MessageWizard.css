@@ -106,10 +106,6 @@
     color: #01436a;
 }
 
-.wizard-step-address-map .wizard-abort {
-    display: none;
-}
-
 #abort-mobile {
     display: none;
     position: absolute;
@@ -195,7 +191,7 @@
     .wizard-previous-mobile {
         display: block;
     }
-    
+
     .wizard-step-address-map #abort,
     .wizard-step-address #abort {
         display: block;
