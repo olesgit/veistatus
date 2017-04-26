@@ -41,8 +41,8 @@ class Header extends Component {
         const { login, register, password, profile } = this.state;
 
         const settings = [
-            <Image id="settings-img" src={settingsIcon} />,
-            <span id="settings-txt">Instillinger</span>
+            <Image id="settings-img" key="settings-img" src={settingsIcon} />,
+            <span id="settings-txt" key="settings-txt">Instillinger</span>
         ];
 
         const user = <Image src={userIcon} />
