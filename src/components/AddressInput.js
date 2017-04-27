@@ -7,6 +7,11 @@ import './AddressInput.css';
 import clearIcon from '../images/clear.svg'
 import searchIcon from '../images/sok.svg'
 
+// Polyfill in order to support IE (geosuggest dependency)
+if (!Array.find) {
+    require('core-js/fn/array/find');
+}
+
 const DEFAULT_ZOOM = 18;
 const OSLO_BOX_SW = new window.google.maps.LatLng(59.7868158061153, 10.49674987792969);
 const OSLO_BOX_NE = new window.google.maps.LatLng(60.141504734793386, 10.967788696289064);

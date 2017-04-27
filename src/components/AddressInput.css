@@ -37,6 +37,10 @@
     color: #707070;
 }
 
+.address-input::-ms-clear {
+    display: none;
+}
+
 .address-input-suggestions-container {
     position: absolute;
     left: 0px;

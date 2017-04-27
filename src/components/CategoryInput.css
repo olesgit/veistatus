@@ -35,6 +35,10 @@
     color: #707070;
 }
 
+.category-input::-ms-clear {
+    display: none;
+}
+
 .category-input-suggestions-container {
     position: absolute;
     left: 0px;

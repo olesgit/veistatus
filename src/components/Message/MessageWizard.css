@@ -1,6 +1,6 @@
 .message-wizard {
     position: relative;
-    z-index: 10;
+    z-index: 400;
 }
 
 .message-container {
