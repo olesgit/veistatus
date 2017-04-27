@@ -147,7 +147,9 @@
         display: none;
     }
     
-    .message-wizard-container, .message-wizard, .message-container {
+    .message-wizard-container:not(.wizard-step-address-map),
+    .message-wizard:not(.wizard-step-address-map), 
+    .message-container:not(.wizard-step-address-map) {
         height: 100%;
     }
 
