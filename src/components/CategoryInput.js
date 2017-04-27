@@ -71,8 +71,7 @@ class CategoryInput extends Component {
     }
 
     getSuggestions = value => {
-        return filterCategories(this.props.categories, value)
-        //return this.props.categories.filter(category => category.meldingskategorier.some(c => _.includes(c.navn.toLowerCase(), value.toLowerCase())));
+        return _.take(filterCategories(this.props.categories, value), 10);
     }
 
     onSuggestionSelected = (event, { suggestion }) => {
