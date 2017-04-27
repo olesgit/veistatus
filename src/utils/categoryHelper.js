@@ -55,7 +55,7 @@ export function cleanupResult(searchResult) {
     // TODO include top - 1 also?
     const top = _.max(_.map(searchResult, r => r.match));
     searchResult = _.filter(searchResult, r => r.match === top);
-    searchResult = _.orderBy(searchResult, r => r.partial);
+    searchResult = _.orderBy(searchResult, r => r.partial, "desc");
     searchResult = _.map(searchResult, r => r.category);
     return searchResult;
 }
