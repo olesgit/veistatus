@@ -100,7 +100,7 @@ class CategoryInput extends Component {
                 <input {...inputProps} />
                 <InputGroup.Button>
                     <Button bsStyle="input-group" onClick={this.onClick}>
-                        <Image src={clearIcon} alt="clear-text" />
+                        <Image src={clearIcon} alt="clear-text" style={{ display: inputProps.value == "" ? 'none' : 'inline' }} />
                     </Button>
                 </InputGroup.Button>
             </InputGroup>
@@ -126,7 +126,7 @@ class CategoryInput extends Component {
         const { value, suggestions } = this.state;
 
         const inputProps = {
-            placeholder: 'Beskriv problemet (f.eks hull i veien)',
+            placeholder: 'Beskriv problemet',
             value,
             onChange: this.onChange,
             onBlur: this.onBlur,

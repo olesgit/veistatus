@@ -77,3 +77,49 @@
   background-color: #01436a;
   color: #ffffff;
 }
+
+
+/* mobile */
+@media (max-width: 767px) {
+
+    .address-input {
+        height: 40px;
+        font-size: 16px;
+        padding: 10px 14px;
+        border-radius: 8px 0px 0px 8px;
+        border-style: solid;
+        border-color: #979797;
+        border-width: 1px 0px 1px 1px;
+    }
+
+    .address-input-group .btn {
+        height: 40px;
+        border-radius: 0px 8px 8px 0px;
+        padding: 6px;
+    }
+
+    .address-input-group .btn > img {
+        display: none;
+    }
+
+    .address-input::placeholder {
+        color: #707070;
+    }
+
+    /*.address-input-suggestions-container {
+        position: relative;
+        border: none;
+        margin-top: 0px;
+    }*/
+
+    .address-input-suggestion {
+        padding: 12px 20px 12px 20px;
+        font-size: 15px;
+    }
+
+    .address-input-suggestions-container > p {
+        padding: 12px 20px 12px 20px;
+        font-size: 15px;
+    }
+    
+}

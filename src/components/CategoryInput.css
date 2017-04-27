@@ -136,7 +136,7 @@
         height: 40px;
         font-size: 16px;
         padding: 10px 14px;
-        border-radius: 8px;
+        border-radius: 8px 0px 0px 8px;
         border-style: solid;
         border-color: #979797;
         border-width: 1px 0px 1px 1px;

@@ -86,7 +86,7 @@ class AddressInput extends Component {
                     suggestItemClassName="address-input-suggestion"
                     suggestItemActiveClassName="address-input-active"
                     ref={g => this.geoSuggest = g}
-                    placeholder="Søk etter adresse eller klikk i kart"
+                    placeholder="Søk etter adresse"
                     initialValue={text}
                     country="no"
                     onSuggestSelect={this.onSuggestSelect}
