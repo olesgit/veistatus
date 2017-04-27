@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -14,7 +15,8 @@ class Startpage extends Component {
     static propTypes = {
         getCategoriesIfNeeded: PropTypes.func.isRequired,
         showLoginDialog: PropTypes.func.isRequired,
-        showRegisterUser: PropTypes.func.isRequired
+        showRegisterUser: PropTypes.func.isRequired,
+        pullDown: PropTypes.bool.isRequired
     }
 
     componentDidMount() {
@@ -26,9 +28,10 @@ class Startpage extends Component {
     }
 
     render() {
+        const map = classNames("map-container", { "pull-down": this.props.pullDown });
         return (
             <div id="startpage">
-                <div className="map-container">
+                <div className={map}>
                     <MapViewContainer onFocus={this.shouldHideWelcome} />
                 </div>
                 <MessageWizardContainer
@@ -42,10 +45,16 @@ class Startpage extends Component {
     }
 }
 
+function mapStateToProps(state) {
+    return {
+        pullDown: state.message.step === 'address-map'
+    }
+}
+
 function mapDispatchToProps(dispatch) {
     return {
         getCategoriesIfNeeded: bindActionCreators(getCategoriesIfNeeded, dispatch)
     }
 }
 
-export default connect(null, mapDispatchToProps)(Startpage);
+export default connect(mapStateToProps, mapDispatchToProps)(Startpage);
