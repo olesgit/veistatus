@@ -2,6 +2,7 @@ import _ from 'lodash'
 import React, { Component, PropTypes } from 'react'
 import { InputGroup, Button, Image } from 'react-bootstrap'
 import Autosuggest from 'react-autosuggest'
+import filterCategories from '../utils/categoryHelper'
 
 import './CategoryInput.css'
 
@@ -70,7 +71,7 @@ class CategoryInput extends Component {
     }
 
     getSuggestions = value => {
-        return this.props.categories.filter(category => category.meldingskategorier.some(c => _.includes(c.navn.toLowerCase(), value.toLowerCase())));
+        return _.take(filterCategories(this.props.categories, value), 10);
     }
 
     onSuggestionSelected = (event, { suggestion }) => {
