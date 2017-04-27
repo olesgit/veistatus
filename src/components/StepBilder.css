@@ -42,7 +42,7 @@
 
     .step-picture-complete {
         display: none;
-        pointer-events: none;
+        /*pointer-events: none;*/
         margin: 0 14px;
     }
 
