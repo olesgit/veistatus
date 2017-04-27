@@ -130,7 +130,7 @@ class MapView extends React.Component {
             lat: query.lat,
             lon: query.lon,
             display_name: formatAddress_new(data.display_name, data.address),
-            valgtZoom: 18,
+            valgtZoom: data.address.state === "Oslo" ? 18 : 10,
             adressSelectedBy: 'click',
             outOfBounds: data.address.state !== "Oslo"
         };
