@@ -91,7 +91,7 @@ class Header extends Component {
                 </Navbar.Collapse>
                 <Image className="oslo-logo" width={90} height={50} src={oslo_logo} />
                 {login && <LoginContainer onHide={() => this.hide('login')} onForgotPassword={(ev) => this.show(ev, 'password')} />}
-                {register && <RegisterUserContainer onHide={() => this.hide('register')} />}
+                {register && <RegisterUserContainer onHide={() => this.hide('register')} onShowLogin={this.showLogin} />}
                 {password && <ForgotPasswordContainer onHide={() => this.hide('password')} />}
                 {profile && <ProfileContainer onHide={() => this.hide('profile')} />}
             </Navbar>

@@ -55,33 +55,23 @@ const registerUserRequest = (email) => ({ type: REGISTER_USER_REQUEST, payload: 
 const registerUserSuccess = (user) => ({ type: REGISTER_USER_SUCCESS, payload: user })
 const registerUserFailure = (error) => ({ type: REGISTER_USER_FAILURE, payload: error, error: true })
 
-export function register(email, password, passwordRepeat, approve) {
+export function register(email) {
     return function (dispatch) {
         dispatch(registerUserRequest(email));
-        return axios.post(api.registerUser, { epost: email, passord: password, gjentaPassord: passwordRepeat, godkjenn: approve, serviceId: BYM_SERVICE_ID })
-            .then(response => registerSuccess(response, dispatch))
+        return axios.post(api.registerUser, { navn: email, epost: email })
+            .then(() => dispatch(registerUserSuccess()))
             .catch(error => registerFailure(error, dispatch));
     };
 }
 
-function registerSuccess(response, dispatch) {
-    let bymtoken = response.data.result;
-    cookieHandler.saveBymCookie(bymtoken);
-    cookieHandler.setAuthorizationToken();
-    const decodedToken = cookieHandler.decodeToken();
-    dispatch(registerUserSuccess(decodedToken))
-}
-
 function registerFailure(error, dispatch) {
     dispatch(registerUserFailure(error));
-    let message = "Kunne ikke logge inn";
+    let message = "Kunne ikke registrere bruker";
     if (error.response && error.response.data && error.response.data.errorMessage) {
         // Known error messages:
         // "E-post er påkrevd"
         // "E-post er ikke validert"
-        // "Passord må være minimum 6 tegn"
-        // "E-post eller passord er ikke riktig!"
-        message = "Feil e-postadresse eller passord";
+        //message = "Feil e-postadresse eller passord";
     }
     return Promise.reject(message)
 }

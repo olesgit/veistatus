@@ -54,14 +54,9 @@ export const autentiseringServiceBaseUrl = RESOLVE_HOST().autentisering_service_
 // Bymelding
 export const getMessageCategories = bymeldingServiceBaseUrl + "/api/meldingskategorigrupper"
 export const postMessage = bymeldingServiceBaseUrl + "/api/meldinger"
+export const registerUser = bymeldingServiceBaseUrl + "/api/publikum/brukere"
 
 // Autentisering
 export const login = autentiseringServiceBaseUrl + '/api/token'
 export const resetPassword = autentiseringServiceBaseUrl + '/api/glemtpassord'
 export const changePassword = brukerId => autentiseringServiceBaseUrl + `/api/brukere/${brukerId}/passord`
-
-
-
-
-
-export const registerUser = "";

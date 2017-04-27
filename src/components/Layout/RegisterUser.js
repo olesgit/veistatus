@@ -11,17 +11,14 @@ class RegisterUser extends Component {
 
     static propTypes = {
         registerUser: PropTypes.func.isRequired,
-        onHide: PropTypes.func.isRequired
+        onHide: PropTypes.func.isRequired,
+        onShowLogin: PropTypes.func.isRequired
     }
 
     state = {
         email: '',
-        password: '',
-        passwordRepeat: '',
         approve: false,
         emailState: null,
-        passwordState: null,
-        passwordRepeatState: null,
         approveState: null,
         submitting: false,
         errorMessage: null
@@ -30,7 +27,7 @@ class RegisterUser extends Component {
     register = () => {
         if (this.validateState()) {
             this.setState({ submitting: true });
-            this.props.registerUser(this.state.email, this.state.password, this.state.passwordRepeat)
+            this.props.registerUser(this.state.email)
                 .then(this.success)
                 .catch(this.failure);
         }
@@ -38,6 +35,7 @@ class RegisterUser extends Component {
 
     success = () => {
         this.props.onHide();
+        this.props.onShowLogin();
     }
 
     failure = (errorMessage) => {
@@ -53,22 +51,19 @@ class RegisterUser extends Component {
     }
 
     validateState = () => {
-        const { email, password, passwordRepeat, approve } = this.state;
+        const { email, approve } = this.state;
         const validation = {
             emailState: email !== '' ? null : 'error',
-            passwordState: password !== '' ? null : 'error',
-            passwordRepeatState: password !== '' && passwordRepeat === password ? null : 'error',
             approveState: approve ? null : 'error'
         };
         this.setState(validation);
-        return validation.emailState === null && validation.passwordState === null &&
-            validation.passwordRepeatState === null && validation.approveState === null;
+        return validation.emailState === null && validation.approveState === null;
     }
 
     render() {
         const { onHide } = this.props;
-        const { email, password, passwordRepeat, approve } = this.state;
-        const { emailState, passwordState, passwordRepeatState, approveState } = this.state;
+        const { email, approve } = this.state;
+        const { emailState, approveState } = this.state;
         const { submitting, errorMessage } = this.state;
 
         const registerText = submitting ? "Oppretter konto..." : "Opprett konto";
@@ -94,16 +89,6 @@ class RegisterUser extends Component {
                     <FormGroup controlId="epost" validationState={emailState}>
                         <ControlLabel>E-postadresse</ControlLabel>
                         <FormControl type="email" value={email} onChange={(ev) => this.handleChange(ev, 'email')} />
-                        <FormControl.Feedback />
-                    </FormGroup>
-                    <FormGroup controlId="passord" validationState={passwordState}>
-                        <ControlLabel>Passord</ControlLabel>
-                        <FormControl type="password" value={password} onChange={(ev) => this.handleChange(ev, 'password')} />
-                        <FormControl.Feedback />
-                    </FormGroup>
-                    <FormGroup controlId="passord-gjenta" validationState={passwordRepeatState}>
-                        <ControlLabel>Gjenta Passord</ControlLabel>
-                        <FormControl type="password" value={passwordRepeat} onChange={(ev) => this.handleChange(ev, 'passwordRepeat')} />
                         <FormControl.Feedback />
                     </FormGroup>
                     <Checkbox id="godta-betingelsene" checked={approve} onChange={() => this.handleCheckboxChange('approve')} validationState={approveState}>
