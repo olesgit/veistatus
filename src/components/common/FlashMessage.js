@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import classnames from "classnames";
-import  "../../css/common/FlashMessages.css"
+
+import "./FlashMessage.css"
 
 class FlashMessage extends Component {
     constructor(props) {
@@ -35,7 +36,7 @@ class FlashMessage extends Component {
             }
             )}
             >
-            <button onClick={this.onClick} className="close"><span>&times;</span></button>
+                <button onClick={this.onClick} className="close"><span>&times;</span></button>
                 {text}
             </div>
         );
@@ -43,7 +44,7 @@ class FlashMessage extends Component {
     render() {
         const { type, text } = this.props.message;
         return (
-            <div>
+            <div className="alert-container">
                 {
                     this.createAlertBootstrap(type, text)
                 }
