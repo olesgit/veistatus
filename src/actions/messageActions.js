@@ -1,5 +1,6 @@
 import axios from 'axios'
 import * as api from '../constants/api'
+import { addFlashMessage } from './FlashMessagesAction'
 
 export const GET_CATEGORIES_REQUEST = 'GET_CATEGORIES_REQUEST'
 export const GET_CATEGORIES_SUCCESS = 'GET_CATEGORIES_SUCCESS'
@@ -79,8 +80,26 @@ export function submitMessage(message) {
         dispatch(submitMessageRequest());
         return axios.post(api.postMessage, form)
             .then(response => dispatch(submitMessageSuccess(response)))
-            .catch(error => dispatch(submitMessageFailure(error)));
+            .catch(error => submitMessageFailed(error, dispatch));
     };
+}
+
+function submitMessageFailed(error, dispatch) {
+    dispatch(submitMessageFailure(error));
+    let message = "En feil oppstod, vennligst prøv på nytt senere";
+    if (error.response && error.response.data && error.response.data.errorMessage) {
+        const errorMessage = error.response.data.errorMessage;
+        // Known error messages:
+        // "E-post er påkrevd"
+        // "E-post er ikke validert"
+        // "Passord må være minimum 6 tegn"
+        // "E-post eller passord er ikke riktig!"
+        if (errorMessage === "'Beskrivelse' must be between 5 and 2000 characters. You entered 3 characters.\r\n") {
+            message = "Beskrivelsen må være på minst 5 bokstaver.\r\nVennligst prøv på nytt.";
+        }
+    }
+    dispatch(addFlashMessage({ type: 'error', text: message }));
+    return Promise.reject(message);
 }
 
 function appendData(form, key, value) {
