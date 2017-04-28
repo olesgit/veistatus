@@ -38,7 +38,7 @@ class BilderInput extends Component {
             <div className="clearfix">
                 {pictures.map(this.renderThumbnail)}
                 {pictures.length < 4 &&
-                    <Dropzone className="bilder-dropzone bilder-thumbnail" onDrop={onDrop} preventDropOnDocument={true} maxSize={MAX_IMAGE_SIZE} name="image1">
+                    <Dropzone className="bilder-dropzone bilder-thumbnail" onDrop={onDrop} preventDropOnDocument={true} maxSize={MAX_IMAGE_SIZE}>
                         <span className="bilder-dropzone-helper"></span>
                         <Image className="add" src={addIcon} alt='legg til bilde' />
                         <Image className="add hover" src={addHoverIcon} alt='legg til bilde' />
