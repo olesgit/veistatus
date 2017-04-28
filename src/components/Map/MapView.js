@@ -173,7 +173,7 @@ class MapView extends React.Component {
                 ]}
                 zoom={this.props.geodata ? this.props.geodata.valgtZoom : startZoom}
                 maxZoom={18}
-                minZoom={7}
+                minZoom={10}
                 onClick={this.handleClick}
                 zoomControl={false}
                 dragging={true}

@@ -1,4 +1,4 @@
 //Start posisjon og zoom
-export const startLat = 60.08 //59.978 //59.94;
-export const startLon = 10.77;
-export const startZoom = 10;
+export const startLat = 59.911778
+export const startLon = 10.733583
+export const startZoom = 12
