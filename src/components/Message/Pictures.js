@@ -31,10 +31,7 @@ class Pictures extends Component {
         }
 
         acceptedFiles.forEach(inputfile => {
-            if (filesToAdd.find(statefile => statefile.name === inputfile.name)) {
-                this.props.addFlashMessage({ type: 'error', text: "En fil med dette navnet, " + inputfile.name + ", er allerede lagt til" });
-            }
-            else if (filesToAdd.length === 4) {
+            if (filesToAdd.length === 4) {
                 this.props.addFlashMessage({ type: 'error', text: "Maksimum antall filer er nådd" });
             }
             else {
