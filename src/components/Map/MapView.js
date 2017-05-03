@@ -78,12 +78,16 @@ function formatAddress_new(name, address) {
         return `${address.pedestrian} ${address.house_number}`;
     } else if (address.house_number && address.footway) {
         return `${address.footway} ${address.house_number}`;
+    } else if (address.house_number && address.cycleway) {
+        return `${address.cycleway} ${address.house_number}`;
     } else if (address.road) {
         return address.road;
     } else if (address.pedestrian) {
         return address.pedestrian;
     } else if (address.footway) {
         return address.footway;
+    } else if (address.cycleway) {
+        return address.cycleway;
     } else {
         console.log('other place', name, address)
         return formatAddress(name, address);
