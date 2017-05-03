@@ -40,7 +40,16 @@ class AddressInput extends Component {
     }
 
     onSuggestSelect = (suggest) => {
-        this.props.locationSeleted(createGeodata(suggest.placeId, suggest.label, suggest.location.lat, suggest.location.lng));
+        const count = suggest.gmaps.address_components.length;
+
+        if (
+            count >= 2 &&
+            suggest.gmaps.address_components[count - 1].short_name === "NO" &&
+            suggest.gmaps.address_components[count - 2].short_name === "Oslo"
+        ) {
+            this.props.locationSeleted(createGeodata(suggest.placeId, suggest.label, suggest.location.lat, suggest.location.lng));
+        }
+
         if (this.geoSuggest) {
             this.geoSuggest.blur();
         }
