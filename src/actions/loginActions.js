@@ -178,6 +178,7 @@ const logoutUser = () => ({ type: LOGOUT_USER });
 export function logout() {
     return function (dispatch) {
         cookieHandler.removeBymCookie();
+        cookieHandler.setAuthorizationToken();
         dispatch(logoutUser());
     };
 }
