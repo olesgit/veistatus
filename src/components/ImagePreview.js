@@ -82,5 +82,7 @@ function calcRotation(orientation) {
             return ({
                 transform: `rotate(-90deg)`
             });
+        default:
+            return {};
     }
 }

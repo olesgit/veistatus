@@ -100,7 +100,7 @@ class CategoryInput extends Component {
                 <input {...inputProps} />
                 <InputGroup.Button>
                     <Button bsStyle="input-group" onClick={this.onClick}>
-                        <Image src={clearIcon} alt="clear-text" style={{ display: inputProps.value == "" ? 'none' : 'inline' }} />
+                        <Image src={clearIcon} alt="clear-text" style={{ display: inputProps.value === "" ? 'none' : 'inline' }} />
                     </Button>
                 </InputGroup.Button>
             </InputGroup>
