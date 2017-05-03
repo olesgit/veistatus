@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { Button, Image } from 'react-bootstrap'
 import EXIF from 'exif-js'
 
+import './ImagePreview.css'
+
 import deleteIcon from '../images/slett.svg'
 import deleteHoverIcon from '../images/slett-hover.svg'
 
