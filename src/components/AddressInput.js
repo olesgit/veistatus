@@ -1,11 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import { InputGroup, Button, Image } from 'react-bootstrap';
+import { InputGroup, Button } from 'react-bootstrap';
 import Geosuggest from 'react-geosuggest';
 
 import './AddressInput.css';
-
-import clearIcon from '../images/clear.svg'
-import searchIcon from '../images/sok.svg'
 
 // Polyfill in order to support IE (geosuggest dependency)
 if (!Array.find) {
@@ -44,7 +41,9 @@ class AddressInput extends Component {
 
     onSuggestSelect = (suggest) => {
         this.props.locationSeleted(createGeodata(suggest.placeId, suggest.label, suggest.location.lat, suggest.location.lng));
-        this.geoSuggest.blur();
+        if (this.geoSuggest) {
+            this.geoSuggest.blur();
+        }
     }
 
     onClear = () => {
@@ -100,13 +99,11 @@ class AddressInput extends Component {
 
                 <InputGroup.Button>
                     {showSearch &&
-                        <Button bsStyle="input-group" onClick={this.onSearch}>
-                            <Image src={searchIcon} alt="søk knapp" />
+                        <Button id="address-search-icon" bsStyle="input-group" onClick={this.onSearch}>
                         </Button>
                     }
                     {showClear &&
-                        <Button bsStyle="input-group" onClick={this.onClear}>
-                            <Image src={clearIcon} alt="tøm tekst" />
+                        <Button id="address-clear-icon" bsStyle="input-group" onClick={this.onClear}>
                         </Button>
                     }
                 </InputGroup.Button>

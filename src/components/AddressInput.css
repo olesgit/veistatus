@@ -11,7 +11,7 @@
     border-style: solid;
     border-width: 1px 0px 1px 1px;
     border-color: #979797;
-
+    
     height: 50px;
     padding: 11px 10px 10px 10px;
     width: 100%;
@@ -78,6 +78,28 @@
   color: #ffffff;
 }
 
+/* Buttons */
+#address-search-icon {
+    background-image: url('../images/sok.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 52px;
+}
+
+#address-search-icon:hover {
+    background-image: url('../images/sok-hover.svg');
+}
+
+#address-clear-icon {
+    background-image: url('../images/slett2.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 52px;
+}
+
+#address-clear-icon:hover {
+    background-image: url('../images/slett2-hover.svg');
+}
 
 /* mobile */
 @media (max-width: 767px) {
