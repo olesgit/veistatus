@@ -120,10 +120,6 @@
         padding: 6px;
     }
 
-    .address-input-group .btn > img {
-        display: none;
-    }
-
     .address-input::placeholder {
         color: #707070;
     }
@@ -144,4 +140,13 @@
         font-size: 15px;
     }
     
+    #address-search-icon,
+    #address-search-icon:hover {
+        background-image: none;
+        width: 1px;
+    }
+
+    #address-clear-icon {
+        width: 52px;
+    }
 }
