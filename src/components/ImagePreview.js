@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import React, { Component, PropTypes } from 'react';
 import { Button, Image } from 'react-bootstrap'
 import EXIF from 'exif-js'
@@ -10,8 +11,9 @@ import deleteHoverIcon from '../images/slett-hover.svg'
 class ImagePreview extends Component {
 
     static propTypes = {
+        className: PropTypes.string,
         file: PropTypes.object.isRequired,
-        onDelete: PropTypes.func.isRequired
+        onDelete: PropTypes.func
     }
 
     state = {}
@@ -30,14 +32,17 @@ class ImagePreview extends Component {
     }
 
     render() {
-        const { file } = this.props;
+        const { file, className, onDelete } = this.props;
         const { transform } = this.state;
         return (
-            <div className="bilder-preview bilder-thumbnail" style={{ backgroundImage: `url(${file.preview})`, transform: transform }}>
-                <Button onClick={() => this.props.onDelete(file)}>
-                    <Image width={25} height={25} className="del" src={deleteIcon} />
-                    <Image width={25} height={25} className="del hover" src={deleteHoverIcon} />
-                </Button>
+            <div className={classnames(className, "bilder-preview")}>
+                <div className="bilder-thumbnail" style={{ backgroundImage: `url(${file.preview})`, transform: transform }}></div>
+                {onDelete &&
+                    <Button onClick={() => onDelete(file)}>
+                        <Image width={25} height={25} className="del" src={deleteIcon} />
+                        <Image width={25} height={25} className="del hover" src={deleteHoverIcon} />
+                    </Button>
+                }
             </div>
         );
     }

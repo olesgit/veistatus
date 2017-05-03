@@ -21,18 +21,7 @@
 }
 
 .step-picture-preview {
-    margin-right: 9px;
-    margin-bottom: 18px;
-    float: left;
-    width: 128px;
-    height: 128px;
-
     opacity: 0.6;
-    
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
 /* Do not show when map is shown */
