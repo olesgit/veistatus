@@ -82,7 +82,7 @@ export function submitMessage(message) {
         // Send anonymous user if user is not logged in
         const config = {};
         if (!axios.defaults.headers.common['Authorization']) {
-            config.headers = { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1YWU5NDBiMi02ZGY0LTQ0ZmUtYTI5Yy02ODg4ZGE4NGEyMTAiLCJpYXQiOjE0OTM4MDIzNDAsInN1YiI6IkFub255bSBwdWJsaWt1bXNicnVrZXIiLCJicnVrZXJJZCI6IjVjNzZlZDQwLTIwMDktNDJlZi1hZmNiLTU5YTAxZjIzZjkzNSIsIlNlcnZpY2VJZCI6IjU5ZmZhY2U1LWM3NmMtNDQ2Yy1iYjU4LTE1YjExMDU3OGE4NyIsIlByb3Nlc3Nyb2xsZUlkIjoiMjY0NzdkYjAtZDA2Zi00ZTI0LTgzMzUtOTk2YmFhOGFiYjQ3IiwiUHJvc2Vzc3JvbGxlUm9sbGVJZCI6IltdIiwibmJmIjoxNDkzNzk4NzM5LCJleHAiOjE0OTUwOTgzMzksImlzcyI6IkJZTSIsImF1ZCI6IkJZTUluZXgifQ.OhTuY1bg29isf1yrvkoz__WuhpMiQTQiBBLipRMqoHQ' };
+            config.headers = { 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJCWU0iLCJpYXQiOjE0OTM4OTM3MzMsImV4cCI6MTUyNTQyOTczMywiYXVkIjoiQllNSW5leCIsInN1YiI6IkFub255bSBwdWJsaWt1bXNicnVrZXIiLCJicnVrZXJJZCI6IjVjNzZlZDQwLTIwMDktNDJlZi1hZmNiLTU5YTAxZjIzZjkzNSIsIlNlcnZpY2VJZCI6IjU5ZmZhY2U1LWM3NmMtNDQ2Yy1iYjU4LTE1YjExMDU3OGE4NyIsIlByb3Nlc3Nyb2xsZUlkIjoiMjY0NzdkYjAtZDA2Zi00ZTI0LTgzMzUtOTk2YmFhOGFiYjQ3IiwiUHJvc2Vzc3JvbGxlUm9sbGVJZCI6IltdIiwibmJmIjoiMTQ5Mzg5MzczMyIsImp0aSI6IjVhZTk0MGIyLTZkZjQtNDRmZS1hMjljLTY4ODhkYTg0YTIxMCJ9.VvHw1nk45Fqa42Qm0A1ExRCQ00KvYbF3y5bIDLO2SHk' };
         }
 
         return axios.post(api.postMessage, form, config)
