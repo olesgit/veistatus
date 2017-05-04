@@ -15,6 +15,7 @@ import showIcon from '../../images/collapse-show.svg'
 import hideIcon from '../../images/collapse-hide.svg'
 import showHoverIcon from '../../images/collapse-show-hover.svg'
 import hideHoverIcon from '../../images/collapse-hide-hover.svg'
+import backIcon from '../../images/tilbake.svg'
 
 function checkStep(step, ...stepsToCheck) {
     return _.includes(stepsToCheck, step);
@@ -156,6 +157,7 @@ class MessageWizard extends Component {
         if (checkStep(step, 'category', 'pictures', 'description')) {
             return [
                 <Button id="previous-mobile" key="previous" className="wizard-previous-mobile" bsStyle="link" onClick={this.previous}>
+                    <Image src={backIcon} />
                     Tilbake
                 </Button>,
                 <Button id="next-mobile" key="next" className="wizard-next-mobile" bsStyle="success" onClick={this.next} disabled={this.nextDisabled()}>
