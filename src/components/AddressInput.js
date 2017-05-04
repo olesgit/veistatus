@@ -39,6 +39,10 @@ class AddressInput extends Component {
         showSearch: false
     }
 
+    state = {
+        value: this.props.geodata ? this.props.geodata.display_name : ''
+    }
+
     onSuggestSelect = (suggest) => {
         const count = suggest.gmaps.address_components.length;
 
@@ -48,6 +52,7 @@ class AddressInput extends Component {
             suggest.gmaps.address_components[count - 2].short_name === "Oslo"
         ) {
             this.props.locationSeleted(createGeodata(suggest.placeId, suggest.label, suggest.location.lat, suggest.location.lng));
+            this.setState({ value: suggest.label })
         }
 
         if (this.geoSuggest) {
@@ -55,9 +60,14 @@ class AddressInput extends Component {
         }
     }
 
+    onChange = (value) => {
+        this.setState({ value: value });
+    }
+
     onClear = () => {
         this.geoSuggest.clear();
         this.props.locationSeleted(null);
+        this.setState({ value: '' });
     }
 
     onSearch = () => {
@@ -82,6 +92,7 @@ class AddressInput extends Component {
     render() {
 
         const { geodata, showClear, showSearch } = this.props;
+        const { value } = this.state;
         const text = geodata ? geodata.display_name : '';
 
         return (
@@ -104,6 +115,7 @@ class AddressInput extends Component {
                     types={['geocode', 'establishment']}
                     getSuggestLabel={this.getSuggestLabel}
                     queryDelay={0}
+                    onChange={this.onChange}
                 />
 
                 <InputGroup.Button>
@@ -112,7 +124,8 @@ class AddressInput extends Component {
                         </Button>
                     }
                     {showClear &&
-                        <Button id="address-clear-icon" bsStyle="input-group" onClick={this.onClear}>
+                        <Button bsStyle="input-group" onClick={this.onClear}>
+                            <div id="address-clear-icon" style={{ display: value === "" ? 'none' : 'inline-block' }}></div>
                         </Button>
                     }
                 </InputGroup.Button>
