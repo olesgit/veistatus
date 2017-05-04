@@ -36,7 +36,7 @@ class ImagePreview extends Component {
         const { transform } = this.state;
         return (
             <div className={classnames(className, "bilder-preview")}>
-                <div className="bilder-thumbnail" style={{ backgroundImage: `url(${file.preview})`, transform: transform }}></div>
+                <Image className="bilder-thumbnail" src={file.preview} style={{ transform: transform }} />
                 {onDelete &&
                     <Button onClick={() => onDelete(file)}>
                         <Image width={25} height={25} className="del" src={deleteIcon} />

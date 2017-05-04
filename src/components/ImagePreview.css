@@ -10,10 +10,7 @@
 .bilder-thumbnail {
     height: 128px;
     width: 128px;
-    
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    object-fit: cover;
 }
 
 .bilder-preview > button {
