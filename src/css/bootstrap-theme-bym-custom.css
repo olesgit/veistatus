@@ -28,6 +28,17 @@
     background-image: none;
 }
 
+/* Link style */
+a, .btn-link {
+    color: #0071bb;
+    font-weight: bold;
+}
+
+a:hover, .btn-link:hover {
+    color: #01436a;
+    font-style: underline;
+}
+
 /* Modal Styling */
 .modal {
     z-index: 6050;
@@ -89,12 +100,6 @@
 
 .modal-footer .btn-success {
     height: 40px;
-}
-
-.modal-footer .btn-link {
-    font-family: Lato;
-    font-size: 16px;
-    color: #01436a;
 }
 
 .modal-dialog button.close {

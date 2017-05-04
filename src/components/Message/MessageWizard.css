@@ -95,15 +95,6 @@
 .wizard-abort {
     margin-top: 15px!important;
     height: 40px;
-
-    font-family: Lato;
-    font-size: 16px;
-    font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.44;
-    letter-spacing: normal;
-    color: #01436a;
 }
 
 #abort-mobile {
