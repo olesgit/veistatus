@@ -67,16 +67,21 @@
 
 /* Geosuggest custom style */
 .address-input-hidden {
-  max-height: 0;
-  overflow: hidden;
-  border-width: 0;
+    max-height: 0;
+    overflow: hidden;
+    border-width: 0;
 }
 
 /* Geosuggest custom style */
 .address-input-active {
-  background-color: #01436a;
-  color: #ffffff;
+    background-color: #01436a!important;
+    color: #ffffff!important;
 }
+.address-input-suggestion:hover {
+    background-color: #e5e5e5;
+    color: #3c3c3c;
+}
+
 
 /* Buttons */
 #address-search-icon {
