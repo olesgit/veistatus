@@ -9,12 +9,9 @@ import DescriptionContainer from '../../containers/Message/DescriptionContainer'
 import SubmitContainer from '../../containers/Message/SubmitContainer'
 import ReceiptContainer from '../../containers/Message/ReceiptContainer'
 import WelcomeContainer from '../../containers/Message/WelcomeContainer'
+import CollapseButton from '../CollapseButton'
 
 import './MessageWizard.css'
-import showIcon from '../../images/collapse-show.svg'
-import hideIcon from '../../images/collapse-hide.svg'
-import showHoverIcon from '../../images/collapse-show-hover.svg'
-import hideHoverIcon from '../../images/collapse-hide-hover.svg'
 import backIcon from '../../images/tilbake.svg'
 
 function checkStep(step, ...stepsToCheck) {
@@ -223,11 +220,8 @@ class MessageWizard extends Component {
         const { show } = this.state;
 
         const hideCollapse = !checkStep(step, 'welcome');
-        const collapseIcon = show ? hideIcon : showIcon;
-        const collapseHoverIcon = show ? hideHoverIcon : showHoverIcon;
 
         const wizardClasses = classNames('message-wizard-container', `wizard-step-${step}`)
-        const buttonClasses = classNames('message-collapse', { hidden: hideCollapse });
         const contentClasses = classNames('message-content', { 'message-steps': isWizardSteps(step) });
 
         return (
@@ -248,12 +242,7 @@ class MessageWizard extends Component {
                             </div>
                         </div>
                     </Collapse>
-                    <div className="message-collapse-container">
-                        <Button className={buttonClasses} onClick={this.toggleCollapse}>
-                            <Image src={collapseIcon} />
-                            <Image className="hover" src={collapseHoverIcon} />
-                        </Button>
-                    </div>
+                    <CollapseButton show={show} onClick={this.toggleCollapse} hidden={hideCollapse} />
                 </div>
                 {
                     checkStep(step, 'address', 'category', 'pictures', 'description', 'submit', 'receipt') &&
