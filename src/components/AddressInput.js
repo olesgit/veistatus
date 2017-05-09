@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import React, { Component, PropTypes } from 'react';
 import { InputGroup, Button } from 'react-bootstrap';
 import Geosuggest from 'react-geosuggest';
@@ -44,15 +45,11 @@ class AddressInput extends Component {
     }
 
     onSuggestSelect = (suggest) => {
-        const count = suggest.gmaps.address_components.length;
-
         if (
-            count >= 2 &&
-            suggest.gmaps.address_components[count - 1].short_name === "NO" &&
-            suggest.gmaps.address_components[count - 2].short_name === "Oslo"
+            _.some(suggest.gmaps.address_components, c => _.some(c.types, type => type === "country") && c.short_name === "NO") &&
+            _.some(suggest.gmaps.address_components, c => _.some(c.types, type => type === "administrative_area_level_1") && c.short_name === "Oslo")
         ) {
             this.props.locationSeleted(createGeodata(suggest.placeId, suggest.label, suggest.location.lat, suggest.location.lng));
-            this.setState({ value: suggest.label })
         }
 
         if (this.geoSuggest) {
