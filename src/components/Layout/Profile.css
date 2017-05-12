@@ -1,0 +1,94 @@
+#profile-dialog .modal-header {
+    padding-bottom: 0px;
+}
+
+#profile-dialog .modal-body {
+    padding-top: 0px;
+    max-width: 430px;
+}
+
+#profile-dialog .modal-footer {
+    padding-top: 20px;
+    max-width: 390px;
+}
+
+#profile-dialog .modal-footer button {
+    margin-top: 10px;
+}
+
+#profile-dialog h2 {
+    text-align: center;
+    font-family: Lato;
+    font-size: 24px;
+    color: #4d4d4d;
+    margin-top: 36px;
+}
+
+#profile-dialog h2:first-child {
+    margin-top: 28px;
+}
+
+#profile-dialog input:disabled {
+    cursor: default;
+    background-color: #fff;
+}
+
+#profile-dialog .form-group > .col-left {
+    float: left;
+    height: 40px;
+    position: relative;
+}
+
+#profile-dialog .form-group > .col-left > img {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    margin: auto
+}
+
+#profile-dialog .form-group > .col-right {
+    margin-left: 44px;
+}
+
+#profile-dialog .no-icon-input {
+    padding-left: 44px;
+}
+
+#profile-dialog .modal-body .help-block {
+    margin-bottom: 8px;
+}
+
+#profile-dialog .checkbox {
+    margin-top: 25px;
+    margin-left: 5px;
+}
+
+#profile-dialog .checkbox > label {
+    padding-left: 0px;
+    cursor: default;
+}
+
+#profile-dialog .checkbox > label > img {
+    vertical-align: middle;
+    margin-right: 7px;
+    margin-bottom: 4px;
+}
+
+#profile-dialog input[type=checkbox] {
+    display: none;
+}
+
+/* mobile */
+@media (max-width: 767px) {
+    
+    #profile-dialog h4 {
+        font-size: 24px;
+        margin-bottom: 0px;
+    }
+
+    #profile-dialog h2,
+    #profile-dialog ul {
+        font-size: 18px;
+    }
+    
+}

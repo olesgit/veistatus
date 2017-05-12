@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -11,6 +12,7 @@ import './Startpage.css';
 class Startpage extends Component {
 
     static propTypes = {
+<<<<<<< HEAD
         getStreets: PropTypes.func.isRequired,
         putStreet: PropTypes.func.isRequired,
         postStreet: PropTypes.func.isRequired,
@@ -55,6 +57,12 @@ class Startpage extends Component {
                 this.props.addFlashMessage({ type: 'error', text: err })
             })
 
+=======
+        getCategoriesIfNeeded: PropTypes.func.isRequired,
+        showLoginDialog: PropTypes.func.isRequired,
+        showRegisterUser: PropTypes.func.isRequired,
+        pullDown: PropTypes.bool.isRequired
+>>>>>>> 189fa3b46733ccc3bf9fe3b4318f0a45f9f55328
     }
 
     componentDidMount() {
@@ -63,19 +71,44 @@ class Startpage extends Component {
         //this.props.addFlashMessage({ type: 'success', text: "Test" });
     }
 
+    shouldHideWelcome = () => {
+        this.wizard.getWrappedInstance().doHideWelcome();
+    }
+
     render() {
+<<<<<<< HEAD
         const streets = this.props.streets != null ? this.props.streets : [];
         return (
             <div>
                 <VeiStatusForm streets={streets} update={ street => this.update(street)} delete={ street => this.delete(street)} getStreets={ () => this.getStreets()}/>
+=======
+        const map = classNames("map-container", { "pull-down": this.props.pullDown });
+        return (
+            <div id="startpage">
+                <div className={map}>
+                    <MapViewContainer onFocus={this.shouldHideWelcome} />
+                </div>
+                <MessageWizardContainer
+                    ref={r => this.wizard = r}
+                    showLoginDialog={this.props.showLoginDialog}
+                    showRegisterUser={this.props.showRegisterUser}
+                />
+                <MapSearchContainer />
+>>>>>>> 189fa3b46733ccc3bf9fe3b4318f0a45f9f55328
             </div>
         );
     }
 }
 
+<<<<<<< HEAD
 const mapStateToProps = (state) => {
     return {
         streets: state.veiStatus.streets
+=======
+function mapStateToProps(state) {
+    return {
+        pullDown: state.message.step === 'address-map'
+>>>>>>> 189fa3b46733ccc3bf9fe3b4318f0a45f9f55328
     }
 }
 

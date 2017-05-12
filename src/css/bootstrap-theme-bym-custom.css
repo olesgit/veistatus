@@ -27,3 +27,98 @@
     background: #ffffff;
     background-image: none;
 }
+
+/* Link style */
+a, .btn-link {
+    color: #0071bb;
+    font-weight: bold;
+}
+
+a:hover, .btn-link:hover {
+    color: #01436a;
+    font-style: underline;
+}
+
+/* Modal Styling */
+.modal {
+    z-index: 6050;
+}
+
+.modal-backdrop {
+    z-index: 6040;
+}
+
+.modal-content {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    border: solid 1px #979797;
+    border-radius: 0px;
+}
+
+.modal-header {
+    border: none;
+}
+
+.modal-title {
+    margin: 64px 0px 28px 0px;
+    font-family: Lato;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    color: #4d4d4d;
+}
+
+.modal-body {
+    max-width: 390px;
+    margin: 0 auto;
+}
+
+.modal-footer {
+    max-width: 390px;
+    margin: 0 auto;
+    border: none;
+    padding-bottom: 68px;
+}
+
+.modal-body .form-group .control-label {
+    font-family: Lato;
+    font-size: 16px;
+    color: #4d4d4d;
+}
+
+.modal-body .form-group .form-control {
+    height: 40px;
+    border: solid 1px #9b9b9b;
+    border-radius: 0px;
+    font-family: Lato;
+    font-size: 16px;
+    color: #4d4d4d;
+}
+
+.has-error .form-control {
+    border-color: #a94442!important;
+}
+
+.modal-footer .btn-success {
+    height: 40px;
+}
+
+.modal-dialog button.close {
+    margin-right: 20px;
+}
+
+.modal-body > .help-block {
+    margin-bottom: 28px;
+}
+
+/* mobile */
+@media (max-width: 767px) {
+
+    .modal-dialog {
+        margin: 0px;
+        height: 100%;
+    }
+
+    .modal-body {
+        height: 100%;
+    }
+}

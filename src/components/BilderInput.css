@@ -1,0 +1,13 @@
+/* Add Picture Button */
+.bilder-dropzone {
+    background-color: white;
+    border: dashed 1px #979797;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.bilder-dropzone-helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}

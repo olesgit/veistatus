@@ -1,7 +1,25 @@
+#startpage {
+    height: 100%;
+    overflow: auto;
+}
+
 .map-container {
     position: fixed;
     top: 130px;
     left: 0px;
     right: 0px;
     bottom: 0px;
+    z-index: 0;
+}
+
+/* mobile */
+@media (max-width: 767px) {
+    
+    .map-container:not(.pull-down) {
+        top: 35px;
+    }
+    
+    .map-container.pull-down {
+        top: 250px;
+    }
 }

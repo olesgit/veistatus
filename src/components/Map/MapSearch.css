@@ -1,0 +1,27 @@
+.map-search {
+    margin-top: 80px;
+    width: 100%;
+    z-index: 500;
+}
+
+.map-search-content {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 0 14px;
+}
+
+.map-search-content > .address-input-group {
+    border: none;
+}
+
+/* mobile */
+@media (max-width: 767px) {
+
+    .map-search[data-showMap="false"] {
+        display: none;
+    }
+    
+    .map-search {
+        margin-top: 24px;
+    }
+}

@@ -1,0 +1,22 @@
+.category-content {
+    margin-top: 20px;
+}
+
+/* mobile */
+@media (max-width: 767px) {
+
+    .category-content {
+        margin-top: 0px;
+    }
+
+    .category-content > h4 {
+        font-size: 12px;
+        margin-left: 14px;
+        margin-right: 14px;
+    }
+
+    .category-content--active > h4,
+    .category-content--active > .recommended-categories  {
+        display: none;
+    }
+}

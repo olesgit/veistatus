@@ -1,12 +1,12 @@
 
 import { connect } from "react-redux";
-import React, {Component, PropTypes} from 'react';
-import FlashMessage from "../../containers/common/FlashMessage";
-import {deleteFlashMessage} from '../../actions/FlashMessagesAction';
+import React, { Component, PropTypes } from 'react';
+import FlashMessage from "../../components/common/FlashMessage";
+import { deleteFlashMessage } from '../../actions/FlashMessagesAction';
 
 class FlashMessagesList extends Component {
-    render () {
-        const message= this.props.messages.map(message => 
+    render() {
+        const message = this.props.messages.map(message =>
             <FlashMessage key={message} message={message} deleteFlashMessage={this.props.deleteFlashMessage} />
         );
         return (
@@ -22,10 +22,10 @@ FlashMessagesList.propTypes = {
     deleteFlashMessage: PropTypes.func.isRequired
 }
 
-function MapStateToProps(state){
+function MapStateToProps(state) {
     return {
         messages: state.flashMessages
     }
 }
 
-export default connect(MapStateToProps, {deleteFlashMessage}) (FlashMessagesList);
+export default connect(MapStateToProps, { deleteFlashMessage })(FlashMessagesList);

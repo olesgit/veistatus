@@ -43,3 +43,4 @@ When debugging in chrome --> developer tools (F12) will crash chrome
 
 ## Felleskomponent konfigurasjoner
 https://bym-ikt.atlassian.net/wiki/display/FEL/React-Redux
+"# veistatus" 

@@ -1,0 +1,50 @@
+.step-picture-complete {
+    border-bottom: solid 2px #e9e9e9;
+    padding-top: 17px;
+    min-height: 54px;
+}
+
+.step-picture-complete:first-child {
+    padding-top: 30px;
+}
+
+.step-picture-complete > img {
+    border-right: solid 1px #9b9b9b;
+    padding-right: 6px;
+    float: left;
+    width: 40px;
+    height: 25px;
+}
+
+.step-picture-complete > div {
+    margin-left: 52px;
+}
+
+.step-picture-preview {
+    opacity: 0.6;
+}
+
+/* Do not show when map is shown */
+.wizard-step-address-map .step-picture-complete {
+    display: none;
+}
+
+/* mobile */
+@media (max-width: 767px) {
+
+    .step-picture-complete {
+        display: none;
+        /*pointer-events: none;*/
+        margin: 0 14px;
+    }
+
+    .wizard-step-submit .step-picture-complete {
+        display: block;
+    }
+    
+    .step-picture-preview {
+        width: 93px;
+        height: 93px;
+    }
+
+}

@@ -1,0 +1,50 @@
+.recommended-categories {
+    margin: 0px 4px 6px 14px;
+}
+
+.recommended-category {
+    border-radius: 11px;
+    background-color: #01436a;
+    border: solid 1px #979797;
+
+    margin-right: 10px;
+    margin-bottom: 14px;
+    padding: 2px 21px;
+
+    font-family: Lato;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.44;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+}
+
+.recommended-category:first-child {
+    margin-left: 0px;
+}
+
+.recommended-category:hover {
+    background-color: #00314e;
+    border: solid 1px #979797;
+}
+
+.recommended-category:active {
+    background-color: #001b2b;
+    border: solid 1px #979797;
+}
+
+.recommended-category:disabled {
+    opacity: 0.5;
+}
+
+/* mobile */
+@media (max-width: 767px) {
+
+    .recommended-category {
+        font-size: 12px;
+    }
+
+}

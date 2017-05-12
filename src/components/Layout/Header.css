@@ -1,0 +1,118 @@
+.byvaapen {
+  width: 79.6px;
+  height: 95px;
+}
+
+body {
+  padding-top: 131px!important;
+}
+
+.navbar {
+  height: 131px;
+  border-bottom: solid 4.3px #f9a11b;
+  z-index: 2000;
+}
+
+.navbar-default {
+  background: #fff;
+}
+
+.header-text {
+  display: inline-block;
+  margin-left: 13px;
+  margin-top: 23px;
+  border-left: solid 1px #4d4d4d;
+  padding-left: 14px;
+  height: 72px;
+
+	vertical-align: middle;
+
+  font-family: Lato;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.31;
+  letter-spacing: normal;
+  color: #4d4d4d;
+}
+
+.header-text-strong {
+  font-weight: 900;
+  line-height: 1.81;
+}
+
+.oslo-logo {
+  position: absolute;
+  right: 0px;
+  bottom: -27px;
+  pointer-events: none;
+}
+
+.navbar-brand {
+	margin:0;
+	padding-top:9px;
+}
+
+.navbar-brand > img {
+	display: inline-block;
+}
+
+nav .dropdown-menu li {
+  margin: 0px;
+}
+
+nav .dropdown-menu a {
+  font-family: Lato;
+  font-size: 16px;
+  color: #39393a;
+  padding: 8px 25px 8px 15px;
+}
+
+.navbar-toggle {
+  float: left;
+  margin: 0px 15px 5px 15px;
+  padding: 4px 2px;
+  background-color: transparent!important;
+  border: none;
+}
+
+.navbar-collapse {
+  background-color: #fff;
+  border-top: none;
+}
+
+#settings-txt {
+  display: none;
+  padding: 0px;
+}
+
+/* mobile */
+@media (max-width: 767px) {
+
+    .navbar {
+      height: 35px;
+      min-height: 35px;
+      margin-bottom: initial;
+    }
+    
+    .navbar-brand {
+      display: none;
+    }
+    
+    body {
+      padding-top: 35px!important;
+    }
+
+    #settings-img {
+      display: none;
+    }
+
+    #settings-txt {
+      display: block;
+    }
+
+    .navbar-collapse {
+      border-bottom: solid 1px #39393a;
+    }
+}
