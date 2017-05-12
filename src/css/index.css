@@ -3,7 +3,7 @@
 body {
     background-color: white;
     font-family: Lato, serif;
-    padding-top: 65px;
+    /*padding-top: 65px;  Header og subheader bruker denne plassen, og i tillegg padding-top: 131px!important; i body på HeaderContainer.css*/
     color: #4d4d4d;
     overflow: auto;
 }

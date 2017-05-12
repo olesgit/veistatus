@@ -1,12 +1,12 @@
 {
   "name": "bymelding-portal",
   "version": "0.1.0",
-  "description": "Portal for Bymelding i Bymiljøetaten, basert på React/Redux",
+  "description": "Portal for veistatus i Bymiljøetaten, basert på React/Redux",
   "private": true,
   "author": "BYM-IKT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/BYM-IKT/BymeldingPortal"
+    "url": "https://github.com/BYM-IKT/veistatusPortal"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",

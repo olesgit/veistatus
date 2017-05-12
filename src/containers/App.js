@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import HeaderContainer from './Layout/HeaderContainer';
-import PageHeader from '../components/Layout/PageHeader';
+// import HeaderContainer from './Layout/HeaderContainer';
+// import PageHeader from '../components/Layout/PageHeader';
 import FlashMessagesList from "../components/common/FlashMessagesList";
-import { getDisplayName } from '../constants/clientRoutes';
 
 export default class App extends Component {
     constructor(props, context) {
@@ -18,7 +17,7 @@ export default class App extends Component {
 
     setPageHeaderInfo(location) {
         if (!location.pathname) return;
-        const title = (location.state && location.state.pageTitle) ? location.state.pageTitle : getDisplayName(location.pathname);
+        const title = (location.state && location.state.pageTitle) ? location.state.pageTitle : "Vei Status";
 
         let pageTitleFromState = "";
         if (location.state && location.state.subTitle)
@@ -42,8 +41,8 @@ export default class App extends Component {
     render() {
         return (
             <div>
-                <HeaderContainer />
-                <PageHeader pageTitle={this.state.pageTitle} subTitle={this.state.subTitle} />
+                {/*<HeaderContainer />*/}
+                {/*<PageHeader pageTitle={this.state.pageTitle} subTitle={this.state.subTitle} />*/}
                 <FlashMessagesList />
                 {this.props.children}
             </div>

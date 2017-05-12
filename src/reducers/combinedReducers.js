@@ -1,12 +1,10 @@
 import { combineReducers } from 'redux'
 import flashMessages from "./flashMessagesReducer"
-import message from "./messageReducer"
-import map from './mapReducer'
+import veiStatus from "./veiStatusReducer"
 
 const rootReducer = combineReducers({
     flashMessages,
-    message,
-    map
+    veiStatus
 })
 
 export default rootReducer

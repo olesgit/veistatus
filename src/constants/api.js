@@ -1,46 +1,28 @@
 function RESOLVE_HOST() {
-
     if (process.env.REACT_APP_REACT_ENV === "production") {
+        console.log("REACT_APP_REACT_ENV er definert som production, må utføres")
         return {
-            bymelding_service_host: 'http://bymelding-service.bymoslo.no:80'
-        };
-    }
-
-    else if (process.env.REACT_APP_REACT_ENV === "testing") {
-        return {
-            bymelding_service_host: 'http://bymelding-service-test.bymoslo.no:80'
-        };
-    }
-    else if (process.env.REACT_APP_REACT_ENV === "staging") {
-        return {
-            bymelding_service_host: 'http://stage-bymelding-service.bym-stage-service.1b8f4e58.svc.dockerapp.io:5003'
+            veistatus_service_host: 'NA'
         };
     }
 
     else if (process.env.REACT_APP_REACT_ENV === "development") {
         return {
-            bymelding_service_host: 'http://dev-bymelding-service.bym-dev-bymelding.fb6e1c5c.svc.dockerapp.io:5003'
+            veistatus_service_host: 'http://localhost:62222'
         };
     }
     else if (process.env.REACT_APP_REACT_ENV === "local") {
         return {
-            bymelding_service_host: 'http://localhost:5003'
+            veistatus_service_host: 'http://localhost:62222'
         };
     }
-    else if (process.env.REACT_APP_REACT_ENV === "localdocker") {
-        return {
-            bymelding_service_host: 'http://localhost:5003'
-        };
-    }
-    else if (process.env.REACT_APP_REACT_ENV === "mock") {
-        return {
-            bymelding_service_host: 'http://localhost:5003'
-        };
-    }
+
     throw new Error("No REACT_APP_REACT_ENV config found");
 }
 
-export const bymeldingServiceBaseUrl = RESOLVE_HOST().bymelding_service_host;
-
-export const getMessageCategories = bymeldingServiceBaseUrl + "/api/meldingskategorigrupper";
-export const postMessage = bymeldingServiceBaseUrl + "/api/meldinger";
+export const veistatusServiceBaseUrl = RESOLVE_HOST().veistatus_service_host;
+//export const getStreets = veistatusServiceBaseUrl + "/api/Gater";   //&?rigin=*  to avoid the No 'Access-Control-Allow-Origin' header is present error message (not verififed. This need the server to Enabling Cross-Origin Requests)
+export const getStreets = veistatusServiceBaseUrl + "/api/HISTORIKKs";   //&?rigin=*  to avoid the No 'Access-Control-Allow-Origin' header is present error message (not verififed. Must Enable EnableCors on controller class)
+export const putStreet = veistatusServiceBaseUrl + "/api/HISTORIKKs";   //PutHISTORIKK/id
+export const postStreet = veistatusServiceBaseUrl + "/api/HISTORIKKs";   //PostHISTORIKK
+export const deleteStreet = veistatusServiceBaseUrl + "/api/HISTORIKKs";   //DeleteHISTORIKK/id

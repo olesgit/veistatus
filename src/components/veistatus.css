@@ -1,0 +1,9 @@
+/*.veistatusForm {
+    width: 740px;
+    background-color: white;
+}*/
+
+.maxwidth {
+    width: 100%;
+    max-width: 50px;
+}
